@@ -1,4 +1,3 @@
-// extension.js
 import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
@@ -13,97 +12,97 @@ import Shell from 'gi://Shell';
 import GObject from 'gi://GObject';
 
 const DependencyErrorDialog = GObject.registerClass(
-class DependencyErrorDialog extends ModalDialog.ModalDialog {
-    _init(missingApp, installCmd) {
-        super._init();
-        
-        this._timeoutId = null;
-        this.connect('destroy', () => {
-            if (this._timeoutId) {
-                GLib.source_remove(this._timeoutId);
-                this._timeoutId = null;
-            }
-        });
-        
-        // Ensure the dialog is destroyed after it closes to prevent memory leaks
-        this.connect('closed', () => {
-            this.destroy();
-        });
-        
-        let mainBox = new St.BoxLayout({
-            vertical: true,
-            style: 'padding: 24px; spacing: 18px; width: 480px;'
-        });
-        
-        let titleLabel = new St.Label({
-            text: `Missing System Dependency: ${missingApp}`,
-            style: 'font-size: 14pt; font-weight: bold; color: #ff5555;'
-        });
-        mainBox.add_child(titleLabel);
-        
-        let descText = `This extension requires native system tools to perform OCR text extraction. To get the extension working, please open your terminal application, copy and run the following command to install the required dependencies:\n`;
-        let descLabel = new St.Label({
-            text: descText,
-        });
-        descLabel.clutter_text.line_wrap = true;
-        mainBox.add_child(descLabel);
-        
-        let codeLayout = new St.BoxLayout({
-            vertical: false,
-            style: 'spacing: 12px; background-color: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px;'
-        });
-        
-        let codeLabel = new St.Label({
-            text: installCmd,
-            style: 'font-family: monospace; font-weight: bold;',
-            y_align: Clutter.ActorAlign.CENTER,
-            x_expand: true
-        });
-        codeLabel.clutter_text.line_wrap = true;
-        
-        let copyButton = new St.Button({
-            style_class: 'button',
-            y_align: Clutter.ActorAlign.CENTER,
-            style: 'padding: 8px; border-radius: 6px;'
-        });
-        
-        let copyIcon = new St.Icon({
-            icon_name: 'edit-copy-symbolic',
-            icon_size: 16
-        });
-        copyButton.set_child(copyIcon);
-        
-        copyButton.connect('clicked', () => {
-            let clipboard = St.Clipboard.get_default();
-            clipboard.set_text(St.ClipboardType.CLIPBOARD, installCmd);
+    class DependencyErrorDialog extends ModalDialog.ModalDialog {
+        _init(missingApp, installCmd) {
+            super._init();
             
-            copyIcon.icon_name = 'object-select-symbolic';
-            
-            if (this._timeoutId) {
-                GLib.source_remove(this._timeoutId);
-                this._timeoutId = null;
-            }
-            
-            this._timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 2000, () => {
-                this._timeoutId = null;
-                copyIcon.icon_name = 'edit-copy-symbolic';
-                return GLib.SOURCE_REMOVE;
+            this._timeoutId = null;
+            this.connect('destroy', () => {
+                if (this._timeoutId) {
+                    GLib.source_remove(this._timeoutId);
+                    this._timeoutId = null;
+                }
             });
-        });
-        
-        codeLayout.add_child(codeLabel);
-        codeLayout.add_child(copyButton);
-        mainBox.add_child(codeLayout);
-        
-        this.contentLayout.add_child(mainBox);
-        
-        this.setButtons([{
-            label: 'Dismiss',
-            action: () => this.close(),
-            key: Clutter.KEY_Escape
-        }]);
+            
+            this.connect('closed', () => {
+                this.destroy();
+            });
+            
+            let mainBox = new St.BoxLayout({
+                vertical: true,
+                style: 'padding: 24px; spacing: 18px; width: 480px;'
+            });
+            
+            let titleLabel = new St.Label({
+                text: `Missing System Dependency: ${missingApp}`,
+                style: 'font-size: 14pt; font-weight: bold; color: #ff5555;'
+            });
+            mainBox.add_child(titleLabel);
+            
+            let descText = `This extension requires native system tools to perform OCR text extraction. To get the extension working, open your terminal and run the command below to install the base dependencies.\n\nTip: Tesseract will automatically detect and use ANY language packs you have installed on your system! Simply install additional languages (e.g., tesseract-ocr-deu, tesseract-ocr-chi-sim) via your package manager to enable them.`;
+            let descLabel = new St.Label({
+                text: descText,
+            });
+            descLabel.clutter_text.line_wrap = true;
+            mainBox.add_child(descLabel);
+            
+            let codeLayout = new St.BoxLayout({
+                vertical: false,
+                style: 'spacing: 12px; background-color: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px;'
+            });
+            
+            let codeLabel = new St.Label({
+                text: installCmd,
+                style: 'font-family: monospace; font-weight: bold;',
+                y_align: Clutter.ActorAlign.CENTER,
+                x_expand: true
+            });
+            codeLabel.clutter_text.line_wrap = true;
+            
+            let copyButton = new St.Button({
+                style_class: 'button',
+                y_align: Clutter.ActorAlign.CENTER,
+                style: 'padding: 8px; border-radius: 6px;'
+            });
+            
+            let copyIcon = new St.Icon({
+                icon_name: 'edit-copy-symbolic',
+                icon_size: 16
+            });
+            copyButton.set_child(copyIcon);
+            
+            copyButton.connect('clicked', () => {
+                let clipboard = St.Clipboard.get_default();
+                clipboard.set_text(St.ClipboardType.CLIPBOARD, installCmd);
+                
+                copyIcon.icon_name = 'object-select-symbolic';
+                
+                if (this._timeoutId) {
+                    GLib.source_remove(this._timeoutId);
+                    this._timeoutId = null;
+                }
+                
+                this._timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 2000, () => {
+                    this._timeoutId = null;
+                    copyIcon.icon_name = 'edit-copy-symbolic';
+                    return GLib.SOURCE_REMOVE;
+                });
+            });
+            
+            codeLayout.add_child(codeLabel);
+            codeLayout.add_child(copyButton);
+            mainBox.add_child(codeLayout);
+            
+            this.contentLayout.add_child(mainBox);
+            
+            this.setButtons([{
+                label: 'Dismiss',
+                action: () => this.close(),
+                key: Clutter.KEY_Escape
+            }]);
+        }
     }
-});
+);
 
 export default class SnapTextExtension extends Extension {
     enable() {
@@ -113,13 +112,14 @@ export default class SnapTextExtension extends Extension {
         this._screenshotProcess = null;
         this._tesseractProcess = null;
         this._errorDialog = null;
-        
+
         let icon = new St.Icon({
             icon_name: 'edit-select-text-symbolic',
             style_class: 'system-status-icon',
         });
-        
+
         this._indicator.add_child(icon);
+
         this._indicator.connect('button-press-event', (actor, event) => {
             let button = event.get_button();
             
@@ -146,6 +146,7 @@ export default class SnapTextExtension extends Extension {
 
         this._buildMenu();
         this._settingsChangedId = this._settings.connect('changed', this._onSettingsChanged.bind(this));
+
         Main.panel.addToStatusArea(this.uuid, this._indicator);
         this._bindShortcut();
     }
@@ -161,7 +162,7 @@ export default class SnapTextExtension extends Extension {
     _buildMenu() {
         this._indicator.menu.removeAll();
         let keepHistory = this._settings.get_boolean('keep-history');
-        
+
         if (keepHistory) {
             let history = this._settings.get_strv('history-list');
             if (history.length > 0) {
@@ -210,15 +211,15 @@ export default class SnapTextExtension extends Extension {
 
         let distroId = GLib.get_os_info('ID');
         let installCmd = '';
-        
+
         if (distroId === 'fedora') {
             installCmd = `sudo dnf install ${missingApp === 'tesseract' ? 'tesseract' : 'gnome-screenshot'}`;
         } else if (distroId === 'arch') {
             installCmd = `sudo pacman -S ${missingApp === 'tesseract' ? 'tesseract tesseract-data-eng' : 'gnome-screenshot'}`;
         } else {
-            installCmd = `sudo apt update && sudo apt install ${missingApp === 'tesseract' ? 'tesseract-ocr' : 'gnome-screenshot'}`;
+            installCmd = `sudo apt update && sudo apt install ${missingApp === 'tesseract' ? 'tesseract-ocr tesseract-ocr-eng' : 'gnome-screenshot'}`;
         }
-        
+
         this._errorDialog = new DependencyErrorDialog(missingApp, installCmd);
         this._errorDialog.connect('destroy', () => {
             this._errorDialog = null;
@@ -227,7 +228,17 @@ export default class SnapTextExtension extends Extension {
     }
 
     _extractText() {
-        if (this._screenshotProcess || this._tesseractProcess) return;
+        // NUKE HANGING PROCESSES: Instead of silently ignoring new clicks when a background task locks up, 
+        // we forcefully terminate any stuck processes to guarantee the UI is always responsive.
+        if (this._screenshotProcess) {
+            this._screenshotProcess.force_exit();
+            this._screenshotProcess = null;
+        }
+
+        if (this._tesseractProcess) {
+            this._tesseractProcess.force_exit();
+            this._tesseractProcess = null;
+        }
 
         if (!GLib.find_program_in_path('gnome-screenshot')) {
             this._showModalError('gnome-screenshot');
@@ -235,90 +246,126 @@ export default class SnapTextExtension extends Extension {
         }
 
         let tempImagePath = GLib.build_filenamev([GLib.get_tmp_dir(), 'snap_text_capture.png']);
-        
+
         this._screenshotProcess = Gio.Subprocess.new(
             ['gnome-screenshot', '-a', '-f', tempImagePath],
             Gio.SubprocessFlags.NONE
         );
-        
-        this._screenshotProcess.wait_check_async(null, (proc, res) => {
+
+        this._screenshotProcess.wait_async(null, (proc, res) => {
             this._screenshotProcess = null;
-            try {
-                proc.wait_check_finish(res);
+            proc.wait_finish(res);
+
+            // Directly evaluate success cleanly instead of catching errors using wait_check_finish
+            if (proc.get_successful()) {
                 this._runTesseract(tempImagePath);
-            } catch (e) {
-                // Triggers if process exits non-zero (e.g., user hits Esc during screenshot selection).
+            } else {
                 GLib.unlink(tempImagePath);
             }
         });
     }
 
     _runTesseract(imagePath) {
-        if (this._tesseractProcess) return;
-
         if (!GLib.find_program_in_path('tesseract')) {
             this._showModalError('tesseract');
             GLib.unlink(imagePath);
             return;
         }
-
-        this._tesseractProcess = Gio.Subprocess.new(
-            ['tesseract', imagePath, 'stdout'],
+        
+        // EGO Guideline: Never use synchronous/blocking I/O. Asynchronously query installed languages.
+        let listProc = Gio.Subprocess.new(
+            ['tesseract', '--list-langs'],
             Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
         );
-        
-        this._tesseractProcess.communicate_utf8_async(null, null, (proc, res) => {
-            this._tesseractProcess = null;
+
+        listProc.communicate_utf8_async(null, null, (proc, res) => {
+            let combinedLangs = 'eng';
+            
             try {
                 let [, stdout] = proc.communicate_utf8_finish(res);
                 
-                if (proc.get_successful()) {
-                    let extractedText = stdout ? stdout.trim() : "";
+                if (proc.get_successful() && stdout) {
+                    let lines = stdout.split('\n').map(l => l.trim());
                     
-                    if (extractedText) {
-                        let clipboard = St.Clipboard.get_default();
-                        clipboard.set_text(St.ClipboardType.CLIPBOARD, extractedText);
-                        
-                        if (this._settings.get_boolean('keep-history')) {
-                            let history = this._settings.get_strv('history-list');
-                            history = history.filter(item => item !== extractedText);
-                            history.unshift(extractedText);
-                            if (history.length > 15) {
-                                history.length = 15;
+                    // STRICT PARSING: explicitly find the data header to ignore console warnings/errors
+                    let startIndex = lines.findIndex(l => l.startsWith('List of'));
+                    let validLangs = [];
+                    
+                    if (startIndex !== -1) {
+                        for (let i = startIndex + 1; i < lines.length; i++) {
+                            let lang = lines[i];
+                            // Only accept strings with alphanumeric/underscore characters (drops empty lines & error sentences)
+                            if (lang && lang !== 'osd' && /^[a-zA-Z0-9_]+$/.test(lang)) {
+                                validLangs.push(lang);
                             }
-                            this._settings.set_strv('history-list', history);
                         }
-
-                        if (this._settings.get_boolean('show-notification')) {
-                            Main.notify('Text Extracted', extractedText);
-                        }
-                    } else {
-                        if (this._settings.get_boolean('show-notification')) {
-                            Main.notify('Snap Text', 'No text found in selection.');
-                        }
+                    }
+                    
+                    if (validLangs.length > 0) {
+                        combinedLangs = validLangs.join('+');
                     }
                 }
             } catch (e) {
-                console.error('Snap Text Extension: Tesseract process read failure', e);
-            } finally {
-                GLib.unlink(imagePath);
+                console.error('Snap Text Extension: Failed to query installed languages, falling back to eng', e);
             }
+
+            this._tesseractProcess = Gio.Subprocess.new(
+                ['tesseract', imagePath, 'stdout', '-l', combinedLangs],
+                Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
+            );
+
+            this._tesseractProcess.communicate_utf8_async(null, null, (tProc, tRes) => {
+                this._tesseractProcess = null;
+                try {
+                    let [, tStdout] = tProc.communicate_utf8_finish(tRes);
+
+                    if (tProc.get_successful()) {
+                        let extractedText = tStdout ? tStdout.trim() : "";
+
+                        if (extractedText) {
+                            let clipboard = St.Clipboard.get_default();
+                            clipboard.set_text(St.ClipboardType.CLIPBOARD, extractedText);
+
+                            if (this._settings.get_boolean('keep-history')) {
+                                let history = this._settings.get_strv('history-list');
+                                history = history.filter(item => item !== extractedText);
+                                history.unshift(extractedText);
+                                if (history.length > 15) {
+                                    history.length = 15;
+                                }
+                                this._settings.set_strv('history-list', history);
+                            }
+                            if (this._settings.get_boolean('show-notification')) {
+                                Main.notify('Text Extracted', extractedText);
+                            }
+                        } else {
+                            if (this._settings.get_boolean('show-notification')) {
+                                Main.notify('Snap Text', 'No text found in selection.');
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error('Snap Text Extension: Tesseract process read failure', e);
+                } finally {
+                    GLib.unlink(imagePath);
+                }
+            });
         });
     }
 
     disable() {
         Main.wm.removeKeybinding('shortcut-trigger');
-        
+
         if (this._settingsChangedId) {
             this._settings.disconnect(this._settingsChangedId);
             this._settingsChangedId = null;
         }
-        
+
         if (this._screenshotProcess) {
             this._screenshotProcess.force_exit();
             this._screenshotProcess = null;
         }
-        
+
         if (this._tesseractProcess) {
             this._tesseractProcess.force_exit();
             this._tesseractProcess = null;
@@ -333,7 +380,7 @@ export default class SnapTextExtension extends Extension {
             this._indicator.destroy();
             this._indicator = null;
         }
-        
+
         this._settings = null;
     }
 }

@@ -1,4 +1,3 @@
-// prefs.js
 import Adw from 'gi://Adw';
 import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
@@ -22,12 +21,10 @@ function createLinkButton(title, uri, styleClass = null) {
 export default class SnapTextPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         const settings = this.getSettings();
-
         const page = new Adw.PreferencesPage({
             title: 'Snap Text Configuration',
             icon_name: 'preferences-system-symbolic'
         });
-
         const groupHeader = new Adw.PreferencesGroup();
         const descLabel = new Gtk.Label({
             label: 'Instantly extract and copy text to your clipboard from anywhere on the screen.',
@@ -39,11 +36,10 @@ export default class SnapTextPreferences extends ExtensionPreferences {
         });
         groupHeader.add(descLabel);
         page.add(groupHeader);
-
+        
         const groupSettings = new Adw.PreferencesGroup({
             title: 'Behavior & Shortcuts'
         });
-
         const notificationRow = new Adw.ActionRow({
             title: 'Show Extracted Text Notification',
             subtitle: 'Displays a system banner containing your copied text context.'
@@ -56,7 +52,7 @@ export default class SnapTextPreferences extends ExtensionPreferences {
         notificationRow.add_suffix(toggleNotification);
         notificationRow.activatable_widget = toggleNotification;
         groupSettings.add(notificationRow);
-
+        
         const historyRow = new Adw.ActionRow({
             title: 'Enable Extraction History',
             subtitle: 'Keep a history of up to 15 recent extractions in the context menu.'
@@ -69,25 +65,24 @@ export default class SnapTextPreferences extends ExtensionPreferences {
         historyRow.add_suffix(toggleHistory);
         historyRow.activatable_widget = toggleHistory;
         groupSettings.add(historyRow);
-
+        
         const shortcutRow = new Adw.ActionRow({
             title: 'Keyboard Shortcut Trigger',
             subtitle: 'Click to set shortcut. Press Esc to cancel, Backspace to disable.'
         });
-        
+                 
         const shortcutLabel = new Gtk.ShortcutLabel({
             disabled_text: 'Disabled',
             accelerator: settings.get_strv('shortcut-trigger')[0] || '',
             valign: Gtk.Align.CENTER
         });
-        
+                 
         const shortcutButton = new Gtk.Button({
             child: shortcutLabel,
             valign: Gtk.Align.CENTER
         });
-        
+                 
         let isRecording = false;
-
         shortcutButton.connect('clicked', () => {
             if (isRecording) {
                 isRecording = false;
@@ -100,21 +95,21 @@ export default class SnapTextPreferences extends ExtensionPreferences {
                 shortcutLabel.set_disabled_text('Press keys...');
             }
         });
-        
+                 
         const keyController = new Gtk.EventControllerKey();
         keyController.set_propagation_phase(Gtk.PropagationPhase.CAPTURE);
         window.add_controller(keyController);
-        
+                 
         keyController.connect('key-pressed', (controller, keyval, keycode, state) => {
             if (!isRecording) return false;
-            
+                         
             if (keyval === Gdk.KEY_Escape) {
                 isRecording = false;
                 shortcutButton.remove_css_class('suggested-action');
                 shortcutLabel.set_accelerator(settings.get_strv('shortcut-trigger')[0] || '');
                 return true;
             }
-            
+                         
             if (keyval === Gdk.KEY_BackSpace) {
                 isRecording = false;
                 settings.set_strv('shortcut-trigger', ['']);
@@ -123,7 +118,7 @@ export default class SnapTextPreferences extends ExtensionPreferences {
                 shortcutLabel.set_disabled_text('Disabled');
                 return true;
             }
-            
+                         
             let mask = state & Gtk.accelerator_get_default_mod_mask();
             if (Gtk.accelerator_valid(keyval, mask)) {
                 let accelName = Gtk.accelerator_name(keyval, mask);
@@ -133,23 +128,21 @@ export default class SnapTextPreferences extends ExtensionPreferences {
                 shortcutLabel.set_accelerator(accelName);
                 return true;
             }
-            
-            return true; 
-        });
-
+                         
+            return true;
+         });
         shortcutRow.add_suffix(shortcutButton);
         shortcutRow.activatable_widget = shortcutButton;
         groupSettings.add(shortcutRow);
-
         page.add(groupSettings);
-
+        
         const groupAbout = new Adw.PreferencesGroup({
             title: 'Developer Details'
         });
         groupAbout.add(new Adw.ActionRow({ title: 'Author', subtitle: 'Christian Wittenberg' }));
         groupAbout.add(new Adw.ActionRow({ title: 'Version', subtitle: '1.0.0 (Production Release)' }));
         page.add(groupAbout);
-
+        
         const groupLinks = new Adw.PreferencesGroup();
         const linkBox = new Gtk.Box({
             orientation: Gtk.Orientation.HORIZONTAL,
@@ -158,13 +151,11 @@ export default class SnapTextPreferences extends ExtensionPreferences {
             margin_top: 16,
             margin_bottom: 16
         });
-
-        linkBox.append(createLinkButton('Buy me a coffee  ', 'https://ko-fi.com/cwittenberg', 'suggested-action'));
-        linkBox.append(createLinkButton('Report a Bug  ', 'https://github.com/cwittenberg/omnipanel/issues/new?template=bug_report.md'));
-        linkBox.append(createLinkButton('Request a Feature  ', 'https://github.com/cwittenberg/omnipanel/issues/new?template=feature_request.md'));
+        linkBox.append(createLinkButton('Buy me a coffee ☕', 'https://ko-fi.com/cwittenberg', 'suggested-action'));
+        linkBox.append(createLinkButton('Report a Bug 🐛', 'https://github.com/cwittenberg/omnipanel/issues/new?template=bug_report.md'));
+        linkBox.append(createLinkButton('Request a Feature 🚀', 'https://github.com/cwittenberg/omnipanel/issues/new?template=feature_request.md'));
         groupLinks.add(linkBox);
         page.add(groupLinks);
-
         window.add(page);
     }
 }
