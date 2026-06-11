@@ -1,6 +1,8 @@
+// extension.js
 import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
+import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import * as ModalDialog from 'resource:///org/gnome/shell/ui/modalDialog.js';
 import St from 'gi://St';
 import Gio from 'gi://Gio';
@@ -17,7 +19,6 @@ class DependencyErrorDialog extends ModalDialog.ModalDialog {
         
         this._timeoutId = null;
 
-        // Ensure we properly clean up the timeout so we don't need a try/catch mask
         this.connect('destroy', () => {
             if (this._timeoutId) {
                 GLib.source_remove(this._timeoutId);
@@ -101,7 +102,7 @@ class DependencyErrorDialog extends ModalDialog.ModalDialog {
 
 export default class LiveTextExtension extends Extension {
     enable() {
-        this._settings = this.getSettings('org.gnome.shell.extensions.livetext');
+        this._settings = this.getSettings();
         this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
         this._settingsChangedId = null;
         this._screenshotProcess = null;
@@ -113,13 +114,84 @@ export default class LiveTextExtension extends Extension {
         });
         
         this._indicator.add_child(icon);
-        this._indicator.connect('button-press-event', this._extractText.bind(this));
+
+        this._indicator.connect('button-press-event', (actor, event) => {
+            let button = event.get_button();
+            
+            // Handle left click (capture) on press
+            if (button === 1) { 
+                if (this._indicator.menu.isOpen) {
+                    this._indicator.menu.close();
+                }
+                this._extractText();
+                return Clutter.EVENT_STOP; 
+            }
+            // Let right click (button 3) propagate so it establishes the grab 
+            // and allows the release-event to trigger cleanly.
+            return Clutter.EVENT_PROPAGATE;
+        });
+
+        this._indicator.connect('button-release-event', (actor, event) => {
+            let button = event.get_button();
+            
+            // Handle right click (context menu) on release
+            if (button === 3) { 
+                this._buildMenu();
+                this._indicator.menu.toggle();
+                return Clutter.EVENT_STOP; 
+            }
+            return Clutter.EVENT_PROPAGATE;
+        });
+
+        this._buildMenu();
+        this._settingsChangedId = this._settings.connect('changed', this._onSettingsChanged.bind(this));
+
         Main.panel.addToStatusArea(this.uuid, this._indicator);
-        
         this._bindShortcut();
+    }
+
+    _onSettingsChanged(settings, key) {
+        if (key === 'shortcut-trigger') {
+            this._bindShortcut();
+        } else if (key === 'keep-history' || key === 'history-list') {
+            this._buildMenu();
+        }
+    }
+
+    _buildMenu() {
+        this._indicator.menu.removeAll();
+
+        let keepHistory = this._settings.get_boolean('keep-history');
         
-        // Retain the connection ID so it can be un-bound cleanly
-        this._settingsChangedId = this._settings.connect('changed::shortcut-trigger', this._bindShortcut.bind(this));
+        if (keepHistory) {
+            let history = this._settings.get_strv('history-list');
+
+            if (history.length > 0) {
+                for (let text of history) {
+                    let displayLabel = text.replace(/\n/g, ' ').trim();
+                    if (displayLabel.length > 40) {
+                        displayLabel = displayLabel.substring(0, 37) + '...';
+                    }
+
+                    let menuItem = new PopupMenu.PopupMenuItem(displayLabel);
+                    menuItem.connect('activate', () => {
+                        let clipboard = St.Clipboard.get_default();
+                        clipboard.set_text(St.ClipboardType.CLIPBOARD, text);
+                        if (this._settings.get_boolean('show-notification')) {
+                            Main.notify('Text Copied from History', text);
+                        }
+                    });
+                    this._indicator.menu.addMenuItem(menuItem);
+                }
+            } else {
+                this._indicator.menu.addMenuItem(new PopupMenu.PopupMenuItem('No history yet', { reactive: false }));
+            }
+            this._indicator.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        }
+
+        let settingsItem = new PopupMenu.PopupImageMenuItem('Settings', 'preferences-system-symbolic');
+        settingsItem.connect('activate', () => this.openPreferences());
+        this._indicator.menu.addMenuItem(settingsItem);
     }
 
     _bindShortcut() {
@@ -133,89 +205,92 @@ export default class LiveTextExtension extends Extension {
         );
     }
 
-    _getDistroInstruction(missingApp) {
-        let distroId = GLib.get_os_info('ID');
-        if (distroId === 'fedora') {
-            return `sudo dnf install ${missingApp === 'tesseract' ? 'tesseract' : 'gnome-screenshot'}`;
-        } else if (distroId === 'arch') {
-            return `sudo pacman -S ${missingApp === 'tesseract' ? 'tesseract tesseract-data-eng' : 'gnome-screenshot'}`;
-        }
-        return `sudo apt update && sudo apt install ${missingApp === 'tesseract' ? 'tesseract-ocr' : 'gnome-screenshot'}`;
-    }
-
     _showModalError(missingApp) {
-        let command = this._getDistroInstruction(missingApp);
-        let dialog = new DependencyErrorDialog(missingApp, command);
+        let distroId = GLib.get_os_info('ID');
+        let installCmd = '';
+        
+        if (distroId === 'fedora') {
+            installCmd = `sudo dnf install ${missingApp === 'tesseract' ? 'tesseract' : 'gnome-screenshot'}`;
+        } else if (distroId === 'arch') {
+            installCmd = `sudo pacman -S ${missingApp === 'tesseract' ? 'tesseract tesseract-data-eng' : 'gnome-screenshot'}`;
+        } else {
+            installCmd = `sudo apt update && sudo apt install ${missingApp === 'tesseract' ? 'tesseract-ocr' : 'gnome-screenshot'}`;
+        }
+        
+        let dialog = new DependencyErrorDialog(missingApp, installCmd);
         dialog.open();
     }
 
     _extractText() {
+        if (this._screenshotProcess) return;
+
         let tempImagePath = GLib.build_filenamev([GLib.get_tmp_dir(), 'live_text_capture.png']);
         
         try {
-            let subprocess = new Gio.Subprocess({
-                argv: ['gnome-screenshot', '-a', '-f', tempImagePath],
-                flags: Gio.SubprocessFlags.NONE
-            });
+            this._screenshotProcess = Gio.Subprocess.new(
+                ['gnome-screenshot', '-a', '-f', tempImagePath],
+                Gio.SubprocessFlags.NONE
+            );
             
-            this._screenshotProcess = subprocess;
-            subprocess.init(null);
-            
-            subprocess.wait_async(null, (proc, res) => {
+            this._screenshotProcess.wait_check_async(null, (proc, res) => {
+                this._screenshotProcess = null;
                 try {
-                    proc.wait_finish(res);
-                    if (proc.get_successful()) {
-                        this._runTesseract(tempImagePath);
-                    }
+                    proc.wait_check_finish(res);
+                    this._runTesseract(tempImagePath);
                 } catch (e) {
-                    console.error('Live Text Extension: Screenshot process failed', e);
-                } finally {
-                    this._screenshotProcess = null;
+                    // Triggers if process exits non-zero (e.g., user hits Esc during screenshot selection). 
+                    // No action required.
                 }
             });
         } catch (e) {
-            console.error('Live Text Extension: Failed to launch screenshot tool', e);
+            this._screenshotProcess = null;
             this._showModalError('gnome-screenshot');
         }
     }
 
     _runTesseract(imagePath) {
+        if (this._tesseractProcess) return;
+
         try {
-            let subprocess = new Gio.Subprocess({
-                argv: ['tesseract', imagePath, 'stdout'],
-                flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
-            });
+            this._tesseractProcess = Gio.Subprocess.new(
+                ['tesseract', imagePath, 'stdout'],
+                Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
+            );
             
-            this._tesseractProcess = subprocess;
-            subprocess.init(null);
-            
-            subprocess.communicate_utf8_async(null, null, (proc, res) => {
+            this._tesseractProcess.communicate_utf8_async(null, null, (proc, res) => {
+                this._tesseractProcess = null;
                 try {
-                    let [ok, stdout, ] = proc.communicate_utf8_finish(res);
-                    if (ok && stdout) {
-                        let extractedText = stdout.trim();
+                    let [, stdout] = proc.communicate_utf8_finish(res);
+                    let extractedText = stdout ? stdout.trim() : "";
+                    
+                    if (extractedText) {
+                        let clipboard = St.Clipboard.get_default();
+                        clipboard.set_text(St.ClipboardType.CLIPBOARD, extractedText);
                         
-                        if (extractedText !== "") {
-                            let clipboard = St.Clipboard.get_default();
-                            clipboard.set_text(St.ClipboardType.CLIPBOARD, extractedText);
-                            
-                            if (this._settings.get_boolean('show-notification')) {
-                                Main.notify('Text Extracted', extractedText);
+                        if (this._settings.get_boolean('keep-history')) {
+                            let history = this._settings.get_strv('history-list');
+                            history = history.filter(item => item !== extractedText);
+                            history.unshift(extractedText);
+                            if (history.length > 15) {
+                                history.length = 15;
                             }
-                        } else {
-                            if (this._settings.get_boolean('show-notification')) {
-                                Main.notify('Live Text', 'No text found in selection.');
-                            }
+                            this._settings.set_strv('history-list', history);
+                        }
+
+                        if (this._settings.get_boolean('show-notification')) {
+                            Main.notify('Text Extracted', extractedText);
+                        }
+                    } else {
+                        if (this._settings.get_boolean('show-notification')) {
+                            Main.notify('Live Text', 'No text found in selection.');
                         }
                     }
                 } catch (e) {
-                    console.error('Live Text Extension: Failed to read tesseract output', e);
-                } finally {
-                    this._tesseractProcess = null;
+                    console.error('Live Text Extension: Tesseract process read failure', e);
                 }
             });
         } catch (e) {
-            console.error('Live Text Extension: Failed to run tesseract', e);
+            this._tesseractProcess = null;
             this._showModalError('tesseract');
         }
     }

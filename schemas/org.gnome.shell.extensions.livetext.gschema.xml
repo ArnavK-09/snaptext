@@ -6,6 +6,16 @@
       <summary>Show notification</summary>
       <description>Show a notification with the extracted text when successful.</description>
     </key>
+    <key name="keep-history" type="b">
+      <default>true</default>
+      <summary>Keep extraction history</summary>
+      <description>Keep a history of up to 15 recent text extractions.</description>
+    </key>
+    <key name="history-list" type="as">
+      <default>[]</default>
+      <summary>History list</summary>
+      <description>Array of recently extracted text strings.</description>
+    </key>
     <key name="shortcut-trigger" type="as">
       <default>['&lt;Super&gt;&lt;Shift&gt;t']</default>
       <summary>Trigger shortcut</summary>

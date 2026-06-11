@@ -1,3 +1,4 @@
+// prefs.js
 import Adw from 'gi://Adw';
 import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
@@ -20,33 +21,29 @@ function createLinkButton(title, uri, styleClass = null) {
 
 export default class LiveTextPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
-        const settings = this.getSettings('org.gnome.shell.extensions.livetext');
+        const settings = this.getSettings();
 
-        // Single Unified Page Design
         const page = new Adw.PreferencesPage({
             title: 'Live Text Configuration',
             icon_name: 'preferences-system-symbolic'
         });
 
-        // --- SECTION 1: SMALL HEADER / DESCRIPTION ---
         const groupHeader = new Adw.PreferencesGroup();
         const descLabel = new Gtk.Label({
             label: 'Instantly extract and copy text to your clipboard from anywhere on the screen.',
             justify: Gtk.Justification.CENTER,
             wrap: true,
             margin_top: 12,
-            margin_bottom: 12
+            margin_bottom: 12,
+            css_classes: ['dim-label']
         });
-        descLabel.add_css_class('dim-label');
         groupHeader.add(descLabel);
         page.add(groupHeader);
 
-        // --- SECTION 2: SETTINGS & SHORTCUTS ---
         const groupSettings = new Adw.PreferencesGroup({
             title: 'Behavior & Shortcuts'
         });
 
-        // Notification Toggle Row
         const notificationRow = new Adw.ActionRow({
             title: 'Show Extracted Text Notification',
             subtitle: 'Displays a system banner containing your copied text context.'
@@ -60,7 +57,19 @@ export default class LiveTextPreferences extends ExtensionPreferences {
         notificationRow.activatable_widget = toggleNotification;
         groupSettings.add(notificationRow);
 
-        // Shortcut Text Configuration Row
+        const historyRow = new Adw.ActionRow({
+            title: 'Enable Extraction History',
+            subtitle: 'Keep a history of up to 15 recent extractions in the context menu.'
+        });
+        const toggleHistory = new Gtk.Switch({
+            active: settings.get_boolean('keep-history'),
+            valign: Gtk.Align.CENTER,
+        });
+        settings.bind('keep-history', toggleHistory, 'active', Gio.SettingsBindFlags.DEFAULT);
+        historyRow.add_suffix(toggleHistory);
+        historyRow.activatable_widget = toggleHistory;
+        groupSettings.add(historyRow);
+
         const shortcutRow = new Adw.ActionRow({
             title: 'Keyboard Shortcut Trigger',
             subtitle: 'Click to set shortcut. Press Esc to cancel, Backspace to disable.'
@@ -132,19 +141,14 @@ export default class LiveTextPreferences extends ExtensionPreferences {
         groupSettings.add(shortcutRow);
         page.add(groupSettings);
 
-        // --- SECTION 3: ABOUT & CREATOR INFO ---
         const groupAbout = new Adw.PreferencesGroup({
             title: 'Developer Details'
         });
 
-        const authorRow = new Adw.ActionRow({ title: 'Author', subtitle: 'Christian Wittenberg' });
-        const versionRow = new Adw.ActionRow({ title: 'Version', subtitle: '1.0.0 (Production Release)' });
-
-        groupAbout.add(authorRow);
-        groupAbout.add(versionRow);
+        groupAbout.add(new Adw.ActionRow({ title: 'Author', subtitle: 'Christian Wittenberg' }));
+        groupAbout.add(new Adw.ActionRow({ title: 'Version', subtitle: '1.0.0 (Production Release)' }));
         page.add(groupAbout);
 
-        // --- SECTION 4: LINK UTILITIES ---
         const groupLinks = new Adw.PreferencesGroup();
         const linkBox = new Gtk.Box({
             orientation: Gtk.Orientation.HORIZONTAL,
