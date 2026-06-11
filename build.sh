@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
-UUID="livetext@cwittenberg"
+UUID="snaptext@cwittenberg"
 BUILD_DIR="build"
 EXTENSION_DIR="$HOME/.local/share/gnome-shell/extensions/$UUID"
 
@@ -14,7 +13,7 @@ echo "Creating build directory structure..."
 mkdir -p "$BUILD_DIR/schemas"
 
 echo "Validating extension files..."
-for file in metadata.json extension.js prefs.js schemas/org.gnome.shell.extensions.livetext.gschema.xml; do
+for file in metadata.json extension.js prefs.js schemas/org.gnome.shell.extensions.snaptext.gschema.xml; do
     if [ ! -f "$file" ]; then
         echo "Error: $file not found in the current directory. Please make sure all files exist."
         exit 1

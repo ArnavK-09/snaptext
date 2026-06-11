@@ -18,12 +18,16 @@ class DependencyErrorDialog extends ModalDialog.ModalDialog {
         super._init();
         
         this._timeoutId = null;
-
         this.connect('destroy', () => {
             if (this._timeoutId) {
                 GLib.source_remove(this._timeoutId);
                 this._timeoutId = null;
             }
+        });
+        
+        // Ensure the dialog is destroyed after it closes to prevent memory leaks
+        this.connect('closed', () => {
+            this.destroy();
         });
         
         let mainBox = new St.BoxLayout({
@@ -77,6 +81,7 @@ class DependencyErrorDialog extends ModalDialog.ModalDialog {
             
             if (this._timeoutId) {
                 GLib.source_remove(this._timeoutId);
+                this._timeoutId = null;
             }
             
             this._timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 2000, () => {
@@ -100,13 +105,14 @@ class DependencyErrorDialog extends ModalDialog.ModalDialog {
     }
 });
 
-export default class LiveTextExtension extends Extension {
+export default class SnapTextExtension extends Extension {
     enable() {
         this._settings = this.getSettings();
         this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
         this._settingsChangedId = null;
         this._screenshotProcess = null;
         this._tesseractProcess = null;
+        this._errorDialog = null;
         
         let icon = new St.Icon({
             icon_name: 'edit-select-text-symbolic',
@@ -114,11 +120,9 @@ export default class LiveTextExtension extends Extension {
         });
         
         this._indicator.add_child(icon);
-
         this._indicator.connect('button-press-event', (actor, event) => {
             let button = event.get_button();
             
-            // Handle left click (capture) on press
             if (button === 1) { 
                 if (this._indicator.menu.isOpen) {
                     this._indicator.menu.close();
@@ -126,15 +130,12 @@ export default class LiveTextExtension extends Extension {
                 this._extractText();
                 return Clutter.EVENT_STOP; 
             }
-            // Let right click (button 3) propagate so it establishes the grab 
-            // and allows the release-event to trigger cleanly.
             return Clutter.EVENT_PROPAGATE;
         });
 
         this._indicator.connect('button-release-event', (actor, event) => {
             let button = event.get_button();
             
-            // Handle right click (context menu) on release
             if (button === 3) { 
                 this._buildMenu();
                 this._indicator.menu.toggle();
@@ -145,7 +146,6 @@ export default class LiveTextExtension extends Extension {
 
         this._buildMenu();
         this._settingsChangedId = this._settings.connect('changed', this._onSettingsChanged.bind(this));
-
         Main.panel.addToStatusArea(this.uuid, this._indicator);
         this._bindShortcut();
     }
@@ -160,19 +160,16 @@ export default class LiveTextExtension extends Extension {
 
     _buildMenu() {
         this._indicator.menu.removeAll();
-
         let keepHistory = this._settings.get_boolean('keep-history');
         
         if (keepHistory) {
             let history = this._settings.get_strv('history-list');
-
             if (history.length > 0) {
                 for (let text of history) {
                     let displayLabel = text.replace(/\n/g, ' ').trim();
                     if (displayLabel.length > 40) {
                         displayLabel = displayLabel.substring(0, 37) + '...';
                     }
-
                     let menuItem = new PopupMenu.PopupMenuItem(displayLabel);
                     menuItem.connect('activate', () => {
                         let clipboard = St.Clipboard.get_default();
@@ -206,6 +203,11 @@ export default class LiveTextExtension extends Extension {
     }
 
     _showModalError(missingApp) {
+        if (this._errorDialog) {
+            this._errorDialog.destroy();
+            this._errorDialog = null;
+        }
+
         let distroId = GLib.get_os_info('ID');
         let installCmd = '';
         
@@ -217,50 +219,60 @@ export default class LiveTextExtension extends Extension {
             installCmd = `sudo apt update && sudo apt install ${missingApp === 'tesseract' ? 'tesseract-ocr' : 'gnome-screenshot'}`;
         }
         
-        let dialog = new DependencyErrorDialog(missingApp, installCmd);
-        dialog.open();
+        this._errorDialog = new DependencyErrorDialog(missingApp, installCmd);
+        this._errorDialog.connect('destroy', () => {
+            this._errorDialog = null;
+        });
+        this._errorDialog.open();
     }
 
     _extractText() {
-        if (this._screenshotProcess) return;
+        if (this._screenshotProcess || this._tesseractProcess) return;
 
-        let tempImagePath = GLib.build_filenamev([GLib.get_tmp_dir(), 'live_text_capture.png']);
-        
-        try {
-            this._screenshotProcess = Gio.Subprocess.new(
-                ['gnome-screenshot', '-a', '-f', tempImagePath],
-                Gio.SubprocessFlags.NONE
-            );
-            
-            this._screenshotProcess.wait_check_async(null, (proc, res) => {
-                this._screenshotProcess = null;
-                try {
-                    proc.wait_check_finish(res);
-                    this._runTesseract(tempImagePath);
-                } catch (e) {
-                    // Triggers if process exits non-zero (e.g., user hits Esc during screenshot selection). 
-                    // No action required.
-                }
-            });
-        } catch (e) {
-            this._screenshotProcess = null;
+        if (!GLib.find_program_in_path('gnome-screenshot')) {
             this._showModalError('gnome-screenshot');
+            return;
         }
+
+        let tempImagePath = GLib.build_filenamev([GLib.get_tmp_dir(), 'snap_text_capture.png']);
+        
+        this._screenshotProcess = Gio.Subprocess.new(
+            ['gnome-screenshot', '-a', '-f', tempImagePath],
+            Gio.SubprocessFlags.NONE
+        );
+        
+        this._screenshotProcess.wait_check_async(null, (proc, res) => {
+            this._screenshotProcess = null;
+            try {
+                proc.wait_check_finish(res);
+                this._runTesseract(tempImagePath);
+            } catch (e) {
+                // Triggers if process exits non-zero (e.g., user hits Esc during screenshot selection).
+                GLib.unlink(tempImagePath);
+            }
+        });
     }
 
     _runTesseract(imagePath) {
         if (this._tesseractProcess) return;
 
-        try {
-            this._tesseractProcess = Gio.Subprocess.new(
-                ['tesseract', imagePath, 'stdout'],
-                Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
-            );
-            
-            this._tesseractProcess.communicate_utf8_async(null, null, (proc, res) => {
-                this._tesseractProcess = null;
-                try {
-                    let [, stdout] = proc.communicate_utf8_finish(res);
+        if (!GLib.find_program_in_path('tesseract')) {
+            this._showModalError('tesseract');
+            GLib.unlink(imagePath);
+            return;
+        }
+
+        this._tesseractProcess = Gio.Subprocess.new(
+            ['tesseract', imagePath, 'stdout'],
+            Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
+        );
+        
+        this._tesseractProcess.communicate_utf8_async(null, null, (proc, res) => {
+            this._tesseractProcess = null;
+            try {
+                let [, stdout] = proc.communicate_utf8_finish(res);
+                
+                if (proc.get_successful()) {
                     let extractedText = stdout ? stdout.trim() : "";
                     
                     if (extractedText) {
@@ -282,17 +294,16 @@ export default class LiveTextExtension extends Extension {
                         }
                     } else {
                         if (this._settings.get_boolean('show-notification')) {
-                            Main.notify('Live Text', 'No text found in selection.');
+                            Main.notify('Snap Text', 'No text found in selection.');
                         }
                     }
-                } catch (e) {
-                    console.error('Live Text Extension: Tesseract process read failure', e);
                 }
-            });
-        } catch (e) {
-            this._tesseractProcess = null;
-            this._showModalError('tesseract');
-        }
+            } catch (e) {
+                console.error('Snap Text Extension: Tesseract process read failure', e);
+            } finally {
+                GLib.unlink(imagePath);
+            }
+        });
     }
 
     disable() {
@@ -311,6 +322,11 @@ export default class LiveTextExtension extends Extension {
         if (this._tesseractProcess) {
             this._tesseractProcess.force_exit();
             this._tesseractProcess = null;
+        }
+
+        if (this._errorDialog) {
+            this._errorDialog.destroy();
+            this._errorDialog = null;
         }
 
         if (this._indicator) {

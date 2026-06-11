@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="org.gnome.shell.extensions.livetext" path="/org/gnome/shell/extensions/livetext/">
+  <schema id="org.gnome.shell.extensions.snaptext" path="/org/gnome/shell/extensions/snaptext/">
     <key name="show-notification" type="b">
       <default>true</default>
       <summary>Show notification</summary>
@@ -19,7 +19,7 @@
     <key name="shortcut-trigger" type="as">
       <default>['&lt;Super&gt;&lt;Shift&gt;t']</default>
       <summary>Trigger shortcut</summary>
-      <description>Keyboard shortcut to trigger live text extraction.</description>
+      <description>Keyboard shortcut to trigger snap text extraction.</description>
     </key>
   </schema>
 </schemalist>

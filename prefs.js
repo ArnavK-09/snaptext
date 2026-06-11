@@ -19,12 +19,12 @@ function createLinkButton(title, uri, styleClass = null) {
     return button;
 }
 
-export default class LiveTextPreferences extends ExtensionPreferences {
+export default class SnapTextPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         const settings = this.getSettings();
 
         const page = new Adw.PreferencesPage({
-            title: 'Live Text Configuration',
+            title: 'Snap Text Configuration',
             icon_name: 'preferences-system-symbolic'
         });
 
@@ -87,6 +87,7 @@ export default class LiveTextPreferences extends ExtensionPreferences {
         });
         
         let isRecording = false;
+
         shortcutButton.connect('clicked', () => {
             if (isRecording) {
                 isRecording = false;
@@ -139,12 +140,12 @@ export default class LiveTextPreferences extends ExtensionPreferences {
         shortcutRow.add_suffix(shortcutButton);
         shortcutRow.activatable_widget = shortcutButton;
         groupSettings.add(shortcutRow);
+
         page.add(groupSettings);
 
         const groupAbout = new Adw.PreferencesGroup({
             title: 'Developer Details'
         });
-
         groupAbout.add(new Adw.ActionRow({ title: 'Author', subtitle: 'Christian Wittenberg' }));
         groupAbout.add(new Adw.ActionRow({ title: 'Version', subtitle: '1.0.0 (Production Release)' }));
         page.add(groupAbout);
@@ -158,10 +159,9 @@ export default class LiveTextPreferences extends ExtensionPreferences {
             margin_bottom: 16
         });
 
-        linkBox.append(createLinkButton('Buy me a coffee 💙☕', 'https://ko-fi.com/cwittenberg', 'suggested-action'));
-        linkBox.append(createLinkButton('Report a Bug 🪲', 'https://github.com/cwittenberg/omnipanel/issues/new?template=bug_report.md'));
-        linkBox.append(createLinkButton('Request a Feature 💡', 'https://github.com/cwittenberg/omnipanel/issues/new?template=feature_request.md'));
-
+        linkBox.append(createLinkButton('Buy me a coffee  ', 'https://ko-fi.com/cwittenberg', 'suggested-action'));
+        linkBox.append(createLinkButton('Report a Bug  ', 'https://github.com/cwittenberg/omnipanel/issues/new?template=bug_report.md'));
+        linkBox.append(createLinkButton('Request a Feature  ', 'https://github.com/cwittenberg/omnipanel/issues/new?template=feature_request.md'));
         groupLinks.add(linkBox);
         page.add(groupLinks);
 
