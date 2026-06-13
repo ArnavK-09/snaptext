@@ -243,7 +243,7 @@ export default class SnapTextPreferences extends ExtensionPreferences {
         pageAdvanced.add(groupQr);
 
         const groupTranslation = new Adw.PreferencesGroup({
-            title: _('Translation (Online / Labs 🧪)')
+            title: _('Translation (Experimental)')
         });
 
         // Privacy warning callout
@@ -281,7 +281,7 @@ export default class SnapTextPreferences extends ExtensionPreferences {
         });
 
         const warningLabel = new Gtk.Label({
-            label: _('Auto-Translate sends extracted text to Google. Privacy cannot be guaranteed when enabled.'),
+            label: _('Auto-Translate sends extracted text to Google Translate. Privacy cannot be guaranteed when enabled.'),
             wrap: true,
             xalign: 0,
             hexpand: true,

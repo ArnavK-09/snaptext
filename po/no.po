@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,60 +17,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap tekst"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Manglende systemavhengighet: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Avskjedige"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Ingen historikk ennå"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Tekst trukket ut"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Oversettelsesfeil"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Kunne ikke koble til Google Translate."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Snap tekst"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "Ingen tekst funnet i utvalget."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Tekst trukket ut"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Konfigurasjon av snaptekst"
+#: prefs.js:38
+msgid "General"
+msgstr "General"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -78,80 +69,193 @@ msgstr ""
 "Trekk ut og kopier tekst umiddelbart til utklippstavlen fra hvor som helst "
 "på skjermen."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Atferd og snarveier"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Vis uttrukket tekstvarsling"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "Viser et systembanner som inneholder den kopierte tekstkonteksten."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Aktiver utvinningshistorikk"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Hold en historie med opptil 15 nylige utdrag i kontekstmenyen."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Tastatursnarveiutløser"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Tillat utløsing av utvinning via en hurtigtast."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Tastatursnarveiutløser"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Klikk for å angi snarvei. Trykk Esc for å avbryte, Backspace for å "
 "deaktivere."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Funksjonshemmet"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Trykk på tastene..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Kjøp meg en kaffe ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Rapporter en feil 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Be om en funksjon 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Utviklerdetaljer"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Forfatter"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Versjon"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Avansert"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR-koder"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "Automatisk åpne URL-er"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "Åpne automatisk HTTP/HTTPS-koblinger oppdaget i QR-koder."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Oversettelse (eksperimentell)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Personvernadvarsel"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Auto-Translate sender uttrukket tekst til Google Translate. Personvern kan "
+"ikke garanteres når det er aktivert."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Auto-oversett tekst"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "Oversett automatisk uttrukket tekst til målspråket ditt."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Målspråkkode"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"f.eks. en, fr, es, zh. La det stå tomt for å bruke systemets standardspråk."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Logging"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Aktiver feilsøkingslogging"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Sender ut detaljert OCR og prosesslogger til systemjournalen."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Manglende systemavhengighet: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Manglende systemavhengighet: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Installer de nødvendige pakkene og prøv igjen for å aktivere alle "
+"funksjonene."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Fanger det valgte området på skjermen."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Kjerne-OCR-motoren som leser tekst fra bilder."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Forbedrer bildekontrasten og kvaliteten for bedre OCR."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Oppdager og dekoder QR-koder fra skjermen."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Nødvendig avhengighet."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Åpne en terminal og kjør følgende kommando for å installere de manglende "
+"avhengighetene fra de offisielle depotene:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Avskjedige"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Konfigurasjon av snaptekst"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Tekst kopiert fra historikk"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,140 +18,245 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Прив'язка тексту"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Відсутня системна залежність: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Відхилити"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Історії ще немає"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Налаштування"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Текст вилучено"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Помилка перекладу"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Не вдалося підключитися до Google Translate."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Прив'язка тексту"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "У виділеному тексті не знайдено."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Текст вилучено"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Конфігурація Snap Text"
+#: prefs.js:38
+msgid "General"
+msgstr "Загальний"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr ""
 "Миттєво витягуйте та копіюйте текст у буфер обміну з будь-якої точки екрана."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Поведінка та ярлики"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Показати витягнуте текстове сповіщення"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "Відображає системний банер із скопійованим текстовим контекстом."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Увімкнути історію вилучення"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Зберігайте історію до 15 останніх вилучень у контекстному меню."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Тригер сполучення клавіш"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Дозволити запуск вилучення за допомогою комбінації клавіш."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Тригер сполучення клавіш"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Натисніть, щоб встановити ярлик. Натисніть Esc, щоб скасувати, або "
 "Backspace, щоб вимкнути."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Вимкнено"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Натисніть клавіші..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Купи мені кави ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Повідомити про помилку 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Запит на функцію 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Відомості про розробника"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Автор"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Версія"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Просунутий"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR-коди"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "Автоматичне відкриття URL-адрес"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "Автоматично відкривати посилання HTTP/HTTPS, виявлені в QR-кодах."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Переклад (експериментальний)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Попередження про конфіденційність"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Автоматичний переклад надсилає витягнутий текст до Перекладача Google. "
+"Конфіденційність не може бути гарантована, коли ввімкнено."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Автоматичний переклад тексту"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "Автоматично перекладіть виділений текст на цільову мову."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Код цільової мови"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"напр., en, fr, es, zh. Залиште поле пустим, щоб використовувати мову системи "
+"за замовчуванням."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Лісозаготівля"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Увімкнути журнал налагодження"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Виводить докладні OCR і журнали процесу до системного журналу."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Відсутня системна залежність: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Відсутня системна залежність: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Будь ласка, встановіть необхідні пакети та спробуйте ще раз, щоб увімкнути "
+"всі функції."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Захоплює вибрану область екрана."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Основний механізм OCR, який зчитує текст із зображень."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Покращує контрастність і якість зображення для кращого OCR."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Виявляє та розшифровує QR-коди з екрана."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Необхідна залежність."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Відкрийте термінал і виконайте таку команду, щоб установити відсутні "
+"залежності з офіційних репозиторіїв:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Відхилити"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Конфігурація Snap Text"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Текст скопійовано з історії"

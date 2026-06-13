@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,60 +18,51 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap Text"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Manjka sistemska odvisnost: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Odpusti"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Ni še zgodovine"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "nastavitve"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Besedilo izvlečeno"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Napaka pri prevodu"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Ni bilo mogoče vzpostaviti povezave z Google Prevajalnikom."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Snap Text"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "V izboru ni bilo najdenega besedila."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Besedilo izvlečeno"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Konfiguracija pripenjanja besedila"
+#: prefs.js:38
+msgid "General"
+msgstr "Splošno"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -79,80 +70,192 @@ msgstr ""
 "Takoj ekstrahirajte in kopirajte besedilo v odložišče od koder koli na "
 "zaslonu."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Vedenje in bližnjice"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Prikaži obvestilo o izvlečenem besedilu"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr ""
 "Prikaže sistemsko pasico, ki vsebuje kontekst vašega kopiranega besedila."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Omogoči zgodovino ekstrakcij"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Hranite zgodovino do 15 nedavnih ekstrakcij v kontekstnem meniju."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Sprožilec bližnjice na tipkovnici"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Dovolite sprožitev ekstrakcije prek bližnjice na tipkovnici."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Sprožilec bližnjice na tipkovnici"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Click to set shortcut. Pritisnite Esc za preklic, vračalko za onemogočenje."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Onemogočen"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Pritisnite tipke ..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Kupi mi kavo ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Prijavite napako 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Zahtevajte funkcijo 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Podrobnosti o razvijalcu"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Avtor"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Različica"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Napredno"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR kode"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "Samodejno odpiranje URL-jev"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "Samodejno odpri povezave HTTP/HTTPS, zaznane v kodah QR."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Prevod (eksperimentalno)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Opozorilo o zasebnosti"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Samodejni prevajalnik pošlje izvlečeno besedilo v Google Prevajalnik. "
+"Zasebnosti ni mogoče zagotoviti, ko je omogočena."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Samodejno prevedi besedilo"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "Samodejno prevedite izvlečeno besedilo v ciljni jezik."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Koda ciljnega jezika"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"npr. en, fr, es, zh. Pustite prazno, če želite uporabiti sistemski privzeti "
+"jezik."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Sečnja"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Omogoči beleženje odpravljanja napak"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Izpiše podroben OCR in dnevnike procesov v sistemski dnevnik."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Manjka sistemska odvisnost: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Manjka sistemska odvisnost: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr "Namestite zahtevane pakete in poskusite znova omogočiti vse funkcije."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Zajame izbrano območje vašega zaslona."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Osnovni motor OCR, ki bere besedilo s slik."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Izboljša kontrast in kakovost slike za boljši OCR."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Zazna in dekodira kode QR z zaslona."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Zahtevana odvisnost."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Odprite terminal in zaženite naslednji ukaz za namestitev manjkajočih "
+"odvisnosti iz uradnih skladišč:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Odpusti"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Konfiguracija pripenjanja besedila"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Besedilo kopirano iz zgodovine"

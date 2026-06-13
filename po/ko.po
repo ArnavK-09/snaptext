@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,139 +17,240 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "텍스트 스냅"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "누락된 시스템 종속성: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "해고하다"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "아직 기록이 없습니다."
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "설정"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "추출된 텍스트"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "번역 오류"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Google 번역에 연결할 수 없습니다."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "텍스트 스냅"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "선택 항목에 텍스트가 없습니다."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "추출된 텍스트"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "스냅 텍스트 구성"
+#: prefs.js:38
+msgid "General"
+msgstr "일반적인"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr "화면 어디에서나 텍스트를 즉시 추출하고 클립보드에 복사할 수 있습니다."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "동작 및 단축키"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "추출된 문자 알림 표시"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "복사한 텍스트 컨텍스트가 포함된 시스템 배너를 표시합니다."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "추출 기록 활성화"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "상황에 맞는 메뉴에서 최대 15개의 최근 추출 기록을 유지하세요."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "키보드 단축키 트리거"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "키보드 단축키를 통해 추출 트리거를 허용합니다."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "키보드 단축키 트리거"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "바로가기를 설정하려면 클릭하세요. 취소하려면 Esc를 누르고, 비활성화하려면 백"
 "스페이스를 누르세요."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "장애가 있는"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "키를 누르세요..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "커피 사주세요 찻잔"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "버그 신고 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "기능 요청 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "개발자 세부정보"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "작가"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "버전"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "고급의"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR 코드"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "자동 열기 URL"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "QR 코드에서 감지된 HTTP/HTTPS 링크를 자동으로 엽니다."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "번역(실험적)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "개인 정보 보호 경고"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"자동 번역은 추출된 텍스트를 Google 번역으로 보냅니다. 활성화하면 개인정보 보"
+"호가 보장되지 않습니다."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "텍스트 자동 번역"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "추출된 텍스트를 대상 언어로 자동 번역합니다."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "대상 언어 코드"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr "예: en, fr, es, zh. 시스템 기본 언어를 사용하려면 비워 두세요."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "벌채 반출"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "디버그 로깅 활성화"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "자세한 OCR 및 프로세스 로그를 시스템 저널에 출력합니다."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "누락된 시스템 종속성: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "누락된 시스템 종속성: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr "필수 패키지를 설치하고 모든 기능을 다시 활성화해 보세요."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "화면의 선택된 영역을 캡처합니다."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "이미지에서 텍스트를 읽는 핵심 OCR 엔진입니다."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "더 나은 OCR을 위해 이미지 대비와 품질을 향상합니다."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "화면에서 QR 코드를 감지하고 디코딩합니다."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "필수 종속성."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"터미널을 열고 다음 명령을 실행하여 공식 리포지토리에서 누락된 종속성을 설치합"
+"니다."
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "해고하다"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "스냅 텍스트 구성"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "기록에서 복사된 텍스트"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,140 +17,245 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "スナップテキスト"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "欠落しているシステム依存関係: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "却下する"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "まだ履歴がありません"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "設定"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "抽出されたテキスト"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "翻訳エラー"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Google翻訳に接続できませんでした。"
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "スナップテキスト"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "選択範囲内にテキストが見つかりません。"
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "抽出されたテキスト"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "スナップテキスト構成"
+#: prefs.js:38
+msgid "General"
+msgstr "一般的な"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr ""
 "画面上のどこからでも即座にテキストを抽出してクリップボードにコピーします。"
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "動作とショートカット"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "抽出されたテキスト通知を表示"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "コピーしたテキスト コンテキストを含むシステム バナーを表示します。"
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "抽出履歴を有効にする"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "コンテキスト メニューに、最近の抽出の履歴を最大 15 件保存します。"
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "キーボードショートカットトリガー"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "キーボード ショートカットによる抽出のトリガーを許可します。"
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "キーボードショートカットトリガー"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "クリックしてショートカットを設定します。キャンセルするには Esc キーを押し、無"
 "効にするには Backspace キーを押します。"
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "無効"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "キーを押してください..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "コーヒー買ってきて☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "バグを報告する 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "機能をリクエストする 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "開発者の詳細"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "著者"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "バージョン"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "高度な"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QRコード"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "URLを自動で開く"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "QR コードで検出された HTTP/HTTPS リンクを自動的に開きます。"
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "翻訳 (実験的)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "プライバシーに関する警告"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"自動翻訳は、抽出されたテキストを Google 翻訳に送信します。有効にするとプライ"
+"バシーは保証されません。"
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "テキストの自動翻訳"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "抽出されたテキストをターゲット言語に自動的に翻訳します。"
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "ターゲット言語コード"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"例: en、fr、es、zh。システムのデフォルト言語を使用するには、空のままにしま"
+"す。"
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "ロギング"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "デバッグログを有効にする"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "詳細な OCR およびプロセス ログをシステム ジャーナルに出力します。"
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "欠落しているシステム依存関係: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "欠落しているシステム依存関係: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"必要なパッケージをインストールし、すべての機能を有効にするために再試行してく"
+"ださい。"
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "画面の選択した領域をキャプチャします。"
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "画像からテキストを読み取るコア OCR エンジン。"
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "画像のコントラストと品質を向上させ、OCR を向上させます。"
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "画面から QR コードを検出してデコードします。"
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "必要な依存関係。"
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"ターミナルを開き、次のコマンドを実行して、不足している依存関係を公式リポジト"
+"リからインストールします。"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "却下する"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "スナップテキスト構成"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "履歴からコピーされたテキスト"

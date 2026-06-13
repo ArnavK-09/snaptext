@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,60 +18,51 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Przyciągnij tekst"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Brakująca zależność systemowa: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Odrzucać"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Nie ma jeszcze historii"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Tekst wyodrębniony"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Błąd tłumaczenia"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Nie można połączyć się z Tłumaczem Google."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Przyciągnij tekst"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "Nie znaleziono tekstu w zaznaczeniu."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Tekst wyodrębniony"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Konfiguracja przyciągania tekstu"
+#: prefs.js:38
+msgid "General"
+msgstr "Ogólny"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -79,81 +70,194 @@ msgstr ""
 "Natychmiast wyodrębniaj i kopiuj tekst do schowka z dowolnego miejsca na "
 "ekranie."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Zachowanie i skróty"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Pokaż wyodrębnione powiadomienie tekstowe"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "Wyświetla baner systemowy zawierający skopiowany kontekst tekstowy."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Włącz historię wyodrębniania"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr ""
 "Zachowaj historię maksymalnie 15 ostatnich wyodrębnień w menu kontekstowym."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Wyzwalacz skrótu klawiaturowego"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Zezwalaj na wyzwalanie ekstrakcji za pomocą skrótu klawiaturowego."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Wyzwalacz skrótu klawiaturowego"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Kliknij, aby ustawić skrót. Naciśnij Esc, aby anulować, Backspace, aby "
 "wyłączyć."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Wyłączony"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Naciśnij klawisze..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Kup mi kawę ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Zgłoś błąd 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Poproś o funkcję 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Szczegóły dewelopera"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Autor"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Wersja"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Zaawansowany"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "Kody QR"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "Automatyczne otwieranie adresów URL"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "Automatycznie otwieraj linki HTTP/HTTPS wykryte w kodach QR."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Tłumaczenie (eksperymentalne)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Ostrzeżenie dotyczące prywatności"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Automatyczne tłumaczenie wysyła wyodrębniony tekst do Tłumacza Google. Po "
+"włączeniu tej opcji nie można zagwarantować prywatności."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Automatyczne tłumaczenie tekstu"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "Automatycznie tłumacz wyodrębniony tekst na język docelowy."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Kod języka docelowego"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"np. en, fr, es, zh. Pozostaw puste, aby użyć domyślnego języka systemu."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Wycięcie lasu"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Włącz rejestrowanie debugowania"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Wysyła szczegółowe dzienniki OCR i procesów do dziennika systemowego."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Brakująca zależność systemowa: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Brakująca zależność systemowa: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Zainstaluj wymagane pakiety i spróbuj ponownie, aby włączyć wszystkie "
+"funkcje."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Przechwytuje wybrany obszar ekranu."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Podstawowy silnik OCR, który odczytuje tekst z obrazów."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Poprawia kontrast i jakość obrazu, zapewniając lepszy OCR."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Wykrywa i dekoduje kody QR z ekranu."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Wymagana zależność."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Otwórz terminal i uruchom następujące polecenie, aby zainstalować brakujące "
+"zależności z oficjalnych repozytoriów:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Odrzucać"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Konfiguracja przyciągania tekstu"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Tekst skopiowany z historii"

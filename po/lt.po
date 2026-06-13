@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,60 +18,51 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap Text"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Trūksta sistemos priklausomybės: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Atsisakyti"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Istorijos dar nėra"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Tekstas ištrauktas"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Vertimo klaida"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Nepavyko prisijungti prie „Google“ vertėjo."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Snap Text"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "Pasirinkime nerasta teksto."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Tekstas ištrauktas"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Snap Text Configuration"
+#: prefs.js:38
+msgid "General"
+msgstr "Generolas"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -79,81 +70,195 @@ msgstr ""
 "Iš bet kurios ekrano vietos akimirksniu ištraukite ir nukopijuokite tekstą į "
 "mainų sritį."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Elgesys ir spartieji klavišai"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Rodyti ištraukto teksto pranešimą"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr ""
 "Rodo sistemos reklamjuostę, kurioje yra jūsų nukopijuoto teksto kontekstas."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Įgalinti ištraukimo istoriją"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Kontekstiniame meniu saugokite iki 15 naujausių ištraukų istoriją."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Spartusis klaviatūros paleidiklis"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Leisti suaktyvinti ištraukimą naudojant sparčiuosius klavišus."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Spartusis klaviatūros paleidiklis"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Spustelėkite, kad nustatytumėte nuorodą. Paspauskite Esc, kad atšauktumėte, "
 "o Backspace, kad išjungtumėte."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Išjungta"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Paspauskite klavišus..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Nupirk man kavos ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Pranešti apie klaidą 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Prašyti funkcijos 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Išsami kūrėjo informacija"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Autorius"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Versija"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Išplėstinė"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR kodai"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "Automatiškai atidaryti URL"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "Automatiškai atidaryti HTTP/HTTPS nuorodas, aptiktas QR koduose."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Vertimas (eksperimentinis)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Privatumo įspėjimas"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Automatinis vertimas siunčia ištrauktą tekstą į „Google“ vertėją. Privatumas "
+"negali būti garantuotas, kai įjungta."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Automatinis teksto vertimas"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "Automatiškai išverskite ištrauktą tekstą į tikslinę kalbą."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Tikslinės kalbos kodas"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"pvz., en, fr, es, zh. Palikite tuščią, jei norite naudoti numatytąją "
+"sistemos kalbą."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Miško ruoša"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Įgalinti derinimo žurnalą"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Išveda išsamius OCR ir proceso žurnalus į sistemos žurnalą."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Trūksta sistemos priklausomybės: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Trūksta sistemos priklausomybės: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Įdiekite reikiamus paketus ir bandykite dar kartą, kad įjungtumėte visas "
+"funkcijas."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Užfiksuoja pasirinktą ekrano sritį."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Pagrindinis OCR variklis, nuskaitantis tekstą iš vaizdų."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Pagerina vaizdo kontrastą ir kokybę, kad būtų geresnis OCR."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Ekrane aptinka ir iššifruoja QR kodus."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Reikalinga priklausomybė."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Atidarykite terminalą ir paleiskite šią komandą, kad įdiegtumėte trūkstamas "
+"priklausomybes iš oficialių saugyklų:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Atsisakyti"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Snap Text Configuration"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Tekstas nukopijuotas iš istorijos"

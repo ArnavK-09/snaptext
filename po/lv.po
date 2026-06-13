@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,60 +18,51 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Piestipriniet tekstu"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Trūkst sistēmas atkarības: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Atlaist"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Vēstures vēl nav"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Iestatījumi"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Teksts izvilkts"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Tulkošanas kļūda"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Nevarēja izveidot savienojumu ar Google tulkotāju."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Piestipriniet tekstu"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "Atlasē teksts nav atrasts."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Teksts izvilkts"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Snap teksta konfigurācija"
+#: prefs.js:38
+msgid "General"
+msgstr "Ģenerālis"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -79,80 +70,194 @@ msgstr ""
 "Nekavējoties izvelciet un kopējiet tekstu starpliktuvē no jebkuras ekrāna "
 "vietas."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Uzvedība un īsceļi"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Rādīt izvilktā teksta paziņojumu"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "Parāda sistēmas reklāmkarogu, kurā ir jūsu kopētā teksta konteksts."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Iespējot ieguves vēsturi"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Konteksta izvēlnē saglabājiet līdz 15 nesen veiktu izvilkumu vēsturi."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Tastatūras īsinājumtaustiņu aktivizētājs"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Atļaut izvilkšanas aktivizēšanu, izmantojot īsinājumtaustiņus."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Tastatūras īsinājumtaustiņu aktivizētājs"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Noklikšķiniet, lai iestatītu saīsni. Nospiediet Esc, lai atceltu, vai "
 "Backspace, lai atspējotu."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Atspējots"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Nospiediet taustiņus..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Nopērc man kafiju ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Ziņot par kļūdu 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Pieprasiet funkciju 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Detalizēta informācija par izstrādātāju"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Autors"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Versija"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Papildu"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR kodi"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "Automātiski atvērti URL"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "Automātiski atvērt QR kodos konstatētās HTTP/HTTPS saites."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Tulkojums (eksperimentāls)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Privātuma brīdinājums"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Automātiskā tulkošana nosūta izvilkto tekstu Google tulkotājam. "
+"Konfidencialitāti nevar garantēt, ja tā ir iespējota."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Automātiski tulkot tekstu"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "Automātiski tulkojiet izvilkto tekstu savā mērķa valodā."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Mērķvalodas kods"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"piem., en, fr, es, zh. Atstājiet tukšu, lai izmantotu sistēmas noklusējuma "
+"valodu."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Mežizstrāde"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Iespējot atkļūdošanas reģistrēšanu"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Sistēmas žurnālā izvada detalizētus OCR un procesu žurnālus."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Trūkst sistēmas atkarības: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Trūkst sistēmas atkarības: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Lūdzu, instalējiet vajadzīgās pakotnes un mēģiniet vēlreiz, lai iespējotu "
+"visas funkcijas."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Tver atlasīto ekrāna apgabalu."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Galvenais OCR dzinējs, kas nolasa tekstu no attēliem."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Uzlabo attēla kontrastu un kvalitāti labākam OCR."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Atklāj un atkodē QR kodus no ekrāna."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Nepieciešamā atkarība."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Atveriet termināli un palaidiet šo komandu, lai instalētu trūkstošās "
+"atkarības no oficiālajām krātuvēm:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Atlaist"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Snap teksta konfigurācija"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Teksts kopēts no vēstures"

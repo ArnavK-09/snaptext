@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,60 +16,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Nakala ya Snap"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Utegemezi wa Mfumo haupo: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Ondoa"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Hakuna historia bado"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Mipangilio"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Maandishi Yametolewa"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Hitilafu ya Tafsiri"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Haikuweza kuunganisha kwa Google Tafsiri."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Nakala ya Snap"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "Hakuna maandishi yaliyopatikana katika uteuzi."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Maandishi Yametolewa"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Usanidi wa Maandishi ya Snap"
+#: prefs.js:38
+msgid "General"
+msgstr "Mkuu"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -77,81 +68,197 @@ msgstr ""
 "Toa na unakili maandishi papo hapo kwenye ubao wako wa kunakili kutoka "
 "popote kwenye skrini."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Tabia & Njia za mkato"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Onyesha Arifa ya Maandishi Iliyotolewa"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "Huonyesha bango la mfumo lililo na muktadha wa maandishi uliyonakili."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Washa Historia ya Uchimbaji"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr ""
 "Weka historia ya hadi dondoo 15 za hivi majuzi kwenye menyu ya muktadha."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Kianzisha Njia ya Mkato ya Kibodi"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Ruhusu uchomozi wa kuchochea kupitia njia ya mkato ya kibodi."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Kianzisha Njia ya Mkato ya Kibodi"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Bofya ili kuweka njia ya mkato. Bonyeza Esc ili kughairi, Backspace ili "
 "kuzima."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Imezimwa"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Bonyeza vitufe..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Ninunulie kahawa ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Ripoti Mdudu 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Omba Kipengele 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Maelezo ya Msanidi"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Mwandishi"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Toleo"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Advanced"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "Misimbo ya QR"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "Fungua URL Kiotomatiki"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr ""
+"Fungua kiotomatiki viungo vya HTTP/HTTPS vilivyotambuliwa katika misimbo ya "
+"QR."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Tafsiri (ya Majaribio)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Onyo la faragha"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Tafsiri Kiotomatiki hutuma maandishi yaliyotolewa kwa Google Tafsiri. "
+"Faragha haiwezi kuhakikishwa ikiwa imewashwa."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Tafsiri Kiotomatiki Maandishi"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "Tafsiri maandishi yaliyotolewa kiotomatiki hadi kwa lugha unayolenga."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Msimbo wa Lugha Lengwa"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"k.m., en, fr, es, zh. Acha tupu ili kutumia lugha chaguomsingi ya mfumo wako."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Kuweka magogo"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Washa Kuingia kwa Utatuzi"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr ""
+"Inatoa maelezo ya kina ya OCR na kumbukumbu za mchakato kwa jarida la mfumo."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Utegemezi wa Mfumo haupo: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Utegemezi wa Mfumo haupo: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Tafadhali sakinisha vifurushi vinavyohitajika na ujaribu tena kuwasha "
+"vipengele vyote."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Hunasa eneo lililochaguliwa la skrini yako."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Injini ya msingi ya OCR inayosoma maandishi kutoka kwa picha."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Huboresha utofautishaji wa picha na ubora kwa OCR bora."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Hutambua na kusimbua misimbo ya QR kutoka kwenye skrini."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Utegemezi unaohitajika."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Fungua Kituo na uendesha amri ifuatayo ili kusakinisha utegemezi "
+"unaokosekana kutoka kwa hazina rasmi:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Ondoa"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Usanidi wa Maandishi ya Snap"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Maandishi Yamenakiliwa kutoka kwa Historia"

@@ -115,35 +115,80 @@ export default class SnapTextExtension extends Extension {
             this._indicator.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         }
 
-        let settingsItem = new PopupMenu.PopupImageMenuItem(_('Settings'), 'preferences-system-symbolic');
-        settingsItem.connectObject('activate', () => this.openPreferences(), this);
-
-        // Only add the clear history inline button if tracking history is enabled
         if (keepHistory) {
-            // Expand the label to push appended children (our clear icon) to the far right
-            settingsItem.label.x_expand = true;
+            // Implement a split-row layout so Settings and Clear behave as two distinct highlighted buttons
+            let bottomRow = new PopupMenu.PopupBaseMenuItem({
+                activate: false,
+                can_focus: false
+            });
+            // We omit `reactive: false` so the item doesn't get set to insensitive/greyed out
+            bottomRow.remove_style_class_name('popup-menu-item');
 
-            let clearIcon = new St.Icon({
-                icon_name: 'user-trash-symbolic',
-                style_class: 'popup-menu-icon',
+            let settingsButton = new St.Button({
+                style_class: 'popup-menu-item',
+                x_expand: true,
+                y_expand: true,
+                x_align: Clutter.ActorAlign.FILL,
+                y_align: Clutter.ActorAlign.FILL,
+                track_hover: true,
                 reactive: true,
+                can_focus: true,
+                child: new St.BoxLayout({
+                    x_expand: true,
+                    x_align: Clutter.ActorAlign.START,
+                    y_align: Clutter.ActorAlign.CENTER
+                })
+            });
+            settingsButton.child.set_style('spacing: 12px;');
+
+            let settingsIcon = new St.Icon({
+                icon_name: 'preferences-system-symbolic',
+                style_class: 'popup-menu-icon',
                 y_align: Clutter.ActorAlign.CENTER
             });
+            let settingsLabel = new St.Label({
+                text: _('Settings'),
+                y_align: Clutter.ActorAlign.CENTER
+            });
+            
+            settingsButton.child.add_child(settingsIcon);
+            settingsButton.child.add_child(settingsLabel);
 
-            // Stop propagation so clicking the trash doesn't activate the Settings item
-            clearIcon.connectObject(
-                'button-press-event', () => Clutter.EVENT_STOP,
-                'button-release-event', () => {
-                    this._settings.set_strv('history-list', []);
-                    return Clutter.EVENT_STOP;
-                },
-                this
-            );
+            settingsButton.connectObject('clicked', () => {
+                this._indicator.menu.close();
+                this.openPreferences();
+            }, this);
 
-            settingsItem.add_child(clearIcon);
+            bottomRow.add_child(settingsButton);
+
+            let clearButton = new St.Button({
+                style_class: 'popup-menu-item',
+                x_expand: false,
+                y_expand: true,
+                x_align: Clutter.ActorAlign.FILL,
+                y_align: Clutter.ActorAlign.FILL,
+                track_hover: true,
+                reactive: true,
+                can_focus: true,
+                child: new St.Icon({
+                    icon_name: 'user-trash-symbolic',
+                    style_class: 'popup-menu-icon',
+                    y_align: Clutter.ActorAlign.CENTER
+                })
+            });
+
+            clearButton.connectObject('clicked', () => {
+                this._settings.set_strv('history-list', []);
+            }, this);
+
+            bottomRow.add_child(clearButton);
+
+            this._indicator.menu.addMenuItem(bottomRow);
+        } else {
+            let settingsItem = new PopupMenu.PopupImageMenuItem(_('Settings'), 'preferences-system-symbolic');
+            settingsItem.connectObject('activate', () => this.openPreferences(), this);
+            this._indicator.menu.addMenuItem(settingsItem);
         }
-
-        this._indicator.menu.addMenuItem(settingsItem);
     }
 
     _historyMenuItem(text) {
@@ -163,7 +208,7 @@ export default class SnapTextExtension extends Extension {
         return item;
     }
 
-    _bindShortcut() {   //besides the icon, super easy to  use a hotkey also.
+    _bindShortcut() {
         Main.wm.removeKeybinding('shortcut-trigger');   
         
         Main.wm.addKeybinding(
@@ -182,7 +227,6 @@ export default class SnapTextExtension extends Extension {
         );
     }
 
-    // Opens the combined dependencies dialog. 
     _showMissingDependencies(missingApps) {
         if (this._errorDialog) {
             this._errorDialog.disconnectObject(this);
@@ -198,7 +242,6 @@ export default class SnapTextExtension extends Extension {
         this._errorDialog.open();
     }
 
-    //load the icon
     _notificationIcon() {
         return Gio.FileIcon.new(this.dir.get_child('trayicon.svg'));
     }
@@ -274,9 +317,6 @@ export default class SnapTextExtension extends Extension {
         });
     }
 
-    /**
-     * Translates text via Google Translate API if enabled in preferences.
-     */
     async _translateText(text) {
         if (!this._settings.get_boolean('translate-text') || !text) {
             return text;
@@ -284,15 +324,13 @@ export default class SnapTextExtension extends Extension {
 
         let targetLang = this._settings.get_string('translate-target').trim();
         if (!targetLang) {
-            // Default to GNOME sys lang if the user left the input blank
             let sysLangs = GLib.get_language_names();
             let locale = sysLangs[0] || 'en';
-            targetLang = locale.split('.')[0].split('_')[0]; // Format e.g., en_US.UTF-8 -> en
+            targetLang = locale.split('.')[0].split('_')[0];
         }
 
         this._logDebug(`Translating text to: ${targetLang}`);
 
-        //todo, add other services besidse Google translate.
         let url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
 
         try {
@@ -329,11 +367,9 @@ export default class SnapTextExtension extends Extension {
             }
         }
 
-        return text; // Fallback to original text on any failure
+        return text;
     }
 
-    //utilizes gnome-screenshot to grab the selected area. Saved to a tmp file and then used for OCR with tesseract.
-    //simple but super effective.
     async _extractTextAsync() {
         this._logDebug('Starting extraction flow...');
 
@@ -382,7 +418,6 @@ export default class SnapTextExtension extends Extension {
                     let text = result.text;
                     this._logDebug(`Final OCR text length: ${text.length}`);
                     
-                    // Automatically launch HTTP/HTTPS URLs (that got noticed via QR )
                     if (result.isQr && /^https?:\/\/[^\s]+$/i.test(text.trim())) {
                         if (this._settings.get_boolean('qr-auto-open')) {
                             try {
@@ -425,8 +460,6 @@ export default class SnapTextExtension extends Extension {
         }
     }
 
-    // Take the extracted text and now stamp it on the clipboard. 
-    // Added history tracking for easy access, just like clipboard history :) 
     _handleExtractedText(text) {
         if (!text) {
             if (this._settings?.get_boolean('show-notification')) {

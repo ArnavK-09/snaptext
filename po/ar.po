@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,138 +16,242 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "التقط النص"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "تبعية النظام المفقودة: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "رفض"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "لا يوجد تاريخ بعد"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "إعدادات"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "النص المستخرج"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "خطأ في الترجمة"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "تعذر الاتصال بترجمة Google."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "التقط النص"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "لم يتم العثور على نص في التحديد."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "النص المستخرج"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "المفاجئة تكوين النص"
+#: prefs.js:38
+msgid "General"
+msgstr "عام"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr ""
 "قم باستخراج النص ونسخه على الفور إلى الحافظة الخاصة بك من أي مكان على الشاشة."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "السلوك والاختصارات"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "إظهار إشعار النص المستخرج"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "يعرض شعار النظام الذي يحتوي على سياق النص المنسوخ."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "تمكين تاريخ الاستخراج"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "احتفظ بسجل يصل إلى 15 عملية استخراج حديثة في قائمة السياق."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "مشغل اختصارات لوحة المفاتيح"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "السماح بإثارة الاستخراج عبر اختصار لوحة المفاتيح."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "مشغل اختصارات لوحة المفاتيح"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr "انقر لتعيين الاختصار. اضغط على Esc للإلغاء، وBackspace للتعطيل."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "عاجز"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "اضغط على المفاتيح..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "اشتري لي قهوة ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "الإبلاغ عن خطأ 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "طلب ميزة 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "تفاصيل المطور"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "مؤلف"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "إصدار"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "متقدم"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "رموز الاستجابة السريعة"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "عناوين URL المفتوحة تلقائيًا"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "فتح روابط HTTP/HTTPS المكتشفة في رموز QR تلقائيًا."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "الترجمة (التجريبية)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "تحذير الخصوصية"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"تقوم ميزة الترجمة التلقائية بإرسال النص المستخرج إلى خدمة الترجمة من Google. "
+"لا يمكن ضمان الخصوصية عند تمكينها."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "الترجمة التلقائية للنص"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "ترجمة النص المستخرج تلقائيًا إلى لغتك المستهدفة."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "رمز اللغة المستهدفة"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"على سبيل المثال، en، fr، es، zh. اتركه فارغًا لاستخدام لغة النظام الافتراضية."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "التسجيل"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "تمكين تسجيل التصحيح"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr ""
+"يقوم بإخراج سجلات التعرف الضوئي على الحروف وسجلات العمليات التفصيلية إلى سجل "
+"النظام."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "تبعية النظام المفقودة: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "تبعية النظام المفقودة: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr "الرجاء تثبيت الحزم المطلوبة وحاول مرة أخرى لتمكين كافة الميزات."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "يلتقط المنطقة المحددة من شاشتك."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "محرك OCR الأساسي الذي يقرأ النص من الصور."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "يعمل على تحسين تباين الصورة وجودتها لتحسين التعرف الضوئي على الحروف."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "يكتشف ويفك رموز QR من الشاشة."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "التبعية المطلوبة."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"افتح Terminal وقم بتشغيل الأمر التالي لتثبيت التبعيات المفقودة من المستودعات "
+"الرسمية:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "رفض"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "المفاجئة تكوين النص"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "نص منسوخ من التاريخ"

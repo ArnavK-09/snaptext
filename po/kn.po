@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,60 +16,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "ಸ್ನ್ಯಾಪ್ ಪಠ್ಯ"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "ಸಿಸ್ಟಮ್ ಅವಲಂಬನೆ ಕಾಣೆಯಾಗಿದೆ: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "ವಜಾಗೊಳಿಸಿ"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "ಇನ್ನೂ ಇತಿಹಾಸವಿಲ್ಲ"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "ಪಠ್ಯವನ್ನು ಹೊರತೆಗೆಯಲಾಗಿದೆ"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "ಅನುವಾದ ದೋಷ"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Google ಅನುವಾದಕ್ಕೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "ಸ್ನ್ಯಾಪ್ ಪಠ್ಯ"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "ಆಯ್ಕೆಯಲ್ಲಿ ಯಾವುದೇ ಪಠ್ಯ ಕಂಡುಬಂದಿಲ್ಲ."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "ಪಠ್ಯವನ್ನು ಹೊರತೆಗೆಯಲಾಗಿದೆ"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "ಸ್ನ್ಯಾಪ್ ಪಠ್ಯ ಕಾನ್ಫಿಗರೇಶನ್"
+#: prefs.js:38
+msgid "General"
+msgstr "ಸಾಮಾನ್ಯ"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -77,79 +68,191 @@ msgstr ""
 "ಪರದೆಯ ಮೇಲೆ ಎಲ್ಲಿಂದಲಾದರೂ ನಿಮ್ಮ ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಪಠ್ಯವನ್ನು ತಕ್ಷಣವೇ ಹೊರತೆಗೆಯಿರಿ ಮತ್ತು "
 "ನಕಲಿಸಿ."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "ನಡವಳಿಕೆ ಮತ್ತು ಶಾರ್ಟ್‌ಕಟ್‌ಗಳು"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "ಹೊರತೆಗೆಯಲಾದ ಪಠ್ಯ ಅಧಿಸೂಚನೆಯನ್ನು ತೋರಿಸಿ"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "ನಿಮ್ಮ ನಕಲಿಸಿದ ಪಠ್ಯ ಸಂದರ್ಭವನ್ನು ಹೊಂದಿರುವ ಸಿಸ್ಟಂ ಬ್ಯಾನರ್ ಅನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "ಹೊರತೆಗೆಯುವಿಕೆ ಇತಿಹಾಸವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "ಸಂದರ್ಭ ಮೆನುವಿನಲ್ಲಿ 15 ಇತ್ತೀಚಿನ ಹೊರತೆಗೆಯುವಿಕೆಗಳ ಇತಿಹಾಸವನ್ನು ಇರಿಸಿ."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‌ಕಟ್ ಟ್ರಿಗ್ಗರ್"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‌ಕಟ್ ಮೂಲಕ ಹೊರತೆಗೆಯುವಿಕೆಯನ್ನು ಪ್ರಚೋದಿಸಲು ಅನುಮತಿಸಿ."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‌ಕಟ್ ಟ್ರಿಗ್ಗರ್"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "ಶಾರ್ಟ್‌ಕಟ್ ಹೊಂದಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ. ರದ್ದುಗೊಳಿಸಲು Esc, ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು Backspace ಒತ್ತಿರಿ."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "ಕೀಲಿಗಳನ್ನು ಒತ್ತಿ..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "ನನಗೆ ಕಾಫಿ ಖರೀದಿಸಿ ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "ದೋಷವನ್ನು ವರದಿ ಮಾಡಿ 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "ವೈಶಿಷ್ಟ್ಯವನ್ನು ವಿನಂತಿಸಿ 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "ಡೆವಲಪರ್ ವಿವರಗಳು"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "ಲೇಖಕ"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "ಆವೃತ್ತಿ"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "ಸುಧಾರಿತ"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR ಕೋಡ್‌ಗಳು"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "ಸ್ವಯಂ-ತೆರೆಯ URL ಗಳು"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "QR ಕೋಡ್‌ಗಳಲ್ಲಿ ಪತ್ತೆಯಾದ HTTP/HTTPS ಲಿಂಕ್‌ಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತೆರೆಯಿರಿ."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "ಅನುವಾದ (ಪ್ರಾಯೋಗಿಕ)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "ಗೌಪ್ಯತೆ ಎಚ್ಚರಿಕೆ"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"ಸ್ವಯಂ-ಅನುವಾದವು ಹೊರತೆಗೆದ ಪಠ್ಯವನ್ನು Google ಅನುವಾದಕ್ಕೆ ಕಳುಹಿಸುತ್ತದೆ. ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ "
+"ಗೌಪ್ಯತೆಯನ್ನು ಖಾತರಿಪಡಿಸಲಾಗುವುದಿಲ್ಲ."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "ಪಠ್ಯವನ್ನು ಸ್ವಯಂ ಅನುವಾದಿಸಿ"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "ಹೊರತೆಗೆದ ಪಠ್ಯವನ್ನು ನಿಮ್ಮ ಗುರಿ ಭಾಷೆಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅನುವಾದಿಸಿ."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "ಟಾರ್ಗೆಟ್ ಲಾಂಗ್ವೇಜ್ ಕೋಡ್"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr "ಉದಾ., en, fr, es, zh. ನಿಮ್ಮ ಸಿಸ್ಟಂ ಡೀಫಾಲ್ಟ್ ಭಾಷೆಯನ್ನು ಬಳಸಲು ಖಾಲಿ ಬಿಡಿ."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "ಲಾಗಿಂಗ್"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "ಡೀಬಗ್ ಲಾಗಿಂಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "ಸಿಸ್ಟಮ್ ಜರ್ನಲ್‌ಗೆ ವಿವರವಾದ OCR ಮತ್ತು ಪ್ರಕ್ರಿಯೆ ಲಾಗ್‌ಗಳನ್ನು ಔಟ್‌ಪುಟ್ ಮಾಡುತ್ತದೆ."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "ಸಿಸ್ಟಮ್ ಅವಲಂಬನೆ ಕಾಣೆಯಾಗಿದೆ: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "ಸಿಸ್ಟಮ್ ಅವಲಂಬನೆ ಕಾಣೆಯಾಗಿದೆ: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"ದಯವಿಟ್ಟು ಅಗತ್ಯವಿರುವ ಪ್ಯಾಕೇಜ್‌ಗಳನ್ನು ಸ್ಥಾಪಿಸಿ ಮತ್ತು ಎಲ್ಲಾ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು "
+"ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "ನಿಮ್ಮ ಪರದೆಯ ಆಯ್ದ ಪ್ರದೇಶವನ್ನು ಸೆರೆಹಿಡಿಯುತ್ತದೆ."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "ಚಿತ್ರಗಳಿಂದ ಪಠ್ಯವನ್ನು ಓದುವ ಕೋರ್ OCR ಎಂಜಿನ್."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "ಉತ್ತಮ OCR ಗಾಗಿ ಚಿತ್ರದ ಕಾಂಟ್ರಾಸ್ಟ್ ಮತ್ತು ಗುಣಮಟ್ಟವನ್ನು ಸುಧಾರಿಸುತ್ತದೆ."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "ಪರದೆಯಿಂದ QR ಕೋಡ್‌ಗಳನ್ನು ಪತ್ತೆ ಮಾಡುತ್ತದೆ ಮತ್ತು ಡಿಕೋಡ್ ಮಾಡುತ್ತದೆ."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "ಅಗತ್ಯವಿರುವ ಅವಲಂಬನೆ."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"ಟರ್ಮಿನಲ್ ತೆರೆಯಿರಿ ಮತ್ತು ಅಧಿಕೃತ ರೆಪೊಸಿಟರಿಗಳಿಂದ ಕಾಣೆಯಾದ ಅವಲಂಬನೆಗಳನ್ನು ಸ್ಥಾಪಿಸಲು "
+"ಕೆಳಗಿನ ಆಜ್ಞೆಯನ್ನು ಚಲಾಯಿಸಿ:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "ವಜಾಗೊಳಿಸಿ"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "ಸ್ನ್ಯಾಪ್ ಪಠ್ಯ ಕಾನ್ಫಿಗರೇಶನ್"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "ಇತಿಹಾಸದಿಂದ ಪಠ್ಯವನ್ನು ನಕಲಿಸಲಾಗಿದೆ"

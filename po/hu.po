@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,141 +17,246 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap Text"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Hiányzó rendszerfüggőség: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Elvetés"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Még nincs előzmény"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Beállítások elemre"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Szöveg kivonva"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Fordítási hiba"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Nem sikerült csatlakozni a Google Fordítóhoz."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Snap Text"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "Nem található szöveg a kijelölésben."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Szöveg kivonva"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Snap Text Configuration"
+#: prefs.js:38
+msgid "General"
+msgstr "Általános"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr "Azonnal kivonat és másolhat szöveget a vágólapra a képernyő bárhonnan."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Viselkedés és parancsikonok"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Kivont szöveges értesítés megjelenítése"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr ""
 "Megjelenít egy rendszerszalagot, amely tartalmazza a másolt "
 "szövegkörnyezetet."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Kivonatolási előzmények engedélyezése"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "A helyi menüben akár 15 legutóbbi kivonat előzményét is megőrizheti."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Billentyűparancs trigger"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "A kivonás aktiválásának engedélyezése billentyűparancs segítségével."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Billentyűparancs trigger"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Kattintson a parancsikon beállításához. Nyomja meg az Esc gombot a "
 "törléshez, a Backspace billentyűt a letiltáshoz."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Letiltva"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Nyomd meg a gombokat..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Vegyél nekem egy kávét☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Hiba bejelentése 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Kérjen funkciót 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Fejlesztői részletek"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Szerző"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Változat"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Fejlett"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR kódok"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "URL-ek automatikus megnyitása"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "A QR-kódokban észlelt HTTP/HTTPS hivatkozások automatikus megnyitása."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Fordítás (kísérleti)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Adatvédelmi figyelmeztetés"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Az Automatikus fordítás elküldi a kivonatolt szöveget a Google Fordítónak. "
+"Az adatvédelem nem garantálható, ha engedélyezve van."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Szöveg automatikus fordítása"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "A kivont szöveg automatikus fordítása a célnyelvre."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Célnyelvi kód"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"pl.: en, fr, es, zh. Hagyja üresen a rendszer alapértelmezett nyelvének "
+"használatához."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Fakitermelés"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Hibakeresési naplózás engedélyezése"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Részletes OCR- és folyamatnaplókat ad ki a rendszernaplóba."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Hiányzó rendszerfüggőség: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Hiányzó rendszerfüggőség: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Telepítse a szükséges csomagokat, és próbálja újra az összes funkció "
+"engedélyezéséhez."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Rögzíti a képernyő kiválasztott területét."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Az alapvető OCR-motor, amely szöveget olvas ki a képekből."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Javítja a kép kontrasztját és minőségét a jobb OCR érdekében."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Érzékeli és dekódolja a QR-kódokat a képernyőről."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Szükséges függőség."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Nyisson meg egy terminált, és futtassa a következő parancsot a hiányzó "
+"függőségek telepítéséhez a hivatalos tárolókból:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Elvetés"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Snap Text Configuration"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Szöveg az előzményekből másolva"

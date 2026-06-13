@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,60 +16,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Captura de text"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Falta la dependència del sistema: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Descartar"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Encara no hi ha història"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Configuració"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Text extret"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Error de traducció"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "No s'ha pogut connectar a Google Translate."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Captura de text"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "No s'ha trobat cap text a la selecció."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Text extret"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Configuració d'ajustament de text"
+#: prefs.js:38
+msgid "General"
+msgstr "General"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -77,81 +68,196 @@ msgstr ""
 "Extraieu i copieu text a l'instant al porta-retalls des de qualsevol lloc de "
 "la pantalla."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Comportament i dreceres"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Mostra la notificació de text extret"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "Mostra un bàner del sistema que conté el context de text copiat."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Activa l'historial d'extraccions"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr ""
 "Manteniu un historial de fins a 15 extraccions recents al menú contextual."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Activador de drecera de teclat"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Permet activar l'extracció mitjançant una drecera de teclat."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Activador de drecera de teclat"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Feu clic per definir la drecera. Premeu Esc per cancel·lar, retrocés per "
 "desactivar-lo."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Inhabilitat"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Premeu les tecles..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Compra'm un cafè ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Informa d'un error 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Demana una funció 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Detalls del desenvolupador"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Autor"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Versió"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Avançat"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "Codis QR"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "URL d'obertura automàtica"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "Obriu automàticament els enllaços HTTP/HTTPS detectats als codis QR."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Traducció (experimental)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Avís de privadesa"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"La traducció automàtica envia el text extret a Google Translate. No es pot "
+"garantir la privadesa quan està activat."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Traducció automàtica de text"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr ""
+"Tradueix automàticament el text extret a la teva llengua de destinació."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Codi d'idioma objectiu"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"p. ex., en, fr, es, zh. Deixeu-lo en blanc per utilitzar l'idioma "
+"predeterminat del vostre sistema."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Enregistrament"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Activa el registre de depuració"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Emet OCR detallats i registres de procés al diari del sistema."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Falta la dependència del sistema: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Falta la dependència del sistema: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Instal·leu els paquets necessaris i torneu a provar d'habilitar totes les "
+"funcions."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Captura l'àrea seleccionada de la pantalla."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "El motor OCR bàsic que llegeix el text de les imatges."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Millora el contrast i la qualitat de la imatge per a un millor OCR."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Detecta i descodifica codis QR des de la pantalla."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Dependència obligatòria."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Obriu un terminal i executeu l'ordre següent per instal·lar les dependències "
+"que falten dels dipòsits oficials:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Descartar"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Configuració d'ajustament de text"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Text copiat de la història"

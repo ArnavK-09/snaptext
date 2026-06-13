@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,60 +16,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Jepret Teks"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "Ketergantungan Sistem Hilang: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "Membubarkan"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "Belum ada sejarah"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "Pengaturan"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "Teks Diekstraksi"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "Kesalahan Terjemahan"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Tidak dapat terhubung ke Google Terjemahan."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "Jepret Teks"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "Tidak ada teks yang ditemukan dalam pilihan."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "Teks Diekstraksi"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "Konfigurasi Teks Jepret"
+#: prefs.js:38
+msgid "General"
+msgstr "Umum"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -77,80 +68,195 @@ msgstr ""
 "Ekstrak dan salin teks secara instan ke clipboard Anda dari mana saja di "
 "layar."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "Perilaku & Pintasan"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "Tampilkan Pemberitahuan Teks yang Diekstraksi"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "Menampilkan spanduk sistem yang berisi konteks teks yang Anda salin."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "Aktifkan Riwayat Ekstraksi"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Simpan riwayat hingga 15 ekstraksi terkini di menu konteks."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Pemicu Pintasan Keyboard"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "Izinkan memicu ekstraksi melalui pintasan keyboard."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "Pemicu Pintasan Keyboard"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Klik untuk mengatur pintasan. Tekan Esc untuk membatalkan, Backspace untuk "
 "menonaktifkan."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "Dengan disabilitas"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "Tekan tombol..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Belikan aku kopi ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "Laporkan Bug 🐛"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Minta Fitur 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "Detail Pengembang"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "Pengarang"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "Versi"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "Canggih"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "Kode QR"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "URL Buka Otomatis"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "Buka tautan HTTP/HTTPS secara otomatis yang terdeteksi dalam kode QR."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "Terjemahan (Eksperimental)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "Peringatan privasi"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"Terjemahan Otomatis mengirimkan teks yang diekstraksi ke Google Terjemahan. "
+"Privasi tidak dapat dijamin bila diaktifkan."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "Teks Terjemahkan Otomatis"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr ""
+"Terjemahkan teks yang diekstraksi secara otomatis ke bahasa target Anda."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "Kode Bahasa Sasaran"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"misalnya, en, fr, es, zh. Biarkan kosong untuk menggunakan bahasa default "
+"sistem Anda."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "Pencatatan"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "Aktifkan Pencatatan Debug"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "Menghasilkan OCR terperinci dan log proses ke jurnal sistem."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "Ketergantungan Sistem Hilang: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "Ketergantungan Sistem Hilang: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"Silakan instal paket yang diperlukan dan coba lagi untuk mengaktifkan semua "
+"fitur."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "Menangkap area yang dipilih pada layar Anda."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "Mesin OCR inti yang membaca teks dari gambar."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "Meningkatkan kontras dan kualitas gambar untuk OCR yang lebih baik."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "Mendeteksi dan menerjemahkan kode QR dari layar."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "Ketergantungan yang diperlukan."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"Buka Terminal dan jalankan perintah berikut untuk menginstal dependensi yang "
+"hilang dari repositori resmi:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "Membubarkan"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "Konfigurasi Teks Jepret"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "Teks Disalin dari Sejarah"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,137 +16,238 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "స్నాప్ టెక్స్ట్"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "సిస్టమ్ డిపెండెన్సీ లేదు: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "తొలగించు"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "ఇంకా చరిత్ర లేదు"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "సెట్టింగ్‌లు"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "టెక్స్ట్ సంగ్రహించబడింది"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "అనువాద లోపం"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Google Translateకి కనెక్ట్ చేయడం సాధ్యపడలేదు."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "స్నాప్ టెక్స్ట్"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "ఎంపికలో వచనం ఏదీ కనుగొనబడలేదు."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "టెక్స్ట్ సంగ్రహించబడింది"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "స్నాప్ టెక్స్ట్ కాన్ఫిగరేషన్"
+#: prefs.js:38
+msgid "General"
+msgstr "జనరల్"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr "స్క్రీన్‌పై ఎక్కడి నుండైనా మీ క్లిప్‌బోర్డ్‌కు వచనాన్ని తక్షణమే సంగ్రహించండి మరియు కాపీ చేయండి."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "ప్రవర్తన & సత్వరమార్గాలు"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "సంగ్రహించిన వచన నోటిఫికేషన్‌ను చూపు"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "మీరు కాపీ చేసిన వచన సందర్భాన్ని కలిగి ఉన్న సిస్టమ్ బ్యానర్‌ను ప్రదర్శిస్తుంది."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "సంగ్రహణ చరిత్రను ప్రారంభించండి"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "సందర్భ మెనులో గరిష్టంగా 15 ఇటీవలి వెలికితీతల చరిత్రను ఉంచండి."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "కీబోర్డ్ సత్వరమార్గ ట్రిగ్గర్"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "కీబోర్డ్ సత్వరమార్గం ద్వారా ట్రిగ్గర్ ఎక్స్‌ట్రాక్షన్‌ని అనుమతించండి."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "కీబోర్డ్ సత్వరమార్గ ట్రిగ్గర్"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr "సత్వరమార్గాన్ని సెట్ చేయడానికి క్లిక్ చేయండి. రద్దు చేయడానికి Esc, నిలిపివేయడానికి Backspace నొక్కండి."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "వికలాంగుడు"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "కీలను నొక్కండి..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "నాకు కాఫీ కొనండి ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "బగ్ 🐛ని నివేదించండి"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "ఒక లక్షణాన్ని అభ్యర్థించండి 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "డెవలపర్ వివరాలు"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "రచయిత"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "వెర్షన్"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "అధునాతనమైనది"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR కోడ్‌లు"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "URLలను స్వయంచాలకంగా తెరవండి"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "QR కోడ్‌లలో గుర్తించబడిన HTTP/HTTPS లింక్‌లను స్వయంచాలకంగా తెరవండి."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "అనువాదం (ప్రయోగాత్మకం)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "గోప్యతా హెచ్చరిక"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"స్వీయ-అనువాదం సంగ్రహించిన వచనాన్ని Google అనువాదానికి పంపుతుంది. ప్రారంభించబడినప్పుడు గోప్యతకు హామీ "
+"ఇవ్వబడదు."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "వచనాన్ని స్వయంచాలకంగా అనువదించండి"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "సంగ్రహించిన వచనాన్ని మీ లక్ష్య భాషకు స్వయంచాలకంగా అనువదించండి."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "లక్ష్య భాష కోడ్"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr "ఉదా., en, fr, es, zh. Leave empty to use your system default language."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "లాగింగ్"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "డీబగ్ లాగింగ్‌ని ప్రారంభించండి"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "సిస్టమ్ జర్నల్‌కు వివరణాత్మక OCR మరియు ప్రాసెస్ లాగ్‌లను అవుట్‌పుట్ చేస్తుంది."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "సిస్టమ్ డిపెండెన్సీ లేదు: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "సిస్టమ్ డిపెండెన్సీ లేదు: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr "దయచేసి అవసరమైన ప్యాకేజీలను ఇన్‌స్టాల్ చేసి, అన్ని లక్షణాలను ప్రారంభించడానికి మళ్లీ ప్రయత్నించండి."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "మీ స్క్రీన్ యొక్క ఎంచుకున్న ప్రాంతాన్ని క్యాప్చర్ చేస్తుంది."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "చిత్రాల నుండి వచనాన్ని చదివే కోర్ OCR ఇంజిన్."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "మెరుగైన OCR కోసం ఇమేజ్ కాంట్రాస్ట్ మరియు నాణ్యతను మెరుగుపరుస్తుంది."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "స్క్రీన్ నుండి QR కోడ్‌లను గుర్తించి, డీకోడ్ చేస్తుంది."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "అవసరమైన ఆధారపడటం."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"అధికారిక రిపోజిటరీల నుండి తప్పిపోయిన డిపెండెన్సీలను ఇన్‌స్టాల్ చేయడానికి టెర్మినల్‌ను తెరిచి, కింది ఆదేశాన్ని అమలు "
+"చేయండి:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "తొలగించు"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "స్నాప్ టెక్స్ట్ కాన్ఫిగరేషన్"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "వచనం చరిత్ర నుండి కాపీ చేయబడింది"

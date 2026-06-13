@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 22:17+0200\n"
+"POT-Creation-Date: 2026-06-13 21:56+0200\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,60 +16,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:20
+#: extension.js:81
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "സ്നാപ്പ് ടെക്സ്റ്റ്"
 
-#: extension.js:87
-#, fuzzy, javascript-format
-msgid "Missing dependency: %s"
-msgstr "സിസ്റ്റം ഡിപൻഡൻസി വിട്ടുപോയിരിക്കുന്നു: %s"
-
-#: extension.js:94
-msgid "Install Tesseract and at least one language package."
-msgstr ""
-
-#: extension.js:95
-msgid "Install gnome-screenshot and try again."
-msgstr ""
-
-#: extension.js:143
-msgid "Dismiss"
-msgstr "പിരിച്ചുവിടുക"
-
-#: extension.js:244
+#: extension.js:107
 msgid "No history yet"
 msgstr "ഇതുവരെ ചരിത്രമില്ല"
 
-#: extension.js:256
+#: extension.js:150 extension.js:188
 msgid "Settings"
 msgstr "ക്രമീകരണങ്ങൾ"
 
-#: extension.js:272
+#: extension.js:204
 #, fuzzy
 msgid "Text copied"
 msgstr "ടെക്‌സ്‌റ്റ് എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌തു"
 
-#: extension.js:498
+#: extension.js:366
+msgid "Translation Error"
+msgstr "വിവർത്തന പിശക്"
+
+#: extension.js:366
+msgid "Could not connect to Google Translate."
+msgstr "Google വിവർത്തനത്തിലേക്ക് ബന്ധിപ്പിക്കാൻ കഴിഞ്ഞില്ല."
+
+#: extension.js:466
 msgid "Snap Text"
 msgstr "സ്നാപ്പ് ടെക്സ്റ്റ്"
 
-#: extension.js:498
+#: extension.js:466
 #, fuzzy
 msgid "No text found."
 msgstr "തിരഞ്ഞെടുക്കലിൽ വാചകമൊന്നും കണ്ടെത്തിയില്ല."
 
-#: extension.js:514
+#: extension.js:482
 #, fuzzy
 msgid "Text extracted"
 msgstr "ടെക്‌സ്‌റ്റ് എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌തു"
 
-#: prefs.js:36
-msgid "Snap Text Configuration"
-msgstr "സ്നാപ്പ് ടെക്സ്റ്റ് കോൺഫിഗറേഷൻ"
+#: prefs.js:38
+msgid "General"
+msgstr "ജനറൽ"
 
-#: prefs.js:42
+#: prefs.js:44
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -77,80 +68,192 @@ msgstr ""
 "സ്‌ക്രീനിൽ എവിടെ നിന്നും നിങ്ങളുടെ ക്ലിപ്പ്ബോർഡിലേക്ക് ടെക്‌സ്‌റ്റ് തൽക്ഷണം എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌ത് "
 "പകർത്തുക."
 
-#: prefs.js:53
+#: prefs.js:55
 msgid "Behavior & Shortcuts"
 msgstr "പെരുമാറ്റവും കുറുക്കുവഴികളും"
 
-#: prefs.js:57
+#: prefs.js:59
 msgid "Show Extracted Text Notification"
 msgstr "എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌ത വാചക അറിയിപ്പ് കാണിക്കുക"
 
-#: prefs.js:58
+#: prefs.js:60
 msgid "Displays a system banner containing your copied text context."
 msgstr "നിങ്ങളുടെ പകർത്തിയ ടെക്സ്റ്റ് സന്ദർഭം അടങ്ങുന്ന ഒരു സിസ്റ്റം ബാനർ പ്രദർശിപ്പിക്കുന്നു."
 
-#: prefs.js:72
+#: prefs.js:74
 msgid "Enable Extraction History"
 msgstr "എക്‌സ്‌ട്രാക്ഷൻ ഹിസ്റ്ററി പ്രവർത്തനക്ഷമമാക്കുക"
 
-#: prefs.js:73
+#: prefs.js:75
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "സന്ദർഭ മെനുവിൽ 15 സമീപകാല എക്‌സ്‌ട്രാക്‌ഷനുകളുടെ ചരിത്രം സൂക്ഷിക്കുക."
 
-#: prefs.js:87
+#: prefs.js:89
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "കീബോർഡ് കുറുക്കുവഴി ട്രിഗർ"
 
-#: prefs.js:88
+#: prefs.js:90
 msgid "Allow triggering extraction via a keyboard shortcut."
-msgstr ""
+msgstr "ഒരു കീബോർഡ് കുറുക്കുവഴിയിലൂടെ എക്‌സ്‌ട്രാക്‌ഷൻ ട്രിഗർ ചെയ്യാൻ അനുവദിക്കുക."
 
-#: prefs.js:102
+#: prefs.js:104
 msgid "Keyboard Shortcut Trigger"
 msgstr "കീബോർഡ് കുറുക്കുവഴി ട്രിഗർ"
 
-#: prefs.js:103
+#: prefs.js:105
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "കുറുക്കുവഴി സജ്ജീകരിക്കാൻ ക്ലിക്ക് ചെയ്യുക. റദ്ദാക്കാൻ Esc അമർത്തുക, പ്രവർത്തനരഹിതമാക്കാൻ "
 "Backspace അമർത്തുക."
 
-#: prefs.js:111 prefs.js:165
+#: prefs.js:113 prefs.js:167
 msgid "Disabled"
 msgstr "അപ്രാപ്തമാക്കി"
 
-#: prefs.js:142
+#: prefs.js:144
 msgid "Press keys..."
 msgstr "കീകൾ അമർത്തുക..."
 
 #. GitHub repo links :
-#: prefs.js:201
+#: prefs.js:202
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "എനിക്കൊരു കാപ്പി വാങ്ങിത്തരൂ ☕"
 
-#: prefs.js:202
+#: prefs.js:203
 #, fuzzy
 msgid "Report a Bug 🐛"
 msgstr "ഒരു ബഗ് 🐛 റിപ്പോർട്ട് ചെയ്യുക"
 
-#: prefs.js:203
+#: prefs.js:204
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "ഒരു ഫീച്ചർ അഭ്യർത്ഥിക്കുക 🚀"
 
-#: prefs.js:209
+#: prefs.js:210
 msgid "Developer Details"
 msgstr "ഡെവലപ്പർ വിശദാംശങ്ങൾ"
 
-#: prefs.js:211
+#: prefs.js:212
 msgid "Author"
 msgstr "രചയിതാവ്"
 
-#: prefs.js:212
+#: prefs.js:213
 msgid "Version"
 msgstr "പതിപ്പ്"
+
+#: prefs.js:220
+msgid "Advanced"
+msgstr "വിപുലമായ"
+
+#: prefs.js:225
+msgid "QR Codes"
+msgstr "QR കോഡുകൾ"
+
+#: prefs.js:229
+msgid "Auto-Open URLs"
+msgstr "സ്വയമേവ തുറക്കുന്ന URL-കൾ"
+
+#: prefs.js:230
+msgid "Automatically open HTTP/HTTPS links detected in QR codes."
+msgstr "QR കോഡുകളിൽ കണ്ടെത്തിയ HTTP/HTTPS ലിങ്കുകൾ സ്വയമേവ തുറക്കുക."
+
+#: prefs.js:246
+msgid "Translation (Experimental)"
+msgstr "വിവർത്തനം (പരീക്ഷണാത്മകം)"
+
+#: prefs.js:277
+msgid "Privacy warning"
+msgstr "സ്വകാര്യതാ മുന്നറിയിപ്പ്"
+
+#: prefs.js:284
+msgid ""
+"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
+"guaranteed when enabled."
+msgstr ""
+"സ്വയമേവ വിവർത്തനം എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌ത ടെക്‌സ്‌റ്റ് Google വിവർത്തനത്തിലേക്ക് അയയ്‌ക്കുന്നു. "
+"പ്രവർത്തനക്ഷമമാക്കുമ്പോൾ സ്വകാര്യത ഉറപ്പുനൽകാൻ കഴിയില്ല."
+
+#: prefs.js:300
+msgid "Auto-Translate Text"
+msgstr "വാചകം സ്വയമേവ വിവർത്തനം ചെയ്യുക"
+
+#: prefs.js:301
+msgid "Automatically translate extracted text to your target language."
+msgstr "എക്‌സ്‌ട്രാക്‌റ്റുചെയ്‌ത വാചകം നിങ്ങളുടെ ടാർഗെറ്റ് ഭാഷയിലേക്ക് സ്വയമേവ വിവർത്തനം ചെയ്യുക."
+
+#: prefs.js:315
+msgid "Target Language Code"
+msgstr "ടാർഗെറ്റ് ഭാഷാ കോഡ്"
+
+#: prefs.js:316
+msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
+msgstr ""
+"ഉദാ. en, fr, es, zh. നിങ്ങളുടെ സിസ്റ്റം ഡിഫോൾട്ട് ഭാഷ ഉപയോഗിക്കുന്നതിന് ശൂന്യമായി വിടുക."
+
+#: prefs.js:333
+msgid "Logging"
+msgstr "ലോഗിംഗ്"
+
+#: prefs.js:337
+msgid "Enable Debug Logging"
+msgstr "ഡീബഗ് ലോഗിംഗ് പ്രവർത്തനക്ഷമമാക്കുക"
+
+#: prefs.js:338
+msgid "Outputs detailed OCR and process logs to the system journal."
+msgstr "സിസ്റ്റം ജേണലിലേക്ക് വിശദമായ OCR, പ്രോസസ്സ് ലോഗുകൾ എന്നിവ ഔട്ട്പുട്ട് ചെയ്യുന്നു."
+
+#: dependencies.js:97
+#, fuzzy, javascript-format
+msgid "Missing dependencies: %s"
+msgstr "സിസ്റ്റം ഡിപൻഡൻസി വിട്ടുപോയിരിക്കുന്നു: %s"
+
+#: dependencies.js:98
+#, fuzzy, javascript-format
+msgid "Missing dependency: %s"
+msgstr "സിസ്റ്റം ഡിപൻഡൻസി വിട്ടുപോയിരിക്കുന്നു: %s"
+
+#: dependencies.js:107
+msgid ""
+"Please install the required packages and try again to enable all features."
+msgstr ""
+"ആവശ്യമായ പാക്കേജുകൾ ഇൻസ്റ്റാൾ ചെയ്‌ത് എല്ലാ സവിശേഷതകളും പ്രവർത്തനക്ഷമമാക്കാൻ വീണ്ടും ശ്രമിക്കുക."
+
+#: dependencies.js:121
+msgid "Captures the selected area of your screen."
+msgstr "നിങ്ങളുടെ സ്ക്രീനിൻ്റെ തിരഞ്ഞെടുത്ത ഏരിയ ക്യാപ്ചർ ചെയ്യുന്നു."
+
+#: dependencies.js:122
+msgid "The core OCR engine that reads text from images."
+msgstr "ചിത്രങ്ങളിൽ നിന്നുള്ള വാചകം വായിക്കുന്ന കോർ OCR എഞ്ചിൻ."
+
+#: dependencies.js:123
+msgid "Improves image contrast and quality for better OCR."
+msgstr "മികച്ച OCR-നായി ഇമേജ് കോൺട്രാസ്റ്റും ഗുണനിലവാരവും മെച്ചപ്പെടുത്തുന്നു."
+
+#: dependencies.js:124
+msgid "Detects and decodes QR codes from the screen."
+msgstr "സ്ക്രീനിൽ നിന്ന് QR കോഡുകൾ കണ്ടെത്തുകയും ഡീകോഡ് ചെയ്യുകയും ചെയ്യുന്നു."
+
+#: dependencies.js:139
+msgid "Required dependency."
+msgstr "ആവശ്യമായ ആശ്രിതത്വം."
+
+#: dependencies.js:153
+msgid ""
+"Open a Terminal and run the following command to install the missing "
+"dependencies from the official repositories:"
+msgstr ""
+"ഒരു ടെർമിനൽ തുറന്ന് ഔദ്യോഗിക റിപ്പോസിറ്ററികളിൽ നിന്ന് കാണാതായ ഡിപൻഡൻസികൾ ഇൻസ്റ്റാൾ "
+"ചെയ്യാൻ താഴെ പറയുന്ന കമാൻഡ് പ്രവർത്തിപ്പിക്കുക:"
+
+#: dependencies.js:203
+msgid "Dismiss"
+msgstr "പിരിച്ചുവിടുക"
+
+#~ msgid "Snap Text Configuration"
+#~ msgstr "സ്നാപ്പ് ടെക്സ്റ്റ് കോൺഫിഗറേഷൻ"
 
 #~ msgid "Text Copied from History"
 #~ msgstr "ചരിത്രത്തിൽ നിന്ന് പകർത്തിയ വാചകം"
