@@ -4,16 +4,10 @@ import Gtk from 'gi://Gtk';
 import Gdk from 'gi://Gdk';
 import { ExtensionPreferences, gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-//fancy button helper to open link
+// Standard native button helper
 function createLinkButton(title, uri, styleClass = null) {
-    const label = new Gtk.Label({
-        label: title,
-        wrap: true,
-        justify: Gtk.Justification.CENTER
-    });
-    
     const button = new Gtk.Button({
-        child: label,
+        label: title,
         valign: Gtk.Align.CENTER,
         hexpand: true
     });
@@ -198,25 +192,24 @@ export default class SnapTextPreferences extends ExtensionPreferences {
             margin_bottom: 16
         });
         
-        // GitHub repo links :
-        linkBox.append(createLinkButton(_('Buy me a coffee ☕'), 'https://ko-fi.com/cwittenberg', 'suggested-action'));
-        linkBox.append(createLinkButton(_('Report a Bug 🐛'), 'https://github.com/cwittenberg/snaptext/issues/new?template=bug_report.md'));
-        linkBox.append(createLinkButton(_('Request a Feature 💡'), 'https://github.com/cwittenberg/snaptext/issues/new?template=feature_request.md'));
+        // GitHub repo links
+        linkBox.append(createLinkButton(_('Buy me a coffee \u2615'), 'https://ko-fi.com/cwittenberg', 'suggested-action'));
+        linkBox.append(createLinkButton(_('Report a Bug \uD83D\uDC1E'), 'https://github.com/cwittenberg/snaptext/issues/new?template=bug_report.md'));
+        linkBox.append(createLinkButton(_('Request a Feature \uD83D\uDCA1'), 'https://github.com/cwittenberg/snaptext/issues/new?template=feature_request.md'));
         
         groupLinks.add(linkBox);
         
         const tipLabel = new Gtk.Label({
-            label: _('💡 Tip: Right-click the system tray icon for quick access and history.'),
+            label: _('\uD83D\uDCA1 Tip: Right-click the system tray icon for quick access and history.'),
             justify: Gtk.Justification.CENTER,
             wrap: true,
-            margin_top: 8,
-            margin_bottom: 16,
+            margin_top: 24,
+            margin_bottom: 12,
             css_classes: ['dim-label']
         });
         groupLinks.add(tipLabel);
         
         pageGeneral.add(groupLinks);
-   
         
         window.add(pageGeneral);
 
@@ -236,10 +229,12 @@ export default class SnapTextPreferences extends ExtensionPreferences {
             title_lines: 0,
             subtitle_lines: 0
         });
+
         const toggleQr = new Gtk.Switch({
             active: settings.get_boolean('qr-auto-open'),
             valign: Gtk.Align.CENTER,
         });
+
         settings.bind('qr-auto-open', toggleQr, 'active', Gio.SettingsBindFlags.DEFAULT);
         qrRow.add_suffix(toggleQr);
         qrRow.activatable_widget = toggleQr;
@@ -295,10 +290,11 @@ export default class SnapTextPreferences extends ExtensionPreferences {
 
         warningTextBox.append(warningTitle);
         warningTextBox.append(warningLabel);
-
         warningBox.append(warningIcon);
         warningBox.append(warningTextBox);
+
         settings.bind('translate-text', warningBox, 'visible', Gio.SettingsBindFlags.GET);
+
         groupTranslation.add(warningBox);
 
         const translateRow = new Adw.ActionRow({
@@ -307,10 +303,12 @@ export default class SnapTextPreferences extends ExtensionPreferences {
             title_lines: 0,
             subtitle_lines: 0
         });
+
         const toggleTranslate = new Gtk.Switch({
             active: settings.get_boolean('translate-text'),
             valign: Gtk.Align.CENTER,
         });
+
         settings.bind('translate-text', toggleTranslate, 'active', Gio.SettingsBindFlags.DEFAULT);
         translateRow.add_suffix(toggleTranslate);
         translateRow.activatable_widget = toggleTranslate;
@@ -322,13 +320,16 @@ export default class SnapTextPreferences extends ExtensionPreferences {
             title_lines: 0,
             subtitle_lines: 0
         });
+
         const langEntry = new Gtk.Entry({
             text: settings.get_string('translate-target'),
             valign: Gtk.Align.CENTER,
             width_chars: 6
         });
+
         settings.bind('translate-target', langEntry, 'text', Gio.SettingsBindFlags.DEFAULT);
         settings.bind('translate-text', langActionRow, 'sensitive', Gio.SettingsBindFlags.GET);
+        
         langActionRow.add_suffix(langEntry);
         groupTranslation.add(langActionRow);
 
@@ -344,24 +345,33 @@ export default class SnapTextPreferences extends ExtensionPreferences {
             title_lines: 0,
             subtitle_lines: 0
         });
+
         const toggleDebug = new Gtk.Switch({
             active: settings.get_boolean('enable-debug'),
             valign: Gtk.Align.CENTER,
         });
+
         settings.bind('enable-debug', toggleDebug, 'active', Gio.SettingsBindFlags.DEFAULT);
         debugRow.add_suffix(toggleDebug);
         debugRow.activatable_widget = toggleDebug;
         groupAdvancedSettings.add(debugRow);
-
-        const groupAbout = new Adw.PreferencesGroup();
-        groupAbout.add(new Adw.ActionRow({ title: _('Author'), subtitle: 'Christian Wittenberg', title_lines: 0, subtitle_lines: 0 }));
-        
-        const extVersion = this.metadata.version !== undefined ? this.metadata.version.toString() : 'Local / EGO (Auto-injected)';
-        groupAbout.add(new Adw.ActionRow({ title: _('Version'), subtitle: extVersion, title_lines: 0, subtitle_lines: 0 }));
-        
-        groupAdvancedSettings.add(groupAbout);
         
         pageAdvanced.add(groupAdvancedSettings);
+
+        const groupAbout = new Adw.PreferencesGroup({
+            title: _('About')
+        });
+        
+        groupAbout.add(new Adw.ActionRow({ title: _('Author'), subtitle: 'Christian Wittenberg', title_lines: 0, subtitle_lines: 0 }));
+        
+        groupAbout.add(new Adw.ActionRow({ 
+            title: _('Version'), 
+            subtitle: this.metadata.version !== undefined ? this.metadata.version.toString() : 'Local / EGO (Auto-injected)', 
+            title_lines: 0, 
+            subtitle_lines: 0 
+        }));
+        
+        pageAdvanced.add(groupAbout);
         
         window.add(pageAdvanced);
     }

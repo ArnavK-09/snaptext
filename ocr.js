@@ -1,35 +1,37 @@
+// ocr.js
 /**
  * OCR preprocessing module that uses a rule-based algo to maximize accuracy without relying on ML or LLM type of solutions.
  * Tesseract is used - but too frequently it just returns utter crap. Algo utilizes imagemagick for preprocessing.
- * * Explanation of how it works (step-wise):
+ *
+ * Explanation of how it works (step-wise):
  * 0. Fast QR Check:
- * - Checks for a QR Code via zbarimg. If found, instantly returns the decoded text.
+ *    - Checks for a QR Code via zbarimg. If found, instantly returns the decoded text.
  * 1. Image Analysis:
- * - Extracts the width and height of the screenshot.
- * - Uses ImageMagick to calculate the mean brightness of the image.
+ *    - Extracts the width and height of the screenshot.
+ *    - Uses ImageMagick to calculate the mean brightness of the image.
  * 2. Preprocessing with mogrify:
- * - Converts the image to strictly grayscale and maximizes contrast.
- * - Upscales small images by 300% (imho, Tesseract performs really poorly on small screen snips).
- * - Dark Mode Inversion: when brightness indicates UI - the image colors are negated 
+ *    - Converts the image to strictly grayscale and maximizes contrast.
+ *    - Upscales small images by 300% (imho, Tesseract performs really poorly on small screen snips).
+ *    - Dark Mode Inversion: when brightness indicates UI - the image colors are negated 
  * 3. PSM (Page Segmentation Mode) Routing:
- * - Based on the aspect ratio and dimensions, a primary and fallback PSM are selected:
- * Single Line: Width is much larger than height (Primary: 7, Fallback: 13)
- * Small Button/Word: Very small dimensions (Primary: 8, Fallback: 7)
- * Full Document: Very large dims (Primary: 3, Fallback: 6)
- * Text Block: Everything else (Primary: 6, Fallback: 11)
+ *    - Based on the aspect ratio and dimensions, a primary and fallback PSM are selected:
+ *      Single Line: Width is much larger than height (Primary: 7, Fallback: 13)
+ *      Small Button/Word: Very small dimensions (Primary: 8, Fallback: 7)
+ *      Full Document: Very large dims (Primary: 3, Fallback: 6)
+ *      Text Block: Everything else (Primary: 6, Fallback: 11)
  * 4. Primary OCR Pass:
- * - Runs Tesseract using the Primary PSM. Outputs both plain text (.txt) and tab-separated values (.tsv) for detailed confidence metrics.
+ *    - Runs Tesseract using the Primary PSM. Outputs both plain text (.txt) and tab-separated values (.tsv) for detailed confidence metrics.
  * 5. Quality eval:
- * - Parses the TSV file to calculate the average word confidence.
- * - Calculates the crap ratio (ok, "Garbage Ratio") - which is the proportion of non-alphanumeric/symbol characters
- * - If the result meets high conf + low garbage - it is immediately accepted and returned.
+ *    - Parses the TSV file to calculate the average word confidence.
+ *    - Calculates the crap ratio (ok, "Garbage Ratio") - which is the proportion of non-alphanumeric/symbol characters
+ *    - If the result meets high conf + low garbage - it is immediately accepted and returned.
  * 6. Fallback OCR:
- * - If the primary pass fails the quality check, a second pass is executed using the Fallback PSM.
- * - Both passes are scored heuristically (conf + length - garbage penalties).
- * - The highest-scoring result wins.
+ *    - If the primary pass fails the quality check, a second pass is executed using the Fallback PSM.
+ *    - Both passes are scored heuristically (conf + length - garbage penalties).
+ *    - The highest-scoring result wins.
  * 7. Text Cleanup:
- * - Tesseract often hallucinates excessive empty lines when parsing empty space.
- * - Collapses 3+ consecutive newlines down to standard double line-breaks.
+ *    - Tesseract often hallucinates excessive empty lines when parsing empty space.
+ *    - Collapses 3+ consecutive newlines down to standard double line-breaks.
  */
 
 import Gio from 'gi://Gio';
@@ -120,11 +122,11 @@ export class OcrProcessor {
     /**
      * Discovers all installed language packs for Tesseract.
      * Tesseract parses better when fed explicit languages rather than guessing.
-     * * @returns {String} A plus-separated string of languages (e.g. "eng+fra+spa")
+     * 
+     * @returns {String} A plus-separated string of languages (e.g. "eng+fra+spa")
      */
     async _availableTesseractLanguages() {
         let fallback = 'eng';
-
         try {
             let listLangs = Gio.Subprocess.new(
                 ['tesseract', '--list-langs'],
@@ -144,7 +146,7 @@ export class OcrProcessor {
             
             // Skip the "List of available languages:" header
             let headerIndex = lines.findIndex(line => line.startsWith('List of'));
-
+            
             for (let i = headerIndex + 1; i > 0 && i < lines.length; i++) {
                 let lang = lines[i];
                 // Ignore 'osd' (Orientation and Script Detection) as an OCR language
@@ -164,7 +166,8 @@ export class OcrProcessor {
 
     /**
      * Per algo, this execs a single OCR pass with a specific Page Segmentation Mode (PSM).
-     * * @param {String} imagePath - Path to the temporary screenshot
+     * 
+     * @param {String} imagePath - Path to the temporary screenshot
      * @param {Number} psm - Tesseract PSM integer
      * @param {String} langs - Tesseract language string
      * @returns {Object|null} Result object containing text, confidence, and garbage ratio.
@@ -178,6 +181,7 @@ export class OcrProcessor {
 
         // Tesseract automatically appends .txt and .tsv to the specified output prefix
         let tmpPrefix = imagePath.replace('.png', '');
+
         let ocr = Gio.Subprocess.new(
             // Force LSTM engine (--oem 1) and assume 300 DPI for stability
             ['tesseract', imagePath, tmpPrefix, '-l', langs, '--dpi', '300', '--oem', '1', '--psm', String(psm), 'txt', 'tsv'],
@@ -246,32 +250,24 @@ export class OcrProcessor {
         }
 
         // Clean up temporary files asynchronously
-        try {
-            let txtFile = Gio.File.new_for_path(txtPath);
-            if (txtFile.query_exists(null)) {
-                await new Promise((resolve) => {
-                    txtFile.delete_async(GLib.PRIORITY_DEFAULT, null, (file, res) => {
-                        try { file.delete_finish(res); } catch (e) {}
-                        resolve();
-                    });
+        let txtFile = Gio.File.new_for_path(txtPath);
+        if (txtFile.query_exists(null)) {
+            await new Promise((resolve) => {
+                txtFile.delete_async(GLib.PRIORITY_DEFAULT, null, (file, res) => {
+                    try { file.delete_finish(res); } catch (e) {}
+                    resolve();
                 });
-            }
-        } catch (e) {
-            this._logDebug(`Failed to delete temporary txt file: ${e}`);
+            });
         }
 
-        try {
-            let tsvFile = Gio.File.new_for_path(tsvPath);
-            if (tsvFile.query_exists(null)) {
-                await new Promise((resolve) => {
-                    tsvFile.delete_async(GLib.PRIORITY_DEFAULT, null, (file, res) => {
-                        try { file.delete_finish(res); } catch (e) {}
-                        resolve();
-                    });
+        let tsvFile = Gio.File.new_for_path(tsvPath);
+        if (tsvFile.query_exists(null)) {
+            await new Promise((resolve) => {
+                tsvFile.delete_async(GLib.PRIORITY_DEFAULT, null, (file, res) => {
+                    try { file.delete_finish(res); } catch (e) {}
+                    resolve();
                 });
-            }
-        } catch (e) {
-            this._logDebug(`Failed to delete temporary tsv file: ${e}`);
+            });
         }
 
         // --- Quality Metrics Calculation ---
@@ -312,6 +308,7 @@ export class OcrProcessor {
      */
     _calculateScore(res) {
         if (!res) return -9999;
+
         return res.confidence 
              + Math.min(res.wordCount, 20) * 0.5 
              + Math.min(res.charCount, 160) * 0.03 
@@ -334,14 +331,13 @@ export class OcrProcessor {
         // --- STEP 1: Layout & Brightness Analysis ---
         let width = 0, height = 0, meanBrightness = 1.0;
         
-        try {
-            // Get native screenshot dimensions to help classify layout
-            let [, w, h] = GdkPixbuf.Pixbuf.get_file_info(imagePath);
+        let [format, w, h] = GdkPixbuf.Pixbuf.get_file_info(imagePath);
+        if (format) {
             width = w;
             height = h;
             this._logDebug(`Image dimensions: ${width}x${height}`);
-        } catch(e) {
-            this._logDebug(`Could not fetch native image dims: ${e}`);
+        } else {
+            this._logDebug(`Could not fetch native image dims`);
         }
 
         if (GLib.find_program_in_path('identify') && GLib.find_program_in_path('mogrify')) {
@@ -392,6 +388,7 @@ export class OcrProcessor {
         // --- STEP 3: PSM Routing ---PassPass
         let primaryPsm = 6;  // Assume standard uniform text block by default
         let fallbackPsm = 11; // Sparse text mode
+
         let aspectRatio = height > 0 ? (width / height) : 1;
 
         if (height <= 90 && aspectRatio >= 4) {
@@ -418,6 +415,7 @@ export class OcrProcessor {
 
         // --- STEP 5: Quality eval ---
         let accept = false;
+
         if (res1 && res1.wordCount > 0 && res1.charCount >= 2 && res1.confidence >= 65 && res1.garbageRatio < 0.35) {
             accept = true; // Results are excellent, skip fallback
             this._logDebug(`Primary pass accepted. Metrics pass thresholds.`);
@@ -457,5 +455,3 @@ export class OcrProcessor {
         return { text: finalRes.text.replace(/\n{3,}/g, '\n\n'), isQr: false }; 
     }
 }
-
-

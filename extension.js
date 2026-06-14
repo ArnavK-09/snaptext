@@ -1,3 +1,4 @@
+// extension.js
 import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
@@ -10,6 +11,7 @@ import Clutter from 'gi://Clutter';
 import Meta from 'gi://Meta';
 import Shell from 'gi://Shell';
 import Soup from 'gi://Soup';
+
 import { OcrProcessor } from './ocr.js';
 import { checkDependencies, getCombinedInstallCommand, DependencyErrorDialog } from './dependencies.js';
 
@@ -24,50 +26,73 @@ export default class SnapTextExtension extends Extension {
         this._errorDialog = null;
         this._notifSource = null;
         this._cancellable = new Gio.Cancellable();
-        
+        this._extractTimeoutId = null;
         this._translateToggle = null;
-
+        this._historySection = null;
+        
+        // Use a standard PanelMenu.Button
         this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
         this._indicator.add_child(new St.Icon({
             gicon: Gio.FileIcon.new(this.dir.get_child('trayicon.svg')),
             style_class: 'system-status-icon',
         }));
 
-        this._indicator.connectObject(
-            'button-press-event', (_actor, event) => {
-                if (event.get_button() !== 1) {
-                    return Clutter.EVENT_PROPAGATE;
-                }
+        // Intercept events in the CAPTURE phase to preempt GNOME's default behavior
+        this._indicator.connectObject('captured-event', (_actor, event) => {
+            let type = event.type();
+            
+            if (type !== Clutter.EventType.BUTTON_PRESS && type !== Clutter.EventType.BUTTON_RELEASE) {
+                return Clutter.EVENT_PROPAGATE;
+            }
 
-                if (this._indicator.menu.isOpen) {
-                    this._indicator.menu.close();
-                }
+            let button = event.get_button();
 
-                this._extractTextAsync().catch(error => {
-                    if (!this._isCancelled()) {
-                        this._notifyError(`Text extraction failed: ${error}`);
+            if (button === 1 || button === 3) {
+                if (type === Clutter.EventType.BUTTON_RELEASE) {
+                    if (button === 1) {
+                        // Left Click: Close menu if open, trigger extraction
+                        if (this._indicator.menu.isOpen) {
+                            this._indicator.menu.close();
+                        }
+                        this._triggerExtraction();
+                    } else if (button === 3) {
+                        // Right Click: Build and toggle menu
+                        this._buildMenu();
+                        this._indicator.menu.toggle();
                     }
-                });
-
-                return Clutter.EVENT_STOP;
-            },
-            'button-release-event', (_actor, event) => {
-                if (event.get_button() !== 3) {
-                    return Clutter.EVENT_PROPAGATE;
                 }
-
-                this._buildMenu();
-                this._indicator.menu.toggle();
+                
+                // Stop propagation on BOTH press and release so PanelMenu.Button never sees it
                 return Clutter.EVENT_STOP;
-            },
-            this
-        );
+            }
+
+            return Clutter.EVENT_PROPAGATE;
+        }, this);
 
         this._buildMenu();
 
         this._settings.connectObject('changed', this._onSettingsChanged.bind(this), this);
+
         Main.panel.addToStatusArea(this.uuid, this._indicator);
         this._bindShortcut();
+    }
+
+    _triggerExtraction() {
+        if (this._extractTimeoutId) {
+            GLib.source_remove(this._extractTimeoutId);
+            this._extractTimeoutId = null;
+        }
+
+        // Allow the compositor to completely release the pointer grab before snapping
+        this._extractTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 150, () => {
+            this._extractTimeoutId = null;
+            this._extractTextAsync().catch(error => {
+                if (!this._isCancelled()) {
+                    this._notifyError(`Text extraction failed: ${error}`);
+                }
+            });
+            return GLib.SOURCE_REMOVE;
+        });
     }
 
     _logDebug(msg, isError = false) {
@@ -90,17 +115,45 @@ export default class SnapTextExtension extends Extension {
             this._bindShortcut();
             return;
         }
-
-        if (key === 'keep-history' || key === 'history-list') {
+        
+        if (key === 'history-list') {
+            // Dynamically update just the history list without destroying the menu
+            this._populateHistory();
+            return;
+        }
+        
+        if (key === 'keep-history') {
+            // Layout fundamentally changes, safe to rebuild but close menu first to prevent glitches
             if (this._indicator && this._indicator.menu.isOpen) {
-                this._buildMenu();
+                this._indicator.menu.close();
             }
+            this._buildMenu();
+            return;
+        }
+        
+        if (key === 'translate-text') {
+            let isTranslating = this._settings.get_boolean('translate-text');
+            if (this._translateToggle && this._translateToggle.state !== isTranslating) {
+                this._translateToggle.setToggleState(isTranslating);
+            }
+        }
+    }
+
+    _populateHistory() {
+        if (!this._historySection || !this._settings) {
             return;
         }
 
-        if (key === 'translate-text') {
-            if (this._translateToggle) {
-                this._translateToggle.setToggleState(this._settings.get_boolean('translate-text'));
+        this._historySection.removeAll();
+        let history = this._settings.get_strv('history-list');
+
+        if (history.length === 0) {
+            this._historySection.addMenuItem(new PopupMenu.PopupMenuItem(_('No history yet'), {
+                reactive: false,
+            }));
+        } else {
+            for (let text of history) {
+                this._historySection.addMenuItem(this._historyMenuItem(text));
             }
         }
     }
@@ -113,41 +166,79 @@ export default class SnapTextExtension extends Extension {
         this._indicator.menu.removeAll();
 
         let keepHistory = this._settings.get_boolean('keep-history');
-
+        
         if (keepHistory) {
-            let history = this._settings.get_strv('history-list');
-
-            if (history.length === 0) {
-                this._indicator.menu.addMenuItem(new PopupMenu.PopupMenuItem(_('No history yet'), {
-                    reactive: false,
-                }));
-            } else {
-                for (let text of history) {
-                    this._indicator.menu.addMenuItem(this._historyMenuItem(text));
-                }
-            }
-
+            this._historySection = new PopupMenu.PopupMenuSection();
+            this._indicator.menu.addMenuItem(this._historySection);
+            this._populateHistory();
             this._indicator.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        } else {
+            this._historySection = null;
         }
 
         let isTranslating = this._settings.get_boolean('translate-text');
         this._translateToggle = new PopupMenu.PopupSwitchMenuItem(_('Auto-Translate Text'), isTranslating);
+
         this._translateToggle.connectObject('toggled', (item, state) => {
             this._settings.set_boolean('translate-text', state);
         }, this);
+        
+        // Override activate to prevent the menu from instantly closing when toggled
+        this._translateToggle.activate = function(event) {
+            this.toggle();
+        };
+        
         this._indicator.menu.addMenuItem(this._translateToggle);
+        this._indicator.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+
+        // Base non-reactive row for the action buttons
+        let actionsRow = new PopupMenu.PopupBaseMenuItem({ reactive: false, can_focus: false });
+        
+        let buttonBox = new St.BoxLayout({
+            style: 'spacing: 12px; padding: 4px;',
+            x_expand: true,
+            x_align: Clutter.ActorAlign.FILL,
+        });
 
         if (keepHistory) {
-            let clearItem = new PopupMenu.PopupImageMenuItem(_('Clear History'), 'user-trash-symbolic');
-            clearItem.connectObject('activate', () => {
+            let clearBtn = new St.Button({
+                style_class: 'button',
+                child: new St.Icon({
+                    icon_name: 'user-trash-symbolic',
+                    icon_size: 16
+                }),
+                can_focus: true,
+                reactive: true,
+                x_expand: true,
+            });
+
+            clearBtn.connectObject('clicked', () => {
                 this._settings.set_strv('history-list', []);
             }, this);
-            this._indicator.menu.addMenuItem(clearItem);
+            
+            buttonBox.add_child(clearBtn);
         }
 
-        let settingsItem = new PopupMenu.PopupImageMenuItem(_('Settings'), 'preferences-system-symbolic');
-        settingsItem.connectObject('activate', () => this.openPreferences(), this);
-        this._indicator.menu.addMenuItem(settingsItem);
+        let settingsBtn = new St.Button({
+            style_class: 'button',
+            child: new St.Icon({
+                icon_name: 'preferences-system-symbolic',
+                icon_size: 16
+            }),
+            can_focus: true,
+            reactive: true,
+            x_expand: true,
+        });
+
+        settingsBtn.connectObject('clicked', () => {
+            this._indicator.menu.close();
+            this.openPreferences();
+        }, this);
+        
+        buttonBox.add_child(settingsBtn);
+        
+        actionsRow.add_child(buttonBox);
+        this._indicator.menu.addMenuItem(actionsRow);
     }
 
     _historyMenuItem(text) {
@@ -177,11 +268,7 @@ export default class SnapTextExtension extends Extension {
             Shell.ActionMode.NORMAL | Shell.ActionMode.OVERVIEW,
             () => {
                 this._logDebug('Shortcut triggered.');
-                this._extractTextAsync().catch(error => {
-                    if (!this._isCancelled()) {
-                        this._notifyError(`Text extraction failed: ${error}`);
-                    }
-                });
+                this._triggerExtraction();
             }
         );
     }
@@ -194,11 +281,12 @@ export default class SnapTextExtension extends Extension {
         }
 
         const installCmd = getCombinedInstallCommand(missingApps);
+
         this._errorDialog = new DependencyErrorDialog(missingApps, installCmd);
         this._errorDialog.connectObject('destroy', () => {
             this._errorDialog = null;
         }, this);
-
+        
         this._errorDialog.open();
     }
 
@@ -223,35 +311,26 @@ export default class SnapTextExtension extends Extension {
     }
 
     _showNotification(title, body) {
-        try {
-            let titleText = String(title ?? '').trim();
-            let bodyText = String(body ?? '').trim();
+        let titleText = String(title ?? '').trim();
+        let bodyText = String(body ?? '').trim();
 
-            if (!titleText && !bodyText) {
-                return;
-            }
-
-            let source = this._getNotificationSource();
-            let notification = new MessageTray.Notification({
-                source,
-                title: titleText,
-                body: bodyText,
-                urgency: MessageTray.Urgency.NORMAL,
-            });
-
-            source.addNotification(notification);
-        } catch (error) {
-            this._logDebug(`Notification failed: ${error}`, true);
-            try {
-                Main.notify(String(title ?? '').trim(), String(body ?? '').trim());
-            } catch (fallbackError) {
-                this._logDebug(`Fallback notification failed: ${fallbackError}`, true);
-            }
+        if (!titleText && !bodyText) {
+            return;
         }
+
+        let source = this._getNotificationSource();
+        let notification = new MessageTray.Notification({
+            source,
+            title: titleText,
+            body: bodyText,
+            urgency: MessageTray.Urgency.NORMAL,
+        });
+
+        source.addNotification(notification);
     }
 
-    _isCancelled() {
-        return !this._cancellable || this._cancellable.is_cancelled();
+    _isCancelled(cancellable = this._cancellable) {
+        return !cancellable || cancellable.is_cancelled();
     }
 
     _stopActiveProcesses() {
@@ -261,14 +340,14 @@ export default class SnapTextExtension extends Extension {
         this._activeProcesses.clear();
     }
 
-    async _waitForProcess(process) {
+    async _waitForProcess(process, cancellable = this._cancellable) {
         return new Promise(resolve => {
-            process.wait_async(this._cancellable, (proc, result) => {
+            process.wait_async(cancellable, (proc, result) => {
                 try {
                     proc.wait_finish(result);
                     resolve(proc.get_successful());
                 } catch (error) {
-                    if (!this._isCancelled()) {
+                    if (!this._isCancelled(cancellable)) {
                         this._notifyError(`Process wait failed: ${error}`);
                     }
                     resolve(false);
@@ -277,13 +356,13 @@ export default class SnapTextExtension extends Extension {
         });
     }
 
-    async _translateText(text) {
+    async _translateText(text, cancellable = this._cancellable) {
         if (!this._settings.get_boolean('translate-text') || !text) {
             return text;
         }
 
         let targetLang = this._settings.get_string('translate-target').trim();
-
+        
         if (!targetLang) {
             let sysLangs = GLib.get_language_names();
             let locale = sysLangs[0] || 'en';
@@ -299,7 +378,7 @@ export default class SnapTextExtension extends Extension {
             let message = Soup.Message.new('GET', url);
             
             let bytes = await new Promise((resolve, reject) => {
-                session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, this._cancellable, (sess, res) => {
+                session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, cancellable, (sess, res) => {
                     try {
                         resolve(sess.send_and_read_finish(res));
                     } catch (e) {
@@ -322,7 +401,7 @@ export default class SnapTextExtension extends Extension {
                 return translated;
             }
         } catch (error) {
-            if (!this._isCancelled()) {
+            if (!this._isCancelled(cancellable)) {
                 this._logDebug(`Translation failed: ${error}`, true);
                 this._showNotification(_('Translation Error'), _('Could not connect to Google Translate.'));
             }
@@ -333,6 +412,15 @@ export default class SnapTextExtension extends Extension {
 
     async _extractTextAsync() {
         this._logDebug('Starting extraction flow...');
+        
+        // Abort any previously running extraction flow
+        if (this._cancellable) {
+            this._cancellable.cancel();
+        }
+        
+        // Create a new cancellation token for this specific execution
+        let currentCancellable = new Gio.Cancellable();
+        this._cancellable = currentCancellable;
 
         this._stopActiveProcesses();
 
@@ -354,7 +442,9 @@ export default class SnapTextExtension extends Extension {
             stream = null;
             this._logDebug(`Temporary image path created: ${imagePath}`);
         } catch (error) {
-            this._notifyError(`Could not create temporary screenshot file: ${error}`);
+            if (!this._isCancelled(currentCancellable)) {
+                this._notifyError(`Could not create temporary screenshot file: ${error}`);
+            }
             return;
         }
 
@@ -364,18 +454,18 @@ export default class SnapTextExtension extends Extension {
                 ['gnome-screenshot', '-a', '-f', imagePath],
                 Gio.SubprocessFlags.NONE
             );
-
+            
             this._activeProcesses.add(screenshot);
-            let gotScreenshot = await this._waitForProcess(screenshot);
+            let gotScreenshot = await this._waitForProcess(screenshot, currentCancellable);
             this._activeProcesses.delete(screenshot);
-
+            
             this._logDebug(`gnome-screenshot completed. Success: ${gotScreenshot}`);
 
-            if (gotScreenshot && !this._isCancelled()) {
-                const ocrProcessor = new OcrProcessor(this._cancellable, this._activeProcesses, (msg) => this._notifyError(msg), this._logDebug.bind(this));
+            if (gotScreenshot && !this._isCancelled(currentCancellable)) {
+                const ocrProcessor = new OcrProcessor(currentCancellable, this._activeProcesses, (msg) => this._notifyError(msg), this._logDebug.bind(this));
                 let result = await ocrProcessor.processImage(imagePath);
                 
-                if (!this._isCancelled() && result !== null && result.text) {
+                if (!this._isCancelled(currentCancellable) && result !== null && result.text) {
                     let text = result.text;
                     this._logDebug(`Final OCR text length: ${text.length}`);
                     
@@ -388,19 +478,21 @@ export default class SnapTextExtension extends Extension {
                             }
                         }
                     } else if (text.trim().length > 0 && this._settings.get_boolean('translate-text')) {
-                        text = await this._translateText(text);
+                        text = await this._translateText(text, currentCancellable);
                     }
 
-                    this._handleExtractedText(text);
+                    // Final check to prevent overlapping executions from pasting
+                    if (!this._isCancelled(currentCancellable)) {
+                        this._handleExtractedText(text);
+                    }
                 } else {
                     this._logDebug('OCR process returned null or empty text.');
                 }
-            } else if (!this._isCancelled()) {
+            } else if (!this._isCancelled(currentCancellable)) {
                 this._logDebug('gnome-screenshot exited without taking a screenshot. It was either cancelled or failed to grab the display.', true);
             }
-
         } catch (error) {
-            if (!this._isCancelled()) {
+            if (!this._isCancelled(currentCancellable)) {
                 this._notifyError(`Text extraction failed: ${error}`);
             }
         } finally {
@@ -411,11 +503,10 @@ export default class SnapTextExtension extends Extension {
                     this._logDebug(`Could not close temporary screenshot file: ${error}`, true);
                 }
             }
+
             if (imagePath && GLib.file_test(imagePath, GLib.FileTest.EXISTS)) {
-                try {
-                    GLib.unlink(imagePath);
-                } catch (error) {
-                    this._logDebug(`Could not remove temporary screenshot file: ${error}`, true);
+                if (GLib.unlink(imagePath) !== 0) {
+                    this._logDebug(`Could not remove temporary screenshot file`, true);
                 }
             }
         }
@@ -445,17 +536,22 @@ export default class SnapTextExtension extends Extension {
     }
 
     disable() {
+        if (this._extractTimeoutId) {
+            GLib.source_remove(this._extractTimeoutId);
+            this._extractTimeoutId = null;
+        }
+        
         if (this._cancellable) {
             this._cancellable.cancel();
             this._cancellable = null;
         }
-
+        
         Main.wm.removeKeybinding('shortcut-trigger');
 
         if (this._settings) {
             this._settings.disconnectObject(this);
         }
-
+        
         this._stopActiveProcesses();
 
         if (this._errorDialog) {
@@ -467,6 +563,11 @@ export default class SnapTextExtension extends Extension {
         if (this._translateToggle) {
             this._translateToggle.destroy();
             this._translateToggle = null;
+        }
+
+        if (this._historySection) {
+            this._historySection.destroy();
+            this._historySection = null;
         }
 
         if (this._indicator) {

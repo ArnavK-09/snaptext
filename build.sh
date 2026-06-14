@@ -19,7 +19,7 @@ mkdir -p "$BUILD_DIR/locale"
 mkdir -p "po"
 
 echo "Validating extension files..."
-for file in metadata.json extension.js prefs.js dependencies.js schemas/org.gnome.shell.extensions.snaptext.gschema.xml; do
+for file in metadata.json extension.js prefs.js ocr.js dependencies.js schemas/org.gnome.shell.extensions.snaptext.gschema.xml; do
     if [ ! -f "$file" ]; then
         echo "Error: $file not found in the current directory. Please make sure all files exist."
         exit 1
@@ -31,7 +31,7 @@ glib-compile-schemas --strict schemas/
 
 echo "Extracting strings and generating translation template..."
 if command -v xgettext &> /dev/null; then
-    xgettext --from-code=UTF-8 --language=JavaScript --keyword=_ --add-comments -o po/snaptext.pot extension.js prefs.js dependencies.js
+    xgettext --from-code=UTF-8 --language=JavaScript --keyword=_ --add-comments -o po/snaptext.pot extension.js prefs.js dependencies.js ocr.js
     echo "Translation template generated at po/snaptext.pot"
 else
     echo "Warning: xgettext not found, skipping string extraction."
@@ -71,17 +71,45 @@ if [ -f trayicon.svg ]; then
     cp trayicon.svg "$BUILD_DIR/"
 fi
 
+if [ -f LICENSE ]; then
+    cp LICENSE "$BUILD_DIR/"
+fi
+
+if [ -f README.md ]; then
+    cp README.md "$BUILD_DIR/"
+fi
+
 echo "Packaging extension..."
 if command -v gnome-extensions &> /dev/null; then
-    gnome-extensions pack "$BUILD_DIR" \
-        --extra-source=extension.js \
-        --extra-source=prefs.js \
-        --extra-source=ocr.js \
-        --extra-source=dependencies.js \
-        --extra-source=schemas \
-        --extra-source=locale \
-        --extra-source=trayicon.svg \
-        --force
+    PACK_ARGS=(
+        "--extra-source=extension.js"
+        "--extra-source=prefs.js"
+        "--extra-source=ocr.js"
+        "--extra-source=dependencies.js"
+        "--extra-source=schemas"
+    )
+
+    if find "$BUILD_DIR/locale" -type f -name '*.mo' | grep -q .; then
+        PACK_ARGS+=("--extra-source=locale")
+    fi
+
+    if [ -f "$BUILD_DIR/trayicon.svg" ]; then
+        PACK_ARGS+=("--extra-source=trayicon.svg")
+    fi
+
+    if [ -f "$BUILD_DIR/stylesheet.css" ]; then
+        PACK_ARGS+=("--extra-source=stylesheet.css")
+    fi
+
+    if [ -f "$BUILD_DIR/LICENSE" ]; then
+        PACK_ARGS+=("--extra-source=LICENSE")
+    fi
+
+    if [ -f "$BUILD_DIR/README.md" ]; then
+        PACK_ARGS+=("--extra-source=README.md")
+    fi
+
+    gnome-extensions pack "$BUILD_DIR" "${PACK_ARGS[@]}" --force
 
     mv "$UUID.shell-extension.zip" "$PACKAGE_PATH"
 else
@@ -143,6 +171,14 @@ if [ -f "$BUILD_DIR/trayicon.svg" ]; then
     cp "$BUILD_DIR/trayicon.svg" "$EXTENSION_DIR/"
 fi
 
+if [ -f "$BUILD_DIR/LICENSE" ]; then
+    cp "$BUILD_DIR/LICENSE" "$EXTENSION_DIR/"
+fi
+
+if [ -f "$BUILD_DIR/README.md" ]; then
+    cp "$BUILD_DIR/README.md" "$EXTENSION_DIR/"
+fi
+
 if find "$BUILD_DIR/locale" -type f -name '*.mo' | grep -q .; then
     cp -r "$BUILD_DIR/locale" "$EXTENSION_DIR/"
 fi
@@ -152,5 +188,4 @@ glib-compile-schemas "$EXTENSION_DIR/schemas/"
 
 echo "Upload package created at: $PACKAGE_PATH"
 
-
-rm -rf .shexli-venv
+rm -rf "$SHEXLI_VENV"
