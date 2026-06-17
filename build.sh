@@ -19,7 +19,7 @@ mkdir -p "$BUILD_DIR/locale"
 mkdir -p "po"
 
 echo "Validating extension files..."
-for file in metadata.json extension.js prefs.js ocr.js dependencies.js schemas/org.gnome.shell.extensions.snaptext.gschema.xml; do
+for file in metadata.json extension.js selection.js prefs.js ocr.js dependencies.js schemas/org.gnome.shell.extensions.snaptext.gschema.xml; do
     if [ ! -f "$file" ]; then
         echo "Error: $file not found in the current directory. Please make sure all files exist."
         exit 1
@@ -31,7 +31,7 @@ glib-compile-schemas --strict schemas/
 
 echo "Extracting strings and generating translation template..."
 if command -v xgettext &> /dev/null; then
-    xgettext --from-code=UTF-8 --language=JavaScript --keyword=_ --add-comments -o po/snaptext.pot extension.js prefs.js dependencies.js ocr.js
+    xgettext --from-code=UTF-8 --language=JavaScript --keyword=_ --add-comments -o po/snaptext.pot extension.js selection.js prefs.js dependencies.js ocr.js
     echo "Translation template generated at po/snaptext.pot"
 else
     echo "Warning: xgettext not found, skipping string extraction."
@@ -57,7 +57,7 @@ for po_file in po/*.po; do
 done
 
 echo "Copying files to build directory..."
-cp metadata.json extension.js prefs.js ocr.js dependencies.js "$BUILD_DIR/"
+cp metadata.json extension.js selection.js prefs.js ocr.js dependencies.js "$BUILD_DIR/"
 cp -r schemas "$BUILD_DIR/"
 
 # Remove the compiled schema from the build payload to pass EGO-P-006 validation
@@ -83,6 +83,7 @@ echo "Packaging extension..."
 if command -v gnome-extensions &> /dev/null; then
     PACK_ARGS=(
         "--extra-source=extension.js"
+        "--extra-source=selection.js"        
         "--extra-source=prefs.js"
         "--extra-source=ocr.js"
         "--extra-source=dependencies.js"
@@ -158,6 +159,7 @@ mkdir -p "$EXTENSION_DIR"
 
 cp "$BUILD_DIR/metadata.json" "$EXTENSION_DIR/"
 cp "$BUILD_DIR/extension.js" "$EXTENSION_DIR/"
+cp "$BUILD_DIR/selection.js" "$EXTENSION_DIR/"
 cp "$BUILD_DIR/prefs.js" "$EXTENSION_DIR/"
 cp "$BUILD_DIR/ocr.js" "$EXTENSION_DIR/"
 cp "$BUILD_DIR/dependencies.js" "$EXTENSION_DIR/"

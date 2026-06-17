@@ -3,10 +3,11 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import St from 'gi://St';
 import Clutter from 'gi://Clutter';
 import GObject from 'gi://GObject';
+import Meta from 'gi://Meta';
 
 // Custom area selector for GNOME Shell 45-50.
-// Cursor handling uses Clutter actor cursor types, the same route GNOME Shell's
-// own screenshot UI uses. It does not draw or fake a cursor actor.
+// Cursor handling dynamically switches between Clutter.CursorType (GNOME 47+)
+// and Meta.Cursor (GNOME 45-46) to support all versions transparently.
 export const SelectionUI = GObject.registerClass(
     class SelectionUI extends St.Widget {
         _init(onSelected) {
@@ -99,23 +100,34 @@ export const SelectionUI = GObject.registerClass(
                 return;
             }
 
-            this._setCursorType(Clutter.CursorType.CROSSHAIR);
+            this._applyCursor('CROSSHAIR');
         }
 
         _setDefaultCursor() {
-            this._setCursorType(Clutter.CursorType.INHERIT);
+            // Attempt to use INHERIT first, fallback to DEFAULT
+            if (!this._applyCursor('INHERIT')) {
+                this._applyCursor('DEFAULT');
+            }
         }
 
-        _setCursorType(cursorType) {
-            if (!this.set_cursor_type) {
-                return;
-            }
-
+        _applyCursor(cursorName) {
             try {
-                this.set_cursor_type(cursorType);
+                // GNOME 47-50+ (Clutter.CursorType on St.Widget)
+                if (typeof this.set_cursor_type === 'function' && Clutter.CursorType?.[cursorName] !== undefined) {
+                    this.set_cursor_type(Clutter.CursorType[cursorName]);
+                    return true;
+                }
+
+                // GNOME 45-46 (Meta.Cursor via global.display)
+                if (global.display && typeof global.display.set_cursor === 'function' && Meta.Cursor?.[cursorName] !== undefined) {
+                    global.display.set_cursor(Meta.Cursor[cursorName]);
+                    return true;
+                }
             } catch (error) {
                 console.error(`[SnapText] Failed to set selection cursor: ${error}`);
             }
+
+            return false;
         }
 
         _emitSelection(x, y, w, h) {
