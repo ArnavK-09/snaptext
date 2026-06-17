@@ -6,6 +6,11 @@
       <summary>Show notification</summary>
       <description>Show a notification with the extracted text when successful.</description>
     </key>
+    <key name="show-panel-icon" type="b">
+      <default>true</default>
+      <summary>Show panel icon</summary>
+      <description>Show the SnapText icon in the GNOME top panel.</description>
+    </key>
     <key name="keep-history" type="b">
       <default>true</default>
       <summary>Keep extraction history</summary>

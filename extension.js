@@ -33,8 +33,21 @@ export default class SnapTextExtension extends Extension {
         this._translateToggle = null;
         this._historySection = null;
         this._soupSession = new Soup.Session();
-        
-        // Use a standard PanelMenu.Button
+
+        this._settings.connectObject('changed', this._onSettingsChanged.bind(this), this);
+
+        if (this._settings.get_boolean('show-panel-icon')) {
+            this._createIndicator();
+        }
+
+        this._bindShortcut();
+    }
+
+    _createIndicator() {
+        if (this._indicator) {
+            return;
+        }
+
         this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
         this._indicator.add_child(new St.Icon({
             gicon: Gio.FileIcon.new(this.dir.get_child('trayicon.svg')),
@@ -73,12 +86,30 @@ export default class SnapTextExtension extends Extension {
             return Clutter.EVENT_PROPAGATE;
         }, this);
 
-        this._buildMenu();
-
-        this._settings.connectObject('changed', this._onSettingsChanged.bind(this), this);
-
         Main.panel.addToStatusArea(this.uuid, this._indicator);
-        this._bindShortcut();
+        this._buildMenu();
+    }
+
+    _destroyIndicator() {
+        if (this._indicator?.menu.isOpen) {
+            this._indicator.menu.close();
+        }
+
+        if (this._translateToggle) {
+            this._translateToggle.destroy();
+            this._translateToggle = null;
+        }
+
+        if (this._historySection) {
+            this._historySection.destroy();
+            this._historySection = null;
+        }
+
+        if (this._indicator) {
+            this._indicator.disconnectObject(this);
+            this._indicator.destroy();
+            this._indicator = null;
+        }
     }
 
     _triggerExtraction() {
@@ -126,6 +157,15 @@ export default class SnapTextExtension extends Extension {
             return;
         }
         
+        if (key === 'show-panel-icon') {
+            if (this._settings.get_boolean('show-panel-icon')) {
+                this._createIndicator();
+            } else {
+                this._destroyIndicator();
+            }
+            return;
+        }
+
         if (key === 'keep-history') {
             // Layout fundamentally changes, safe to rebuild but close menu first to prevent glitches
             if (this._indicator && this._indicator.menu.isOpen) {
@@ -598,21 +638,7 @@ export default class SnapTextExtension extends Extension {
             this._errorDialog = null;
         }
 
-        if (this._translateToggle) {
-            this._translateToggle.destroy();
-            this._translateToggle = null;
-        }
-
-        if (this._historySection) {
-            this._historySection.destroy();
-            this._historySection = null;
-        }
-
-        if (this._indicator) {
-            this._indicator.disconnectObject(this);
-            this._indicator.destroy();
-            this._indicator = null;
-        }
+        this._destroyIndicator();
 
         if (this._notifSource) {
             this._notifSource.disconnectObject(this);

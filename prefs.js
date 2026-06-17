@@ -63,6 +63,21 @@ export default class SnapTextPreferences extends ExtensionPreferences {
         notificationRow.add_suffix(toggleNotification);
         notificationRow.activatable_widget = toggleNotification;
         groupSettings.add(notificationRow);
+
+        const panelIconRow = new Adw.ActionRow({
+            title: _('Show Top Panel Icon'),
+            subtitle: _('Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut when hidden.'),
+            title_lines: 0,
+            subtitle_lines: 0
+        });
+        const togglePanelIcon = new Gtk.Switch({
+            active: settings.get_boolean('show-panel-icon'),
+            valign: Gtk.Align.CENTER,
+        });
+        settings.bind('show-panel-icon', togglePanelIcon, 'active', Gio.SettingsBindFlags.DEFAULT);
+        panelIconRow.add_suffix(togglePanelIcon);
+        panelIconRow.activatable_widget = togglePanelIcon;
+        groupSettings.add(panelIconRow);
         
         const historyRow = new Adw.ActionRow({
             title: _('Enable Extraction History'),
