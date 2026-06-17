@@ -14,6 +14,7 @@ import Soup from 'gi://Soup';
 
 import { OcrProcessor } from './ocr.js';
 import { getMissingAppsErrorDialog } from './dependencies.js';
+import { SelectionUI } from './selection.js';
 
 const HISTORY_LIMIT = 15;
 const HISTORY_LABEL_LIMIT = 40;
@@ -27,6 +28,8 @@ export default class SnapTextExtension extends Extension {
         this._notifSource = null;
         this._cancellable = new Gio.Cancellable();
         this._extractTimeoutId = null;
+        this._selectionTimeoutId = null;
+        this._selectionUI = null;
         this._translateToggle = null;
         this._historySection = null;
         this._soupSession = new Soup.Session();
@@ -408,9 +411,47 @@ export default class SnapTextExtension extends Extension {
         return text;
     }
 
+    async _getSelectionArea() {
+        return new Promise((resolve) => {
+            this._selectionUI = new SelectionUI((x, y, w, h) => {
+                this._selectionUI = null;
+                
+                if (this._selectionTimeoutId) {
+                    GLib.source_remove(this._selectionTimeoutId);
+                }
+                
+                this._selectionTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 150, () => {
+                    this._selectionTimeoutId = null;
+                    resolve({x, y, w, h});
+                    return GLib.SOURCE_REMOVE;
+                });
+            });
+            this._selectionUI.open();
+        });
+    }
+
+    async _takeScreenshot(x, y, w, h, stream) {
+        return new Promise((resolve) => {
+            try {
+                let shooter = new Shell.Screenshot();
+                shooter.screenshot_area(x, y, w, h, stream, (obj, res) => {
+                    try {
+                        let successResult = obj.screenshot_area_finish(res);
+                        let success = Array.isArray(successResult) ? successResult[0] : successResult;
+                        resolve(!!success);
+                    } catch (e) {
+                        this._logDebug(`screenshot_area_finish failed: ${e}`);
+                        resolve(false);
+                    }
+                });
+            } catch (e) {
+                this._logDebug(`Shell.Screenshot failed: ${e}`);
+                resolve(false);
+            }
+        });
+    }
+
     async _extractTextAsync() {
-        this._logDebug('Starting extraction flow...');
-        
         // Abort any previously running extraction flow
         if (this._cancellable) {
             this._cancellable.cancel();
@@ -424,8 +465,12 @@ export default class SnapTextExtension extends Extension {
 
         let errorDialog = getMissingAppsErrorDialog();
         if (errorDialog) {
-            this._logDebug(`Missing dependencies found.`);
             this._showMissingDependencies(errorDialog);
+            return;
+        }
+
+        let area = await this._getSelectionArea();
+        if (area.x === null || this._isCancelled(currentCancellable)) {
             return;
         }
 
@@ -434,11 +479,12 @@ export default class SnapTextExtension extends Extension {
 
         try {
             let file;
-            [file, stream] = Gio.File.new_tmp('snaptext-XXXXXX.png');
+            let tempStream;
+            [file, tempStream] = Gio.File.new_tmp('snaptext-XXXXXX.png');
             imagePath = file.get_path();
-            stream.close(null);
-            stream = null;
-            this._logDebug(`Temporary image path created: ${imagePath}`);
+            tempStream.close(null);
+            
+            stream = file.replace(null, false, Gio.FileCreateFlags.NONE, null);
         } catch (error) {
             if (!this._isCancelled(currentCancellable)) {
                 this._notifyError(`Could not create temporary screenshot file: ${error}`);
@@ -447,17 +493,8 @@ export default class SnapTextExtension extends Extension {
         }
 
         try {
-            this._logDebug('Spawning gnome-screenshot...');
-            let screenshot = Gio.Subprocess.new(
-                ['gnome-screenshot', '-a', '-f', imagePath],
-                Gio.SubprocessFlags.NONE
-            );
-            
-            this._activeProcesses.add(screenshot);
-            let gotScreenshot = await this._waitForProcess(screenshot, currentCancellable);
-            this._activeProcesses.delete(screenshot);
-            
-            this._logDebug(`gnome-screenshot completed. Success: ${gotScreenshot}`);
+            let gotScreenshot = await this._takeScreenshot(area.x, area.y, area.w, area.h, stream);
+            stream.close(null);
 
             if (gotScreenshot && !this._isCancelled(currentCancellable)) {
                 const ocrProcessor = new OcrProcessor(currentCancellable, this._activeProcesses, (msg) => this._notifyError(msg), this._logDebug.bind(this));
@@ -465,7 +502,6 @@ export default class SnapTextExtension extends Extension {
                 
                 if (!this._isCancelled(currentCancellable) && result !== null && result.text) {
                     let text = result.text;
-                    this._logDebug(`Final OCR text length: ${text.length}`);
                     
                     if (result.isQr && /^https?:\/\/[^\s]+$/i.test(text.trim())) {
                         if (this._settings.get_boolean('qr-auto-open')) {
@@ -483,25 +519,13 @@ export default class SnapTextExtension extends Extension {
                     if (!this._isCancelled(currentCancellable)) {
                         this._handleExtractedText(text);
                     }
-                } else {
-                    this._logDebug('OCR process returned null or empty text.');
                 }
-            } else if (!this._isCancelled(currentCancellable)) {
-                this._logDebug('gnome-screenshot exited without taking a screenshot. It was either cancelled or failed to grab the display.', true);
             }
         } catch (error) {
             if (!this._isCancelled(currentCancellable)) {
                 this._notifyError(`Text extraction failed: ${error}`);
             }
         } finally {
-            if (stream) {
-                try {
-                    stream.close(null);
-                } catch (error) {
-                    this._logDebug(`Could not close temporary screenshot file: ${error}`, true);
-                }
-            }
-
             if (imagePath && GLib.file_test(imagePath, GLib.FileTest.EXISTS)) {
                 if (GLib.unlink(imagePath) !== 0) {
                     this._logDebug(`Could not remove temporary screenshot file`, true);
@@ -542,6 +566,17 @@ export default class SnapTextExtension extends Extension {
         if (this._extractTimeoutId) {
             GLib.source_remove(this._extractTimeoutId);
             this._extractTimeoutId = null;
+        }
+        
+        if (this._selectionTimeoutId) {
+            GLib.source_remove(this._selectionTimeoutId);
+            this._selectionTimeoutId = null;
+        }
+        
+        if (this._selectionUI) {
+            this._selectionUI._onSelected(null, null, null, null);
+            this._selectionUI.close();
+            this._selectionUI = null;
         }
         
         if (this._cancellable) {
