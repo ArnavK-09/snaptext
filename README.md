@@ -2,18 +2,21 @@
 
 GNOME Extension enabling the user to select an area of the screen to instantly extract and copy text to the clipboard using native Optical Character Recognition (OCR). Similar to how it works on MacOS.
 
+## Video impression
+<img width="1280" height="1107" alt="Video" src="https://github.com/user-attachments/assets/598ec634-3cda-4911-8e9a-4a5de578e649" />
+
 ## Screenshots
 Tray extension - that allows you to keep history of snapped texts:
-<img width="685" height="538" alt="Screenshot from 2026-06-14 09-58-25" src="https://github.com/user-attachments/assets/4a286975-2ada-4b0a-a6ef-b329acea276a" />
+<img width="685" height="538" alt="Tray with history" src="https://github.com/user-attachments/assets/4a286975-2ada-4b0a-a6ef-b329acea276a" />
 
 When Text is extracted from a snap and copied to Clipboard, it can also notify you of what has been recognized:
-<img width="1885" height="1274" alt="Screenshot from 2026-06-14 09-55-52" src="https://github.com/user-attachments/assets/a4e3a388-2a3c-4bc9-bc0a-6ebe9eec3eee" />
+<img width="1885" height="1274" alt="Notification when snapping text" src="https://github.com/user-attachments/assets/a4e3a388-2a3c-4bc9-bc0a-6ebe9eec3eee" />
 
 Settings screen:
-<img width="1524" height="1396" alt="Screenshot from 2026-06-14 09-58-39" src="https://github.com/user-attachments/assets/f2d42453-6744-4579-abfe-2cacc7c700a5" />
+<img width="1524" height="1396" alt="Settings screen" src="https://github.com/user-attachments/assets/f2d42453-6744-4579-abfe-2cacc7c700a5" />
 
 Advanced settings, also offering instant Translate capability:
-<img width="1524" height="1396" alt="Screenshot from 2026-06-14 09-58-45" src="https://github.com/user-attachments/assets/114f1f77-517f-4f2d-a08c-3ad59475b339" />
+<img width="1524" height="1396" alt="Instant translate capability" src="https://github.com/user-attachments/assets/114f1f77-517f-4f2d-a08c-3ad59475b339" />
 
 
 ## Features
