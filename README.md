@@ -3,7 +3,7 @@
 GNOME Extension enabling the user to select an area of the screen to instantly extract and copy text to the clipboard using native Optical Character Recognition (OCR). Similar to how it works on MacOS.
 
 ## Video impression
-<img width="1280" height="1107" alt="Video" src="https://github.com/user-attachments/assets/598ec634-3cda-4911-8e9a-4a5de578e649" />
+<img width="1100" height="918" alt="output" src="https://github.com/user-attachments/assets/790b729b-60c2-4770-8250-f09dcd7908fa" />
 
 ## Screenshots
 Tray extension - that allows you to keep history of snapped texts:
