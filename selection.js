@@ -1,13 +1,12 @@
-// selection.js
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import St from 'gi://St';
 import Clutter from 'gi://Clutter';
 import GObject from 'gi://GObject';
 import Meta from 'gi://Meta';
 
-// Custom area selector for GNOME Shell 45-50.
-// Cursor handling dynamically switches between Clutter.CursorType (GNOME 47+)
-// and Meta.Cursor (GNOME 45-46) to support all versions transparently.
+// To solve https://github.com/cwittenberg/snaptext/issues/1 we need to add a Custom area selector for GNOME Shell 45-50.
+// Did not realize but lots of things have changed across gnome-shell for gnome-screenshot in past releases. This solution does Cursor
+// handling and dynamically switches between Clutter.CursorType (GNOME 47+) and Meta.Cursor (GNOME 45-46) to support all versions transparently.
 export const SelectionUI = GObject.registerClass(
     class SelectionUI extends St.Widget {
         _init(onSelected) {
@@ -41,6 +40,7 @@ export const SelectionUI = GObject.registerClass(
             }));
             this.add_child(this._bg);
 
+            //inline eyecandy, Orange is Yaru-orange (to mimic the legacy gnome-screenshot look n feel, pretty :))
             this._selectionBox = new St.Widget({
                 reactive: false,
                 can_focus: false,
@@ -61,7 +61,7 @@ export const SelectionUI = GObject.registerClass(
 
             this._setCrosshairCursor();
 
-            // GNOME 43+ returns a Clutter.Grab from pushModal.
+            // Seems GNOME 43+ returns a Clutter.Grab from pushModal.
             // Keep the exact object so popModal() removes the correct modal grab.
             this._grab = Main.pushModal(this);
 
@@ -84,7 +84,6 @@ export const SelectionUI = GObject.registerClass(
                 Main.popModal(this);
             }
 
-            this._setDefaultCursor();
             this.disconnectObject(this);
             this.destroy();
         }
@@ -111,20 +110,16 @@ export const SelectionUI = GObject.registerClass(
         }
 
         _applyCursor(cursorName) {
-            try {
-                // GNOME 47-50+ (Clutter.CursorType on St.Widget)
-                if (typeof this.set_cursor_type === 'function' && Clutter.CursorType?.[cursorName] !== undefined) {
-                    this.set_cursor_type(Clutter.CursorType[cursorName]);
-                    return true;
-                }
+            // GNOME 47-50+ (Clutter.CursorType on St.Widget)
+            if (typeof this.set_cursor_type === 'function' && Clutter.CursorType?.[cursorName] !== undefined) {
+                this.set_cursor_type(Clutter.CursorType[cursorName]);
+                return true;
+            }
 
-                // GNOME 45-46 (Meta.Cursor via global.display)
-                if (global.display && typeof global.display.set_cursor === 'function' && Meta.Cursor?.[cursorName] !== undefined) {
-                    global.display.set_cursor(Meta.Cursor[cursorName]);
-                    return true;
-                }
-            } catch (error) {
-                console.error(`[SnapText] Failed to set selection cursor: ${error}`);
+            // GNOME 45-46 (Meta.Cursor via global.display)
+            if (global.display && typeof global.display.set_cursor === 'function' && Meta.Cursor?.[cursorName] !== undefined) {
+                global.display.set_cursor(Meta.Cursor[cursorName]);
+                return true;
             }
 
             return false;
