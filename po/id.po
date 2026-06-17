@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,51 +16,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Jepret Teks"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "Belum ada sejarah"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "Pengaturan"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "Teks Terjemahkan Otomatis"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "Teks Diekstraksi"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "Kesalahan Terjemahan"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "Tidak dapat terhubung ke Google Terjemahan."
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "Jepret Teks"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "Tidak ada teks yang ditemukan dalam pilihan."
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "Teks Diekstraksi"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "Umum"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -68,106 +68,108 @@ msgstr ""
 "Ekstrak dan salin teks secara instan ke clipboard Anda dari mana saja di "
 "layar."
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "Perilaku & Pintasan"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "Tampilkan Pemberitahuan Teks yang Diekstraksi"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr "Menampilkan spanduk sistem yang berisi konteks teks yang Anda salin."
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "Aktifkan Riwayat Ekstraksi"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Simpan riwayat hingga 15 ekstraksi terkini di menu konteks."
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Pemicu Pintasan Keyboard"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr "Izinkan memicu ekstraksi melalui pintasan keyboard."
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "Pemicu Pintasan Keyboard"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Klik untuk mengatur pintasan. Tekan Esc untuk membatalkan, Backspace untuk "
 "menonaktifkan."
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "Dengan disabilitas"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "Tekan tombol..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Belikan aku kopi ☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "Laporkan Bug 🐛"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Minta Fitur 🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "Detail Pengembang"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "Pengarang"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "Versi"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "Canggih"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "Kode QR"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "URL Buka Otomatis"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "Buka tautan HTTP/HTTPS secara otomatis yang terdeteksi dalam kode QR."
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "Terjemahan (Eksperimental)"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "Peringatan privasi"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
@@ -175,36 +177,44 @@ msgstr ""
 "Terjemahan Otomatis mengirimkan teks yang diekstraksi ke Google Terjemahan. "
 "Privasi tidak dapat dijamin bila diaktifkan."
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "Teks Terjemahkan Otomatis"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr ""
 "Terjemahkan teks yang diekstraksi secara otomatis ke bahasa target Anda."
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "Kode Bahasa Sasaran"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr ""
 "misalnya, en, fr, es, zh. Biarkan kosong untuk menggunakan bahasa default "
 "sistem Anda."
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "Pencatatan"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "Aktifkan Pencatatan Debug"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "Menghasilkan OCR terperinci dan log proses ke jurnal sistem."
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "Pengarang"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "Versi"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -254,6 +264,12 @@ msgstr ""
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "Membubarkan"
+
+#~ msgid "Settings"
+#~ msgstr "Pengaturan"
+
+#~ msgid "Developer Details"
+#~ msgstr "Detail Pengembang"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "Konfigurasi Teks Jepret"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,156 +16,158 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "સ્નેપ ટેક્સ્ટ"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "હજુ સુધી કોઈ ઈતિહાસ નથી"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "સેટિંગ્સ"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "સ્વતઃ-અનુવાદ ટેક્સ્ટ"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "લખાણ કાઢવામાં આવ્યું"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "અનુવાદ ભૂલ"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "Google અનુવાદ સાથે કનેક્ટ કરી શકાયું નથી."
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "સ્નેપ ટેક્સ્ટ"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "પસંદગીમાં કોઈ ટેક્સ્ટ મળ્યો નથી."
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "લખાણ કાઢવામાં આવ્યું"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "જનરલ"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr "સ્ક્રીન પર ગમે ત્યાંથી તમારા ક્લિપબોર્ડ પર ટેક્સ્ટને તરત જ એક્સટ્રેક્ટ અને કૉપિ કરો."
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "વર્તન અને શૉર્ટકટ્સ"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "એક્સટ્રેક્ટેડ ટેક્સ્ટ સૂચના બતાવો"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr "તમારા કૉપિ કરેલ ટેક્સ્ટ સંદર્ભ ધરાવતું સિસ્ટમ બેનર દર્શાવે છે."
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "નિષ્કર્ષણ ઇતિહાસ સક્ષમ કરો"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "સંદર્ભ મેનૂમાં 15 જેટલા તાજેતરના નિષ્કર્ષણનો ઇતિહાસ રાખો."
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "કીબોર્ડ શોર્ટકટ ટ્રિગર"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr "કીબોર્ડ શોર્ટકટ દ્વારા નિષ્કર્ષણને ટ્રિગર કરવાની મંજૂરી આપો."
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "કીબોર્ડ શોર્ટકટ ટ્રિગર"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "શોર્ટકટ સેટ કરવા માટે ક્લિક કરો. રદ કરવા માટે Esc દબાવો, અક્ષમ કરવા માટે Backspace "
 "દબાવો."
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "અક્ષમ"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "કી દબાવો..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "મને કોફી ખરીદો ☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "બગની જાણ કરો 🐛"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "સુવિધાની વિનંતી કરો 🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "વિકાસકર્તા વિગતો"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "લેખક"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "સંસ્કરણ"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "ઉન્નત"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "QR કોડ્સ"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "URL ને સ્વતઃ ખોલો"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "QR કોડમાં શોધાયેલ HTTP/HTTPS લિંક્સ આપમેળે ખોલો."
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "અનુવાદ (પ્રાયોગિક)"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "ગોપનીયતા ચેતવણી"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
@@ -173,34 +175,42 @@ msgstr ""
 "સ્વતઃ-અનુવાદ Google અનુવાદને એક્સટ્રેક્ટ કરેલ ટેક્સ્ટ મોકલે છે. જ્યારે સક્ષમ હોય ત્યારે "
 "ગોપનીયતાની ખાતરી આપી શકાતી નથી."
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "સ્વતઃ-અનુવાદ ટેક્સ્ટ"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr "એક્સટ્રેક્ટેડ ટેક્સ્ટને તમારી લક્ષ્ય ભાષામાં આપમેળે અનુવાદિત કરો."
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "લક્ષ્ય ભાષા કોડ"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr ""
 "દા.ત., en, fr, es, zh. તમારી સિસ્ટમ ડિફોલ્ટ ભાષાનો ઉપયોગ કરવા માટે ખાલી છોડો."
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "લોગીંગ"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "ડીબગ લોગીંગ સક્ષમ કરો"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "સિસ્ટમ જર્નલમાં વિગતવાર OCR અને પ્રક્રિયા લોગ આઉટપુટ કરે છે."
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "લેખક"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "સંસ્કરણ"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -249,6 +259,12 @@ msgstr ""
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "કાઢી નાખો"
+
+#~ msgid "Settings"
+#~ msgstr "સેટિંગ્સ"
+
+#~ msgid "Developer Details"
+#~ msgstr "વિકાસકર્તા વિગતો"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "સ્નેપ ટેક્સ્ટ કન્ફિગરેશન"

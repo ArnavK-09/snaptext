@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,159 +18,161 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap Text"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "Nicio istorie încă"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "Setări"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "Traducere automată a textului"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "Text extras"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "Eroare de traducere"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "Nu s-a putut conecta la Google Translate."
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "Snap Text"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "Nu a fost găsit niciun text în selecție."
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "Text extras"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "General"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr ""
 "Extrageți și copiați instantaneu text în clipboard de oriunde pe ecran."
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "Comportament și comenzi rapide"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "Afișați notificarea textului extras"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr "Afișează un banner de sistem care conține contextul textului copiat."
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "Activați Istoricul extracției"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr ""
 "Păstrați un istoric de până la 15 extrageri recente în meniul contextual."
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Declanșare comenzi rapide de la tastatură"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr ""
 "Permite declanșarea extragerii printr-o comandă rapidă de la tastatură."
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "Declanșare comenzi rapide de la tastatură"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Faceți clic pentru a seta comanda rapidă. Apăsați Esc pentru a anula, "
 "Backspace pentru a dezactiva."
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "Dezactivat"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "Apăsați tastele..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Cumpără-mi o cafea ☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "Raportați o eroare 🐛"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Solicitați o funcție 🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "Detalii despre dezvoltator"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "Autor"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "Versiune"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "Avansat"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "Coduri QR"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "Deschidere automată a adreselor URL"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "Deschide automat linkurile HTTP/HTTPS detectate în codurile QR."
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "Traducere (experimental)"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "Avertisment de confidențialitate"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
@@ -178,35 +180,43 @@ msgstr ""
 "Auto-Translate trimite textul extras la Google Translate. Confidențialitatea "
 "nu poate fi garantată atunci când este activată."
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "Traducere automată a textului"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr "Traduceți automat textul extras în limba dvs. țintă."
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "Codul limbii țintă"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr ""
 "de exemplu, en, fr, es, zh. Lăsați necompletat pentru a utiliza limba "
 "implicită a sistemului."
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "Înregistrare"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "Activați jurnalul de depanare"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "Emite OCR detaliate și jurnalele de procesare în jurnalul de sistem."
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "Autor"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "Versiune"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -256,6 +266,12 @@ msgstr ""
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "Respingeți"
+
+#~ msgid "Settings"
+#~ msgstr "Setări"
+
+#~ msgid "Developer Details"
+#~ msgstr "Detalii despre dezvoltator"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "Configurare Snap Text"

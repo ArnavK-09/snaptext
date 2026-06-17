@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,186 +16,196 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "捕捉文本"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "还没有历史记录"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "设置"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "自动翻译文本"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "文本提取"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "翻译错误"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "无法连接到 Google 翻译。"
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "捕捉文本"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "在选择中找不到文字。"
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "文本提取"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "一般的"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr "从屏幕上的任何位置立即提取文本并将其复制到剪贴板。"
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "行为和快捷方式"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "显示提取的文本通知"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr "显示包含复制的文本上下文的系统横幅。"
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "启用提取历史记录"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "在上下文菜单中保留最多 15 个最近提取的历史记录。"
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "键盘快捷键触发"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr "允许通过键盘快捷键触发提取。"
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "键盘快捷键触发"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr "单击可设置快捷方式。按 Esc 取消，按 Backspace 禁用。"
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "残疾人"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "按键..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "请我喝杯咖啡☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "报告错误🐛"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "请求功能🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "开发商详情"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "作者"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "版本"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "先进的"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "二维码"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "自动打开 URL"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "自动打开二维码中检测到的 HTTP/HTTPS 链接。"
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "翻译（实验）"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "隐私警告"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
 msgstr "自动翻译将提取的文本发送到谷歌翻译。启用后无法保证隐私。"
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "自动翻译文本"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr "自动将提取的文本翻译成您的目标语言。"
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "目标语言代码"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr "例如，en、fr、es、zh。留空以使用系统默认语言。"
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "记录"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "启用调试日志记录"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "将详细的 OCR 和处理日志输出到系统日志。"
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "作者"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "版本"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -241,6 +251,12 @@ msgstr "打开终端并运行以下命令以从官方存储库安装缺少的依
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "解雇"
+
+#~ msgid "Settings"
+#~ msgstr "设置"
+
+#~ msgid "Developer Details"
+#~ msgstr "开发商详情"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "捕捉文本配置"

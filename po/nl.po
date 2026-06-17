@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,51 +17,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap-tekst"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "Nog geen geschiedenis"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "Instellingen"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "Tekst automatisch vertalen"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "Tekst geëxtraheerd"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "Vertaalfout"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "Kan geen verbinding maken met Google Translate."
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "Snap-tekst"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "Geen tekst gevonden in selectie."
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "Tekst geëxtraheerd"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "Algemeen"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -69,108 +69,110 @@ msgstr ""
 "Extraheer en kopieer direct tekst naar uw klembord, waar dan ook op het "
 "scherm."
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "Gedrag en snelkoppelingen"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "Toon geëxtraheerde tekstmelding"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr "Toont een systeembanner met uw gekopieerde tekstcontext."
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "Extractiegeschiedenis inschakelen"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr ""
 "Houd een geschiedenis bij van maximaal 15 recente extracties in het "
 "contextmenu."
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Sneltoetstrigger voor toetsenbord"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr "Sta triggering van extractie toe via een sneltoets."
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "Sneltoetstrigger voor toetsenbord"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Klik om de snelkoppeling in te stellen. Druk op Esc om te annuleren, op "
 "Backspace om uit te schakelen."
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "Gehandicapt"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "Toetsen indrukken..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Get me a coffee ☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "Rapporteer bug 🐛"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Idee voor nieuwe functie? 🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "Ontwikkelaarsdetails"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "Auteur"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "Versie"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "QR-codes"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "URL's voor automatisch openen"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "Open automatisch HTTP/HTTPS-links die worden gedetecteerd in QR-codes."
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "Vertaling (experimenteel)"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "Privacywaarschuwing"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
@@ -178,36 +180,44 @@ msgstr ""
 "Automatisch vertalen verzendt geëxtraheerde tekst naar Google Translate. "
 "Privacy kan niet worden gegarandeerd als deze is ingeschakeld."
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "Tekst automatisch vertalen"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr "Vertaal de geëxtraheerde tekst automatisch naar uw doeltaal."
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "Doeltaalcode"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr ""
 "bijvoorbeeld en, fr, es, zh. Laat dit leeg om de standaardtaal van uw "
 "systeem te gebruiken."
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "Loggen"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "Schakel logboekregistratie voor foutopsporing in"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr ""
 "Voert gedetailleerde OCR- en proceslogboeken uit naar het systeemlogboek."
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "Auteur"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "Versie"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -257,6 +267,12 @@ msgstr ""
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "Afwijzen"
+
+#~ msgid "Settings"
+#~ msgstr "Instellingen"
+
+#~ msgid "Developer Details"
+#~ msgstr "Ontwikkelaarsdetails"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "Snap-tekstconfiguratie"

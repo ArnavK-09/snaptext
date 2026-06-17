@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,51 +16,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "സ്നാപ്പ് ടെക്സ്റ്റ്"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "ഇതുവരെ ചരിത്രമില്ല"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "ക്രമീകരണങ്ങൾ"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "വാചകം സ്വയമേവ വിവർത്തനം ചെയ്യുക"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "ടെക്‌സ്‌റ്റ് എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌തു"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "വിവർത്തന പിശക്"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "Google വിവർത്തനത്തിലേക്ക് ബന്ധിപ്പിക്കാൻ കഴിഞ്ഞില്ല."
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "സ്നാപ്പ് ടെക്സ്റ്റ്"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "തിരഞ്ഞെടുക്കലിൽ വാചകമൊന്നും കണ്ടെത്തിയില്ല."
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "ടെക്‌സ്‌റ്റ് എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌തു"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "ജനറൽ"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -68,106 +68,108 @@ msgstr ""
 "സ്‌ക്രീനിൽ എവിടെ നിന്നും നിങ്ങളുടെ ക്ലിപ്പ്ബോർഡിലേക്ക് ടെക്‌സ്‌റ്റ് തൽക്ഷണം എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌ത് "
 "പകർത്തുക."
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "പെരുമാറ്റവും കുറുക്കുവഴികളും"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌ത വാചക അറിയിപ്പ് കാണിക്കുക"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr "നിങ്ങളുടെ പകർത്തിയ ടെക്സ്റ്റ് സന്ദർഭം അടങ്ങുന്ന ഒരു സിസ്റ്റം ബാനർ പ്രദർശിപ്പിക്കുന്നു."
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "എക്‌സ്‌ട്രാക്ഷൻ ഹിസ്റ്ററി പ്രവർത്തനക്ഷമമാക്കുക"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "സന്ദർഭ മെനുവിൽ 15 സമീപകാല എക്‌സ്‌ട്രാക്‌ഷനുകളുടെ ചരിത്രം സൂക്ഷിക്കുക."
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "കീബോർഡ് കുറുക്കുവഴി ട്രിഗർ"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr "ഒരു കീബോർഡ് കുറുക്കുവഴിയിലൂടെ എക്‌സ്‌ട്രാക്‌ഷൻ ട്രിഗർ ചെയ്യാൻ അനുവദിക്കുക."
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "കീബോർഡ് കുറുക്കുവഴി ട്രിഗർ"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "കുറുക്കുവഴി സജ്ജീകരിക്കാൻ ക്ലിക്ക് ചെയ്യുക. റദ്ദാക്കാൻ Esc അമർത്തുക, പ്രവർത്തനരഹിതമാക്കാൻ "
 "Backspace അമർത്തുക."
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "അപ്രാപ്തമാക്കി"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "കീകൾ അമർത്തുക..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "എനിക്കൊരു കാപ്പി വാങ്ങിത്തരൂ ☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "ഒരു ബഗ് 🐛 റിപ്പോർട്ട് ചെയ്യുക"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "ഒരു ഫീച്ചർ അഭ്യർത്ഥിക്കുക 🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "ഡെവലപ്പർ വിശദാംശങ്ങൾ"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "രചയിതാവ്"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "പതിപ്പ്"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "വിപുലമായ"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "QR കോഡുകൾ"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "സ്വയമേവ തുറക്കുന്ന URL-കൾ"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "QR കോഡുകളിൽ കണ്ടെത്തിയ HTTP/HTTPS ലിങ്കുകൾ സ്വയമേവ തുറക്കുക."
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "വിവർത്തനം (പരീക്ഷണാത്മകം)"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "സ്വകാര്യതാ മുന്നറിയിപ്പ്"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
@@ -175,34 +177,42 @@ msgstr ""
 "സ്വയമേവ വിവർത്തനം എക്‌സ്‌ട്രാക്‌റ്റ് ചെയ്‌ത ടെക്‌സ്‌റ്റ് Google വിവർത്തനത്തിലേക്ക് അയയ്‌ക്കുന്നു. "
 "പ്രവർത്തനക്ഷമമാക്കുമ്പോൾ സ്വകാര്യത ഉറപ്പുനൽകാൻ കഴിയില്ല."
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "വാചകം സ്വയമേവ വിവർത്തനം ചെയ്യുക"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr "എക്‌സ്‌ട്രാക്‌റ്റുചെയ്‌ത വാചകം നിങ്ങളുടെ ടാർഗെറ്റ് ഭാഷയിലേക്ക് സ്വയമേവ വിവർത്തനം ചെയ്യുക."
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "ടാർഗെറ്റ് ഭാഷാ കോഡ്"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr ""
 "ഉദാ. en, fr, es, zh. നിങ്ങളുടെ സിസ്റ്റം ഡിഫോൾട്ട് ഭാഷ ഉപയോഗിക്കുന്നതിന് ശൂന്യമായി വിടുക."
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "ലോഗിംഗ്"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "ഡീബഗ് ലോഗിംഗ് പ്രവർത്തനക്ഷമമാക്കുക"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "സിസ്റ്റം ജേണലിലേക്ക് വിശദമായ OCR, പ്രോസസ്സ് ലോഗുകൾ എന്നിവ ഔട്ട്പുട്ട് ചെയ്യുന്നു."
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "രചയിതാവ്"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "പതിപ്പ്"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -251,6 +261,12 @@ msgstr ""
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "പിരിച്ചുവിടുക"
+
+#~ msgid "Settings"
+#~ msgstr "ക്രമീകരണങ്ങൾ"
+
+#~ msgid "Developer Details"
+#~ msgstr "ഡെവലപ്പർ വിശദാംശങ്ങൾ"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "സ്നാപ്പ് ടെക്സ്റ്റ് കോൺഫിഗറേഷൻ"

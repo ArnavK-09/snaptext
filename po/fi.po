@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,158 +17,160 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap Text"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "Ei vielä historiaa"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "Asetukset"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "Käännä teksti automaattisesti"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "Teksti purettu"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "Käännösvirhe"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "Ei voitu muodostaa yhteyttä Google-kääntäjään."
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "Snap Text"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "Valinnasta ei löytynyt tekstiä."
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "Teksti purettu"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "Kenraali"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr ""
 "Pura ja kopioi tekstiä välittömästi leikepöydälle mistä tahansa näytöstä."
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "Käyttäytyminen ja pikanäppäimet"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "Näytä purettu teksti-ilmoitus"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr ""
 "Näyttää järjestelmäbannerin, joka sisältää kopioimasi tekstikontekstin."
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "Ota poistohistoria käyttöön"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Säilytä jopa 15 viimeaikaisen poiminnan historiaa kontekstivalikossa."
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Pikanäppäimen liipaisin"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr "Salli purkamisen laukaiseminen pikanäppäimellä."
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "Pikanäppäimen liipaisin"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Napsauta asettaaksesi pikakuvakkeen. Paina Esc peruuttaaksesi, "
 "askelpalautinta poistaaksesi käytöstä."
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "Ei käytössä"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "Paina näppäimiä..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Osta minulle kahvi ☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "Ilmoita virheestä 🐛"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Pyydä ominaisuus 🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "Kehittäjän tiedot"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "Tekijä"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "Versio"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "Edistynyt"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "QR-koodit"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "Avaa URL-osoitteet automaattisesti"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "Avaa automaattisesti QR-koodeissa havaitut HTTP/HTTPS-linkit."
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "Käännös (kokeellinen)"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "Tietosuojavaroitus"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
@@ -176,36 +178,44 @@ msgstr ""
 "Automaattinen käännös lähettää poimitun tekstin Google-kääntäjälle. "
 "Yksityisyyttä ei voida taata, kun se on käytössä."
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "Käännä teksti automaattisesti"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr "Käännä poimittu teksti automaattisesti kohdekielellesi."
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "Kohdekielikoodi"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr ""
 "esim. en, fr, es, zh. Jätä tyhjäksi, jos haluat käyttää järjestelmän "
 "oletuskieltä."
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "Kirjaaminen"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "Ota virheenkorjausloki käyttöön"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr ""
 "Tulostaa yksityiskohtaiset OCR- ja prosessilokit järjestelmäpäiväkirjaan."
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "Tekijä"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "Versio"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -255,6 +265,12 @@ msgstr ""
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "Hylkää"
+
+#~ msgid "Settings"
+#~ msgstr "Asetukset"
+
+#~ msgid "Developer Details"
+#~ msgstr "Kehittäjän tiedot"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "Snap Text Configuration"

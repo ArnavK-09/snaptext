@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,154 +16,156 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "สแน็ปข้อความ"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "ยังไม่มีประวัติ"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "การตั้งค่า"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "แปลข้อความอัตโนมัติ"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "ข้อความที่แยกออกมา"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "ข้อผิดพลาดในการแปล"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "ไม่สามารถเชื่อมต่อกับ Google แปลภาษา"
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "สแน็ปข้อความ"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "ไม่พบข้อความในส่วนที่เลือก"
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "ข้อความที่แยกออกมา"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "ทั่วไป"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr "แยกและคัดลอกข้อความไปยังคลิปบอร์ดของคุณได้ทันทีจากทุกที่บนหน้าจอ"
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "พฤติกรรมและทางลัด"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "แสดงการแจ้งเตือนข้อความที่แยกออกมา"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr "แสดงแบนเนอร์ระบบที่มีบริบทข้อความที่คุณคัดลอก"
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "เปิดใช้งานประวัติการแยกข้อมูล"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "เก็บประวัติการแยกข้อมูลล่าสุดได้สูงสุด 15 รายการในเมนูบริบท"
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "ทริกเกอร์แป้นพิมพ์ลัด"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr "อนุญาตให้เรียกใช้การดึงข้อมูลโดยใช้แป้นพิมพ์ลัด"
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "ทริกเกอร์แป้นพิมพ์ลัด"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr "คลิกเพื่อตั้งค่าทางลัด กด Esc เพื่อยกเลิก กด Backspace เพื่อปิดใช้งาน"
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "พิการ"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "กดปุ่ม..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "ซื้อกาแฟให้ฉันหน่อย ☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "รายงานข้อผิดพลาด 🐛"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "ขอคุณสมบัติ 🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "รายละเอียดผู้พัฒนา"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "ผู้เขียน"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "เวอร์ชัน"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "ขั้นสูง"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "รหัส QR"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "URL เปิดอัตโนมัติ"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "เปิดลิงก์ HTTP/HTTPS ที่ตรวจพบในโค้ด QR โดยอัตโนมัติ"
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "การแปล (ทดลอง)"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "คำเตือนความเป็นส่วนตัว"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
@@ -171,33 +173,41 @@ msgstr ""
 "การแปลอัตโนมัติจะส่งข้อความที่แยกออกมาไปยัง Google แปลภาษา "
 "ไม่สามารถรับประกันความเป็นส่วนตัวได้เมื่อเปิดใช้งาน"
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "แปลข้อความอัตโนมัติ"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr "แปลข้อความที่แยกออกมาเป็นภาษาเป้าหมายของคุณโดยอัตโนมัติ"
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "รหัสภาษาเป้าหมาย"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr "เช่น en, fr, es, zh เว้นว่างไว้เพื่อใช้ภาษาเริ่มต้นของระบบ"
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "การบันทึก"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "เปิดใช้งานการบันทึกการแก้ไขข้อบกพร่อง"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "ส่งออก OCR โดยละเอียดและบันทึกกระบวนการไปยังเจอร์นัลระบบ"
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "ผู้เขียน"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "เวอร์ชัน"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -244,6 +254,12 @@ msgstr ""
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "อนุญาตให้ออกไป"
+
+#~ msgid "Settings"
+#~ msgstr "การตั้งค่า"
+
+#~ msgid "Developer Details"
+#~ msgstr "รายละเอียดผู้พัฒนา"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "การกำหนดค่าข้อความ Snap"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 21:56+0200\n"
+"POT-Creation-Date: 2026-06-18 00:54+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,51 +18,51 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: extension.js:81
+#: extension.js:145
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap Text"
 
-#: extension.js:107
+#: extension.js:195
 msgid "No history yet"
 msgstr "Još nema povijesti"
 
-#: extension.js:150 extension.js:188
-msgid "Settings"
-msgstr "postavke"
+#: extension.js:224 prefs.js:316
+msgid "Auto-Translate Text"
+msgstr "Automatski prijevod teksta"
 
-#: extension.js:204
+#: extension.js:298
 #, fuzzy
 msgid "Text copied"
 msgstr "Tekst izdvojen"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Translation Error"
 msgstr "Greška u prijevodu"
 
-#: extension.js:366
+#: extension.js:447
 msgid "Could not connect to Google Translate."
 msgstr "Nije moguće povezati se s Google prevoditeljem."
 
-#: extension.js:466
+#: extension.js:580
 msgid "Snap Text"
 msgstr "Snap Text"
 
-#: extension.js:466
+#: extension.js:580
 #, fuzzy
 msgid "No text found."
 msgstr "Nema teksta u odabiru."
 
-#: extension.js:482
+#: extension.js:596
 #, fuzzy
 msgid "Text extracted"
 msgstr "Tekst izdvojen"
 
-#: prefs.js:38
+#: prefs.js:32
 msgid "General"
 msgstr "General"
 
-#: prefs.js:44
+#: prefs.js:38
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -70,106 +70,108 @@ msgstr ""
 "Trenutačno izdvojite i kopirajte tekst u međuspremnik s bilo kojeg mjesta na "
 "zaslonu."
 
-#: prefs.js:55
+#: prefs.js:49
 msgid "Behavior & Shortcuts"
 msgstr "Ponašanje i prečaci"
 
-#: prefs.js:59
+#: prefs.js:53
 msgid "Show Extracted Text Notification"
 msgstr "Prikaži izdvojenu tekstualnu obavijest"
 
-#: prefs.js:60
+#: prefs.js:54
 msgid "Displays a system banner containing your copied text context."
 msgstr "Prikazuje banner sustava koji sadrži vaš kopirani tekstualni kontekst."
 
-#: prefs.js:74
+#: prefs.js:68
+msgid "Show Top Panel Icon"
+msgstr ""
+
+#: prefs.js:69
+msgid ""
+"Display the SnapText icon in the GNOME top bar. Use the keyboard shortcut "
+"when hidden."
+msgstr ""
+
+#: prefs.js:83
 msgid "Enable Extraction History"
 msgstr "Omogući povijest ekstrakcije"
 
-#: prefs.js:75
+#: prefs.js:84
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Čuvajte povijest do 15 nedavnih ekstrakcija u kontekstnom izborniku."
 
-#: prefs.js:89
+#: prefs.js:98
 #, fuzzy
 msgid "Enable Keyboard Shortcut"
 msgstr "Okidač tipkovničkih prečaca"
 
-#: prefs.js:90
+#: prefs.js:99
 msgid "Allow triggering extraction via a keyboard shortcut."
 msgstr "Dopusti pokretanje ekstrakcije putem tipkovničkog prečaca."
 
-#: prefs.js:104
+#: prefs.js:113
 msgid "Keyboard Shortcut Trigger"
 msgstr "Okidač tipkovničkih prečaca"
 
-#: prefs.js:105
+#: prefs.js:114
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Kliknite za postavljanje prečaca. Pritisnite Esc za odustajanje, Backspace "
 "za onemogućavanje."
 
-#: prefs.js:113 prefs.js:167
+#: prefs.js:122 prefs.js:176
 msgid "Disabled"
 msgstr "Onesposobljeno"
 
-#: prefs.js:144
+#: prefs.js:153
 msgid "Press keys..."
 msgstr "Pritisnite tipke..."
 
-#. GitHub repo links :
-#: prefs.js:202
+#. GitHub repo links
+#: prefs.js:211
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Časti me kavom ☕"
 
-#: prefs.js:203
+#: prefs.js:212
 #, fuzzy
-msgid "Report a Bug 🐛"
+msgid "Report a Bug 🐞"
 msgstr "Prijavite grešku 🐛"
 
-#: prefs.js:204
+#: prefs.js:213
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Zatražite značajku 🚀"
 
-#: prefs.js:210
-msgid "Developer Details"
-msgstr "Pojedinosti o razvojnom programeru"
+#: prefs.js:218
+msgid "💡 Tip: Right-click the system tray icon for quick access and history."
+msgstr ""
 
-#: prefs.js:212
-msgid "Author"
-msgstr "Autor"
-
-#: prefs.js:213
-msgid "Version"
-msgstr "Verzija"
-
-#: prefs.js:220
+#: prefs.js:233
 msgid "Advanced"
 msgstr "Napredno"
 
-#: prefs.js:225
+#: prefs.js:238
 msgid "QR Codes"
 msgstr "QR kodovi"
 
-#: prefs.js:229
+#: prefs.js:242
 msgid "Auto-Open URLs"
 msgstr "Automatsko otvaranje URL-ova"
 
-#: prefs.js:230
+#: prefs.js:243
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "Automatski otvori HTTP/HTTPS veze otkrivene u QR kodovima."
 
-#: prefs.js:246
+#: prefs.js:261
 msgid "Translation (Experimental)"
 msgstr "Prijevod (eksperimentalno)"
 
-#: prefs.js:277
+#: prefs.js:292
 msgid "Privacy warning"
 msgstr "Upozorenje o privatnosti"
 
-#: prefs.js:284
+#: prefs.js:299
 msgid ""
 "Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
 "guaranteed when enabled."
@@ -177,35 +179,43 @@ msgstr ""
 "Automatski prevoditelj šalje izdvojeni tekst Google prevoditelju. Privatnost "
 "se ne može jamčiti kada je omogućena."
 
-#: prefs.js:300
-msgid "Auto-Translate Text"
-msgstr "Automatski prijevod teksta"
-
-#: prefs.js:301
+#: prefs.js:317
 msgid "Automatically translate extracted text to your target language."
 msgstr "Automatski prevedite izdvojeni tekst na ciljni jezik."
 
-#: prefs.js:315
+#: prefs.js:333
 msgid "Target Language Code"
 msgstr "Kod ciljnog jezika"
 
-#: prefs.js:316
+#: prefs.js:334
 msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
 msgstr ""
 "npr. en, fr, es, zh. Ostavite prazno za korištenje zadanog jezika vašeg "
 "sustava."
 
-#: prefs.js:333
+#: prefs.js:354
 msgid "Logging"
 msgstr "Sječa drva"
 
-#: prefs.js:337
+#: prefs.js:358
 msgid "Enable Debug Logging"
 msgstr "Omogući bilježenje otklanjanja pogrešaka"
 
-#: prefs.js:338
+#: prefs.js:359
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "Ispisuje detaljan OCR i zapisnike procesa u dnevnik sustava."
+
+#: prefs.js:377
+msgid "About"
+msgstr ""
+
+#: prefs.js:380
+msgid "Author"
+msgstr "Autor"
+
+#: prefs.js:383
+msgid "Version"
+msgstr "Verzija"
 
 #: dependencies.js:97
 #, fuzzy, javascript-format
@@ -254,6 +264,12 @@ msgstr ""
 #: dependencies.js:203
 msgid "Dismiss"
 msgstr "Odbaciti"
+
+#~ msgid "Settings"
+#~ msgstr "postavke"
+
+#~ msgid "Developer Details"
+#~ msgstr "Pojedinosti o razvojnom programeru"
 
 #~ msgid "Snap Text Configuration"
 #~ msgstr "Snap Text Configuration"
