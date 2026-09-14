@@ -157,11 +157,16 @@ export class SmartMenu {
                 let cursorLocalX = x - sx;
                 let cursorLocalY = y - sy;
 
-                // Fire the multi-pass logic
-                let result = await ocrProcessor.processSmartImage(imagePath, cursorLocalX, cursorLocalY);
-                
-                if (!this._isCancelled(currentCancellable) && result !== null && result.text) {
-                    this.show(x, y, result.text);
+                this.ext._setBusy(true);
+                try {
+                    // Fire the multi-pass logic
+                    let result = await ocrProcessor.processSmartImage(imagePath, cursorLocalX, cursorLocalY);
+                    
+                    if (!this._isCancelled(currentCancellable) && result !== null && result.text) {
+                        this.show(x, y, result.text);
+                    }
+                } finally {
+                    this.ext._setBusy(false);
                 }
             }
         } catch (error) {

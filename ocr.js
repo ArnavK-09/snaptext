@@ -1,63 +1,70 @@
 // ocr.js
-/**
- * OCR preprocessing module that uses a rule-based algo to maximize accuracy without relying on ML or LLM type of solutions.
- * Tesseract is used - but too frequently it just returns utter crap. Algo utilizes imagemagick for preprocessing.
- *
- * Explanation of how it works (step-wise):
- * 0. Fast QR Check:
- *    - Checks for a QR Code via zbarimg. If found, instantly returns the decoded text.
- * 1. Image Analysis:
- *    - Extracts the width and height of the screenshot.
- *    - Uses ImageMagick to calculate the mean brightness of the image.
- * 2. Preprocessing with mogrify:
- *    - Converts the image to strictly grayscale and maximizes contrast.
- *    - Upscales small images by 300% (imho, Tesseract performs really poorly on small screen snips).
- *    - Dark Mode Inversion: when brightness indicates UI - the image colors are negated 
- * 3. PSM (Page Segmentation Mode) Routing:
- *    - Based on the aspect ratio and dimensions, a primary and fallback PSM are selected:
- *      Single Line: Width is much larger than height (Primary: 7, Fallback: 13)
- *      Small Button/Word: Very small dimensions (Primary: 8, Fallback: 7)
- *      Full Document: Very large dims (Primary: 3, Fallback: 6)
- *      Text Block: Everything else (Primary: 6, Fallback: 11)
- * 4. Primary OCR Pass:
- *    - Runs Tesseract using the Primary PSM. Outputs both plain text (.txt) and tab-separated values (.tsv) for detailed confidence metrics.
- * 5. Quality eval:
- *    - Parses the TSV file to calculate the average word confidence.
- *    - Calculates the crap ratio (ok, "Garbage Ratio") - which is the proportion of non-alphanumeric/symbol characters
- *    - If the result meets high conf + low garbage - it is immediately accepted and returned.
- * 6. Fallback OCR:
- *    - If the primary pass fails the quality check, a second pass is executed using the Fallback PSM.
- *    - A third pass is also executed on an inverted (negated) copy of the image to catch hollow/meme text (white text with dark outlines).
- *    - All passes are scored heuristically (conf + length - garbage penalties).
- *    - The highest-scoring result wins.
- * 7. Text Cleanup:
- *    - Tesseract often hallucinates excessive empty lines when parsing empty space.
- *    - Collapses 3+ consecutive newlines down to standard double line-breaks.
- */
-
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GdkPixbuf from 'gi://GdkPixbuf';
+
+const LOCALE_TO_TESS = {
+    en: 'eng', fr: 'fra', de: 'deu', es: 'spa', it: 'ita', pt: 'por',
+    nl: 'nld', ru: 'rus', ar: 'ara', ja: 'jpn', ko: 'kor', hi: 'hin',
+    tr: 'tur', pl: 'pol', uk: 'ukr', vi: 'vie', ro: 'ron', el: 'ell',
+    he: 'heb', zh: 'chi_sim', cs: 'ces', da: 'dan', fi: 'fin', no: 'nor',
+    nb: 'nor', sv: 'swe', hu: 'hun', id: 'ind', ms: 'msa', th: 'tha',
+    sk: 'slk', sl: 'slv', bg: 'bul', hr: 'hrv', lt: 'lit', lv: 'lav',
+    et: 'est', sr: 'srp', fa: 'fas', bn: 'ben', ta: 'tam', te: 'tel',
+    ml: 'mal', kn: 'kan', mr: 'mar', gu: 'guj', sw: 'swa', ca: 'cat',
+    bs: 'bos', ur: 'urd', eu: 'eus', gl: 'glg', cy: 'cym', ga: 'gle',
+    is: 'isl', mk: 'mkd', sq: 'sqi', be: 'bel', az: 'aze', hy: 'hye',
+    ka: 'kat', af: 'afr'
+};
+
+let _langsCache = null;
 
 export function isGibberish(text) {
     if (!text || text.length < 2) return true;
 
     let alphanumeric = text.match(/[a-zA-Z0-9]/g);
-    if (!alphanumeric) return true; // No letters or numbers at all
-    
+    if (!alphanumeric) return true;
+
     let garbage = text.match(/[^a-zA-Z0-9\s.,!?@/:\-'"()[\]{}_+=$%]/g);
     if (garbage && (garbage.length / text.length) > 0.35) return true;
-    
+
     return false;
 }
 
+function _upscaleFactor(width, height) {
+    if (width <= 0 || height <= 0) return 0;
+    let min = Math.min(width, height);
+    if (min < 200) return 3;
+    if (min < 600) return 2;
+    return 0;
+}
+
+function _analyzeImage(path) {
+    try {
+        let pixbuf = GdkPixbuf.Pixbuf.new_from_file(path);
+        let width = pixbuf.get_width();
+        let height = pixbuf.get_height();
+        let channels = pixbuf.get_n_channels();
+        let stride = pixbuf.get_rowstride();
+        let pixels = pixbuf.get_pixels();
+        let pixelCount = width * height;
+        let step = Math.max(1, Math.floor(pixelCount / 1500));
+        let sum = 0;
+        let count = 0;
+
+        for (let i = 0; i < pixelCount; i += step) {
+            let off = Math.floor(i / width) * stride + (i % width) * channels;
+            sum += (0.299 * pixels[off] + 0.587 * pixels[off + 1] + 0.114 * pixels[off + 2]) / 255;
+            count++;
+        }
+
+        return { width, height, brightness: count ? sum / count : 0.5 };
+    } catch (e) {
+        return null;
+    }
+}
+
 export class OcrProcessor {
-    /**
-     * @param {Gio.Cancellable} cancellable - Token to abort async operations
-     * @param {Set} activeProcesses - Tracker for spawned child processes
-     * @param {Function} notifyErrorFn - Callback to bubble UI error notifications
-     * @param {Function} logDebugFn - Callback to log debug info if enabled
-     */
     constructor(cancellable, activeProcesses, notifyErrorFn, logDebugFn) {
         this._cancellable = cancellable;
         this._activeProcesses = activeProcesses;
@@ -69,47 +76,35 @@ export class OcrProcessor {
         return !this._cancellable || this._cancellable.is_cancelled();
     }
 
-    // Awaits the completion of a Gio.Subprocess (no output reading, just exit status)
-    async _waitForProcess(process) {
+    async _wait(process) {
         return new Promise(resolve => {
             process.wait_async(this._cancellable, (proc, result) => {
                 try {
                     proc.wait_finish(result);
                     resolve(proc.get_successful());
-                } catch (error) {
-                    if (!this._isCancelled()) {
-                        this._notifyError(`Process wait failed: ${error}`);
-                    }
+                } catch (e) {
                     resolve(false);
                 }
             });
         });
     }
 
-    // Awaits a Gio.Subprocess and captures its stdout buffer
-    async _readProcess(process) {
+    async _readStdout(process) {
         return new Promise(resolve => {
             process.communicate_utf8_async(null, this._cancellable, (proc, result) => {
                 try {
                     let [, stdout] = proc.communicate_utf8_finish(result);
-                    resolve({ ok: proc.get_successful(), stdout });
-                } catch (error) {
-                    if (!this._isCancelled()) {
-                        this._notifyError(`Process output read failed: ${error}`);
-                    }
-                    resolve({ ok: false, stdout: '' });
+                    resolve(stdout);
+                } catch (e) {
+                    resolve('');
                 }
             });
         });
     }
 
-    /**
-     * Attempts to read a QR code from the image using zbarimg.
-     * @returns {String|null} Decoded QR text or null if not found.
-     */
     async _readQrCode(imagePath) {
         if (!GLib.find_program_in_path('zbarimg')) {
-            return null; // Gracefully fallback to Tesseract if zbar is not installed
+            return null;
         }
 
         try {
@@ -118,11 +113,11 @@ export class OcrProcessor {
                 Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
             );
             this._activeProcesses.add(zbar);
-            let result = await this._readProcess(zbar);
+            let stdout = await this._readStdout(zbar);
             this._activeProcesses.delete(zbar);
 
-            if (result.ok && result.stdout && result.stdout.trim().length > 0) {
-                return result.stdout.trim();
+            if (stdout && stdout.trim().length > 0) {
+                return stdout.trim();
             }
         } catch (error) {
             this._logDebug(`zbarimg QR code detection failed: ${error}`);
@@ -130,559 +125,384 @@ export class OcrProcessor {
         return null;
     }
 
-    /**
-     * Discovers all installed language packs for Tesseract.
-     * Tesseract parses better when fed explicit languages rather than guessing.
-     *
-     * @returns {String} A plus-separated string of languages (e.g. "eng+fra+spa")
-     */
-    async _availableTesseractLanguages() {
-        let fallback = 'eng';
-        try {
-            let listLangs = Gio.Subprocess.new(
-                ['tesseract', '--list-langs'],
-                Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
-            );
-            
-            this._activeProcesses.add(listLangs);
-            let result = await this._readProcess(listLangs);
-            this._activeProcesses.delete(listLangs);
+    async _listTesseractLanguages() {
+        let proc = Gio.Subprocess.new(
+            ['tesseract', '--list-langs'],
+            Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
+        );
+        this._activeProcesses.add(proc);
+        let stdout = await this._readStdout(proc);
+        this._activeProcesses.delete(proc);
 
-            if (!result.ok || !result.stdout) {
+        if (!stdout) return [];
+
+        let langs = [];
+        for (let line of stdout.split('\n')) {
+            let lang = line.trim();
+            if (lang && lang !== 'osd' && /^[a-zA-Z]{2,3}(_[a-zA-Z]{2,4})?$/.test(lang)) {
+                langs.push(lang);
+            }
+        }
+        return langs;
+    }
+
+    async _loadTesseractLanguages() {
+        let fallback = 'eng';
+        if (!GLib.find_program_in_path('tesseract')) {
+            return fallback;
+        }
+
+        try {
+            let available = await this._listTesseractLanguages();
+            if (available.length === 0) {
                 return fallback;
             }
 
-            let langs = [];
-            let lines = result.stdout.split('\n').map(line => line.trim());
-            
-            // Skip the "List of available languages:" header
-            let headerIndex = lines.findIndex(line => line.startsWith('List of'));
-            
-            for (let i = headerIndex + 1; i > 0 && i < lines.length; i++) {
-                let lang = lines[i];
-                // Ignore 'osd' (Orientation and Script Detection) as an OCR language
-                if (lang && lang !== 'osd' && /^[a-zA-Z0-9_]+$/.test(lang)) {
-                    langs.push(lang);
+            let desired = [];
+            for (let name of GLib.get_language_names()) {
+                let code = String(name).split(/[._@-]/)[0].toLowerCase();
+                if (!code) continue;
+                let mapped = LOCALE_TO_TESS[code];
+                if (mapped) {
+                    desired.push(mapped);
+                } else if (code.length === 2) {
+                    let matches = available.filter(l => l.startsWith(code));
+                    if (matches.length > 0) desired.push(matches[0]);
+                }
+            }
+            desired.push('eng');
+
+            let result = [];
+            let seen = new Set();
+            for (let lang of desired) {
+                if (!seen.has(lang) && available.includes(lang)) {
+                    seen.add(lang);
+                    result.push(lang);
                 }
             }
 
-            return langs.length > 0 ? langs.join('+') : fallback;
+            return result.length > 0 ? result.join('+') : fallback;
         } catch (error) {
-            if (!this._isCancelled()) {
-                this._notifyError(`Could not read Tesseract languages: ${error}`);
-            }
             return fallback;
         }
     }
 
-    /**
-     * Pass 1 of Smart Extraction: Reads geometric TSV data to find the optimal bounding box
-     * enveloping the sentence/line immediately beneath the user's cursor.
-     */
-    async findTargetBoundingBox(imagePath, cursorX, cursorY) {
-        if (!GLib.find_program_in_path('tesseract')) return null;
-
-        let tmpPrefix = imagePath.replace('.png', '-fast');
-        let langs = await this._availableTesseractLanguages();
-        
-        // Fast layout analysis pass using PSM 6 (Assume a single uniform block of text)
-        let ocr = Gio.Subprocess.new(
-            ['tesseract', imagePath, tmpPrefix, '-l', langs, '--psm', '6', 'tsv'],
-            Gio.SubprocessFlags.NONE
-        );
-        
-        this._activeProcesses.add(ocr);
-        let ok = await this._waitForProcess(ocr);
-        this._activeProcesses.delete(ocr);
-
-        if (!ok || this._isCancelled()) return null;
-
-        let tsvPath = `${tmpPrefix}.tsv`;
-        let txtPath = `${tmpPrefix}.txt`;
-        let tsv = '';
-
-        let tsvFile = Gio.File.new_for_path(tsvPath);
-        if (tsvFile.query_exists(null)) {
-            try {
-                let tsvBytes = await new Promise((resolve, reject) => {
-                    tsvFile.load_contents_async(this._cancellable, (file, res) => {
-                        try {
-                            let [success, contents] = file.load_contents_finish(res);
-                            if (success) resolve(contents);
-                            else reject(new Error("Failed to read TSV"));
-                        } catch (e) {
-                            reject(e);
-                        }
-                    });
-                });
-                tsv = new TextDecoder('utf-8').decode(tsvBytes);
-            } catch (e) {
-                this._logDebug(`Could not read fast TSV: ${e}`);
-            }
+    async _availableTesseractLanguages() {
+        if (_langsCache) {
+            return _langsCache;
         }
-
-        // Cleanup temporary pass-1 output files
-        [tsvPath, txtPath].forEach(path => {
-            let f = Gio.File.new_for_path(path);
-            if (f.query_exists(null)) {
-                f.delete_async(GLib.PRIORITY_DEFAULT, null, (file, res) => {
-                    try { file.delete_finish(res); } catch (e) {}
-                });
-            }
-        });
-
-        if (!tsv) return null;
-
-        let lines = tsv.split('\n');
-        let rows = [];
-        
-        // Parse Tesseract TSV Headers: level, page_num, block_num, par_num, line_num, word_num, left, top, width, height, conf, text
-        for (let i = 1; i < lines.length; i++) {
-            let cols = lines[i].split('\t');
-            if (cols.length >= 12) {
-                let conf = parseFloat(cols[10]);
-                let text = cols[11].trim();
-                if (conf > 0 || text.length > 0 || parseInt(cols[0], 10) < 5) {
-                    rows.push({
-                        level: parseInt(cols[0], 10),
-                        block_num: parseInt(cols[2], 10),
-                        par_num: parseInt(cols[3], 10),
-                        line_num: parseInt(cols[4], 10),
-                        word_num: parseInt(cols[5], 10),
-                        left: parseInt(cols[6], 10),
-                        top: parseInt(cols[7], 10),
-                        width: parseInt(cols[8], 10),
-                        height: parseInt(cols[9], 10),
-                        conf: conf,
-                        text: text
-                    });
-                }
-            }
-        }
-
-        // Search for the specific word (level 5) that perfectly intersects the mouse coordinates
-        let hit = rows.find(r => r.level === 5 && r.conf > 0 && r.text.length > 0 && 
-                                 cursorX >= r.left && cursorX <= r.left + r.width && 
-                                 cursorY >= r.top && cursorY <= r.top + r.height);
-
-        // If no direct hit, find the closest word within a reasonable proximity radius (80px)
-        if (!hit) {
-            let minDistance = 80;
-            for (let r of rows) {
-                if (r.level === 5 && r.conf > 0 && r.text.length > 0) {
-                    let cx = r.left + (r.width / 2);
-                    let cy = r.top + (r.height / 2);
-                    let dist = Math.sqrt(Math.pow(cursorX - cx, 2) + Math.pow(cursorY - cy, 2));
-                    if (dist < minDistance) {
-                        minDistance = dist;
-                        hit = r;
-                    }
-                }
-            }
-        }
-
-        if (hit) {
-            // Found the targeted word, now find the bounding box of the entire line (level 4) containing it
-            let targetArea = rows.find(r => r.level === 4 && r.block_num === hit.block_num && r.par_num === hit.par_num && r.line_num === hit.line_num);
-            
-            // Fallback to paragraph block (level 3) if line grouping failed
-            if (!targetArea) { 
-                targetArea = rows.find(r => r.level === 3 && r.block_num === hit.block_num && r.par_num === hit.par_num);
-            }
-
-            if (targetArea) {
-                // Add a small padding buffer so ascenders and descenders aren't clipped
-                let pad = 12;
-                return {
-                    left: Math.max(0, targetArea.left - pad),
-                    top: Math.max(0, targetArea.top - pad),
-                    width: targetArea.width + (pad * 2),
-                    height: targetArea.height + (pad * 2)
-                };
-            }
-        }
-
-        return null;
+        _langsCache = await this._loadTesseractLanguages();
+        return _langsCache;
     }
 
-    /**
-     * Executes the multi-pass Smart Extraction process.
-     */
-    async processSmartImage(imagePath, cursorX, cursorY) {
-        this._logDebug(`Starting smart multi-pass extraction at local cursor (${cursorX}, ${cursorY})`);
-        
-        // Pass 0: Instant QR Check
-        let qrText = await this._readQrCode(imagePath);
-        if (qrText && !this._isCancelled()) {
-            this._logDebug('QR code successfully detected in smart pass.');
-            return { text: qrText, isQr: true };
-        }
+    async _preprocess(imagePath) {
+        let info = _analyzeImage(imagePath);
+        let width = 0;
+        let height = 0;
+        let brightness = 0.5;
 
-        // Pass 1: TSV Geometry evaluation
-        let optimalBox = await this.findTargetBoundingBox(imagePath, cursorX, cursorY);
-        
-        if (optimalBox && !this._isCancelled()) {
-            this._logDebug(`Cropping to optimal box: ${optimalBox.width}x${optimalBox.height}+${optimalBox.left}+${optimalBox.top}`);
-            if (GLib.find_program_in_path('mogrify')) {
-                try {
-                    // Instantly crop the image in place using ImageMagick
-                    let cropStr = `${optimalBox.width}x${optimalBox.height}+${optimalBox.left}+${optimalBox.top}`;
-                    let mogrify = Gio.Subprocess.new(['mogrify', '-crop', cropStr, '+repage', imagePath], Gio.SubprocessFlags.NONE);
-                    
-                    this._activeProcesses.add(mogrify);
-                    await this._waitForProcess(mogrify);
-                    this._activeProcesses.delete(mogrify);
-                } catch (e) {
-                    this._logDebug(`Crop failed: ${e}`);
-                }
-            }
+        if (info) {
+            width = info.width;
+            height = info.height;
+            brightness = info.brightness;
         } else {
-            this._logDebug(`No optimal box found, proceeding with full standard area.`);
+            let [format, w, h] = GdkPixbuf.Pixbuf.get_file_info(imagePath);
+            if (format) {
+                width = w;
+                height = h;
+            }
         }
 
-        // Pass 2: High fidelity ImageMagick pre-processing and OCR extraction
-        return this.processImage(imagePath, true);
+        let scale = 1;
+        if (GLib.find_program_in_path('mogrify')) {
+            let factor = _upscaleFactor(width, height);
+            let args = ['mogrify', '-colorspace', 'Gray', '-contrast-stretch', '2%x2%'];
+            if (factor > 0) {
+                args.push('-resize', `${factor * 100}%`);
+                scale = factor;
+            }
+            args.push('-sharpen', '0x1');
+            if (brightness < 0.45) {
+                args.push('-negate');
+            }
+            args.push(imagePath);
+
+            let mogrify = Gio.Subprocess.new(args, Gio.SubprocessFlags.NONE);
+            this._activeProcesses.add(mogrify);
+            await this._wait(mogrify);
+            this._activeProcesses.delete(mogrify);
+        }
+
+        return { width, height, brightness, scale };
     }
 
-    /**
-     * Per algo, this execs a single OCR pass with a specific Page Segmentation Mode (PSM).
-     *
-     * @param {String} imagePath - Path to the temporary screenshot
-     * @param {Number} psm - Tesseract PSM integer
-     * @param {String} langs - Tesseract language string
-     * @returns {Object|null} Result object containing text, confidence, and garbage ratio.
-     */
-    async _runTesseractPass(imagePath, psm, langs) {
+    async _negate(path) {
+        if (!GLib.find_program_in_path('mogrify')) {
+            return;
+        }
+        let proc = Gio.Subprocess.new(['mogrify', '-negate', path], Gio.SubprocessFlags.NONE);
+        this._activeProcesses.add(proc);
+        await this._wait(proc);
+        this._activeProcesses.delete(proc);
+    }
+
+    async _copyFile(src, dest) {
+        let source = Gio.File.new_for_path(src);
+        let target = Gio.File.new_for_path(dest);
+        if (!source.query_exists(null)) {
+            return false;
+        }
+
+        try {
+            await new Promise((resolve, reject) => {
+                source.copy_async(target, Gio.FileCopyFlags.OVERWRITE, GLib.PRIORITY_DEFAULT, this._cancellable, null, (s, res) => {
+                    try {
+                        s.copy_finish(res);
+                        resolve();
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            });
+            return true;
+        } catch (e) {
+            this._logDebug(`File copy failed: ${e}`);
+            return false;
+        }
+    }
+
+    _deleteFile(path) {
+        let f = Gio.File.new_for_path(path);
+        if (f.query_exists(null)) {
+            f.delete_async(GLib.PRIORITY_DEFAULT, null, null);
+        }
+    }
+
+    async _runTesseract(imagePath, psm, langs) {
         if (!GLib.find_program_in_path('tesseract')) {
             return null;
         }
 
-        this._logDebug(`Executing tesseract pass with PSM: ${psm} and Langs: ${langs}`);
-
-        // Tesseract automatically appends .txt and .tsv to the specified output prefix
-        let tmpPrefix = imagePath.replace('.png', '');
-        
-        let ocr = Gio.Subprocess.new(
-            // Force LSTM engine (--oem 1) and assume 300 DPI for stability
-            ['tesseract', imagePath, tmpPrefix, '-l', langs, '--dpi', '300', '--oem', '1', '--psm', String(psm), 'txt', 'tsv'],
-            Gio.SubprocessFlags.NONE
+        let proc = Gio.Subprocess.new(
+            ['tesseract', imagePath, 'stdout', '-l', langs, '--psm', String(psm), 'tsv'],
+            Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
         );
 
-        this._activeProcesses.add(ocr);
-        let ok = await this._waitForProcess(ocr);
-        this._activeProcesses.delete(ocr);
+        this._activeProcesses.add(proc);
+        let stdout = await this._readStdout(proc);
+        this._activeProcesses.delete(proc);
 
-        this._logDebug(`Tesseract execution completed. Exit ok: ${ok}`);
-
-        if (!ok || this._isCancelled()) {
+        if (this._isCancelled() || stdout == null) {
             return null;
         }
 
-        let txtPath = `${tmpPrefix}.txt`;
-        let tsvPath = `${tmpPrefix}.tsv`;
-        let text = '';
-        let tsv = '';
-
-        // Read the resulting files asynchronously
-        try {
-            let txtFile = Gio.File.new_for_path(txtPath);
-            let txtBytes = await new Promise((resolve, reject) => {
-                txtFile.load_contents_async(this._cancellable, (file, res) => {
-                    try {
-                        let [success, contents] = file.load_contents_finish(res);
-                        if (success) {
-                            resolve(contents);
-                        } else {
-                            reject(new Error("Failed to read TXT contents."));
-                        }
-                    } catch (e) {
-                        reject(e);
-                    }
-                });
-            });
-            text = new TextDecoder('utf-8').decode(txtBytes).trim();
-            this._logDebug(`Read TXT output. Length: ${text.length}`);
-        } catch (e) {
-            this._logDebug(`Could not read OCR txt output: ${e}`);
-        }
-
-        try {
-            let tsvFile = Gio.File.new_for_path(tsvPath);
-            let tsvBytes = await new Promise((resolve, reject) => {
-                tsvFile.load_contents_async(this._cancellable, (file, res) => {
-                    try {
-                        let [success, contents] = file.load_contents_finish(res);
-                        if (success) {
-                            resolve(contents);
-                        } else {
-                            reject(new Error("Failed to read TSV contents."));
-                        }
-                    } catch (e) {
-                        reject(e);
-                    }
-                });
-            });
-            tsv = new TextDecoder('utf-8').decode(tsvBytes);
-            this._logDebug(`Read TSV output. Length: ${tsv.length}`);
-        } catch (e) {
-            this._logDebug(`Could not read OCR tsv output: ${e}`);
-        }
-
-        // Clean up temporary files asynchronously
-        let txtFile = Gio.File.new_for_path(txtPath);
-        if (txtFile.query_exists(null)) {
-            await new Promise((resolve) => {
-                txtFile.delete_async(GLib.PRIORITY_DEFAULT, null, (file, res) => {
-                    try { file.delete_finish(res); } catch (e) {}
-                    resolve();
-                });
-            });
-        }
-
-        let tsvFile = Gio.File.new_for_path(tsvPath);
-        if (tsvFile.query_exists(null)) {
-            await new Promise((resolve) => {
-                tsvFile.delete_async(GLib.PRIORITY_DEFAULT, null, (file, res) => {
-                    try { file.delete_finish(res); } catch (e) {}
-                    resolve();
-                });
-            });
-        }
-
-        // --- Quality Metrics Calculation ---
-        let totalConf = 0;
-        let wordCount = 0;
-        let lines = tsv.split('\n');
+        let rows = [];
+        let lines = stdout.split('\n');
 
         for (let i = 1; i < lines.length; i++) {
             let cols = lines[i].split('\t');
-            if (cols.length >= 12) {
-                let conf = parseFloat(cols[10]); // Column 10 is confidence (0-100)
-                let wordText = cols[11].trim();  // Column 11 is the extracted word
-                
-                // Tesseract TSV uses -1 conf for block/paragraph container rows; we only want valid text words
-                if (wordText.length > 0 && conf >= 0) {
-                    totalConf += conf;
-                    wordCount++;
-                }
-            }
+            if (cols.length < 12) continue;
+
+            let level = parseInt(cols[0], 10);
+            if (level !== 5) continue;
+
+            let conf = parseFloat(cols[10]);
+            if (conf < 0) continue;
+
+            let text = cols[11];
+            if (!text || !text.trim()) continue;
+
+            rows.push({
+                block: parseInt(cols[2], 10),
+                par: parseInt(cols[3], 10),
+                line: parseInt(cols[4], 10),
+                word: parseInt(cols[5], 10),
+                left: parseInt(cols[6], 10),
+                top: parseInt(cols[7], 10),
+                width: parseInt(cols[8], 10),
+                height: parseInt(cols[9], 10),
+                conf,
+                text
+            });
         }
 
-        let confidence = wordCount > 0 ? (totalConf / wordCount) : 0;
+        if (rows.length === 0) {
+            return { text: '', confidence: 0, wordCount: 0, charCount: 0, garbageRatio: 0, rows };
+        }
+
+        let text = '';
+        let prevKey = null;
+        for (let w of rows) {
+            let key = `${w.block}\u0000${w.par}\u0000${w.line}`;
+            if (prevKey !== null) {
+                text += (key === prevKey ? ' ' : '\n');
+            }
+            text += w.text;
+            prevKey = key;
+        }
+
+        let totalConf = 0;
+        for (let w of rows) {
+            totalConf += w.conf;
+        }
+
+        let confidence = totalConf / rows.length;
         let charCount = text.length;
-        
-        // Calculate crap rate ("Garbage Ratio") of how much of the output is weird symbols/hallucinating crap (tesseract does this)
-        let garbageMatches = text.match(/[^a-zA-Z0-9\s.,!?\'"()\-]/g);
-        let garbageCount = garbageMatches ? garbageMatches.length : 0;
-        let garbageRatio = charCount > 0 ? (garbageCount / charCount) : 0;
+        let garbage = (text.match(/[^a-zA-Z0-9\s.,!?@:/'\-"()[\]{}_+=$%&*;]/g) || []).length;
+        let garbageRatio = charCount > 0 ? garbage / charCount : 0;
 
-        this._logDebug(`Metrics for PSM ${psm} -> conf: ${confidence.toFixed(2)}, words: ${wordCount}, chars: ${charCount}, garbageRatio: ${garbageRatio.toFixed(3)}`);
+        this._logDebug(`PSM ${psm}: conf=${confidence.toFixed(1)} words=${rows.length} chars=${charCount} garbage=${garbageRatio.toFixed(2)}`);
 
-        return { text, confidence, wordCount, charCount, garbageRatio };
+        return { text, confidence, wordCount: rows.length, charCount, garbageRatio, rows };
     }
 
-    /**
-     * Determines which OCR result is better - when multiple passes were executed.
-     * Favors high conf. and word count, heavily penalizes crap symbols in ouput.
-     */
-    _calculateScore(res) {
+    _routePsm(width, height) {
+        if (width > 0 && height > 0) {
+            let aspect = width / height;
+            if (height <= 90 && aspect >= 4) return { primaryPsm: 7, fallbackPsm: 13 };
+            if (width <= 220 && height <= 100) return { primaryPsm: 8, fallbackPsm: 7 };
+            if (width >= 900 && height >= 900) return { primaryPsm: 3, fallbackPsm: 6 };
+        }
+        return { primaryPsm: 6, fallbackPsm: 11 };
+    }
+
+    _acceptable(res) {
+        return res && res.wordCount > 0 && res.charCount >= 2 && res.confidence >= 55 && res.garbageRatio < 0.35;
+    }
+
+    _score(res) {
         if (!res) return -9999;
-        
-        return res.confidence 
-             + Math.min(res.wordCount, 20) * 0.5 
-             + Math.min(res.charCount, 160) * 0.03 
-             - (res.garbageRatio * 25);
+        return res.confidence
+             + Math.min(res.wordCount, 20) * 0.5
+             + Math.min(res.charCount, 160) * 0.03
+             - res.garbageRatio * 25;
     }
 
-    /**
-     * Main orchestrator function. Takes a screenshot path and returns the best extracted text.
-     */
-    async processImage(imagePath, skipQr = false) {
-        this._logDebug(`Processing image: ${imagePath}`);
+    _cleanupText(text) {
+        return text.replace(/\n{3,}/g, '\n\n').trim();
+    }
 
-        // --- STEP 0: Fast QR Code Detection ---
-        if (!skipQr) { //bugfix
-            let qrText = await this._readQrCode(imagePath);
-            if (qrText && !this._isCancelled()) {
-                this._logDebug('QR code successfully detected. Bypassing OCR.');
-                return { text: qrText, isQr: true }; // Successfully decoded a QR code, skip Tesseract OCR entirely!
+    _lineTextAt(rows, cursorX, cursorY) {
+        let hit = rows.find(r =>
+            cursorX >= r.left && cursorX <= r.left + r.width &&
+            cursorY >= r.top && cursorY <= r.top + r.height
+        );
+
+        if (!hit) {
+            let best = null;
+            let bestDist = 80;
+            for (let r of rows) {
+                let cx = r.left + r.width / 2;
+                let cy = r.top + r.height / 2;
+                let d = Math.hypot(cursorX - cx, cursorY - cy);
+                if (d < bestDist) {
+                    bestDist = d;
+                    best = r;
+                }
             }
+            hit = best;
         }
 
-        // --- STEP 1: Layout & Brightness Analysis ---
-        let width = 0, height = 0, meanBrightness = 1.0;
-        
-        let [format, w, h] = GdkPixbuf.Pixbuf.get_file_info(imagePath);
-        if (format) {
-            width = w;
-            height = h;
-            this._logDebug(`Image dimensions: ${width}x${height}`);
-        } else {
-            this._logDebug(`Could not fetch native image dims`);
+        if (!hit) {
+            return '';
         }
 
-        if (GLib.find_program_in_path('identify') && GLib.find_program_in_path('mogrify')) {
-            try {
-                // Calculate average brightness (0.0 = black, 1.0 = white)
-                let identify = Gio.Subprocess.new(
-                    ['identify', '-format', '%[fx:mean]', imagePath],
-                    Gio.SubprocessFlags.STDOUT_PIPE
-                );
-                this._activeProcesses.add(identify);
-                let result = await this._readProcess(identify);
-                this._activeProcesses.delete(identify);
+        return rows
+            .filter(r => r.block === hit.block && r.par === hit.par && r.line === hit.line)
+            .sort((a, b) => a.word - b.word)
+            .map(r => r.text)
+            .join(' ')
+            .trim();
+    }
 
-                if (result.ok && result.stdout) {
-                    meanBrightness = parseFloat(result.stdout.trim());
-                    this._logDebug(`Image mean brightness: ${meanBrightness}`);
-                }
+    async _ocrMultiPass(imagePath, langs, width, height, brightness) {
+        let { primaryPsm, fallbackPsm } = this._routePsm(width, height);
 
-                // --- STEP 2: Preprocessing ---
-                let mogrifyArgs = ['mogrify', '-colorspace', 'gray', '-type', 'grayscale', '-contrast-stretch', '0', '-sharpen', '0x1'];
-                
-                // Upscale if the snip is relatively small (Tesseract needs dense pixels)
-                if (width < 1500 && height < 1500) {
-                    mogrifyArgs.push('-resize', '300%');
-                    this._logDebug('Applying 300% upscale via mogrify.');
-                }
-
-                // Dark Mode Fix: Invert colors if the image is mostly dark
-                if (!isNaN(meanBrightness) && meanBrightness < 0.45) {
-                    mogrifyArgs.push('-negate'); 
-                    this._logDebug('Image is dark. Applying negate for OCR preprocessing.');
-                }
-
-                mogrifyArgs.push(imagePath);
-
-                // Apply the modifications directly to the temp file
-                let mogrify = Gio.Subprocess.new(mogrifyArgs, Gio.SubprocessFlags.NONE);
-                this._activeProcesses.add(mogrify);
-                await this._waitForProcess(mogrify);
-                this._activeProcesses.delete(mogrify);
-            } catch (error) {
-                this._logDebug(`Image preprocessing failed: ${error}`);
-            }
-        }
-
+        let res1 = await this._runTesseract(imagePath, primaryPsm, langs);
         if (this._isCancelled()) return null;
 
-        // --- STEP 3: PSM Routing ---
-        let primaryPsm = 6;  // Assume standard uniform text block by default
-        let fallbackPsm = 11; // Sparse text mode
-
-        let aspectRatio = height > 0 ? (width / height) : 1;
-
-        if (height <= 90 && aspectRatio >= 4) {
-            // Very wide and short -> Single Line of Text
-            primaryPsm = 7; fallbackPsm = 13;
-        } else if (width <= 220 && height <= 100) {
-            // Very small bounding box -> A single Word or UI Button
-            primaryPsm = 8; fallbackPsm = 7;
-        } else if (width >= 900 && height >= 900) {
-            // Large selection -> Full Document or Page
-            primaryPsm = 3; fallbackPsm = 6;
+        if (res1 && this._acceptable(res1)) {
+            return { text: this._cleanupText(res1.text), isQr: false };
         }
 
-        this._logDebug(`Routed PSMs. Primary: ${primaryPsm}, Fallback: ${fallbackPsm}`);
-
-        let langs = await this._availableTesseractLanguages();
-        this._logDebug(`Resolved Tesseract languages: ${langs}`);
-
+        let res2 = await this._runTesseract(imagePath, fallbackPsm, langs);
         if (this._isCancelled()) return null;
 
-        // --- STEP 4: Primary pass through tess ---
-        let res1 = await this._runTesseractPass(imagePath, primaryPsm, langs);
-        if (this._isCancelled()) return null;
-
-        // --- STEP 5: Quality eval ---
-        let accept = false;
-
-        if (res1 && res1.wordCount > 0 && res1.charCount >= 2 && res1.confidence >= 65 && res1.garbageRatio < 0.35) {
-            accept = true; // Results are excellent, skip fallback
-            this._logDebug(`Primary pass accepted. Metrics pass thresholds.`);
-        } else {
-            this._logDebug(`Primary pass rejected based on metrics.`);
-        }
-
-        let finalRes = res1;
-
-        // --- STEP 6: Fallback OCR  ---
-        if (!accept) {
-            this._logDebug(`Executing fallback pass.`);
-            let res2 = await this._runTesseractPass(imagePath, fallbackPsm, langs);
-            if (this._isCancelled()) return null;
-
-            // Execute a third negated pass to handle hollow/meme text (e.g. white text with dark outline)
-            this._logDebug(`Executing negated pass for meme/outline text.`);
-            let negatedImagePath = imagePath.replace('.png', '-negated.png');
-            let res3 = null;
-            try {
-                // Use native Gio file copying instead of spawning a 'cp' subprocess
-                let sourceFile = Gio.File.new_for_path(imagePath);
-                let destFile = Gio.File.new_for_path(negatedImagePath);
-                await new Promise((resolve, reject) => {
-                    sourceFile.copy_async(destFile, Gio.FileCopyFlags.NONE, GLib.PRIORITY_DEFAULT, this._cancellable, null, (source, res) => {
-                        try {
-                            source.copy_finish(res);
-                            resolve();
-                        } catch (e) {
-                            reject(e);
-                        }
-                    });
-                });
-
-                // Negate the duplicated image using mogrify
-                let mogrifyNegate = Gio.Subprocess.new(['mogrify', '-negate', negatedImagePath], Gio.SubprocessFlags.NONE);
-                this._activeProcesses.add(mogrifyNegate);
-                await this._waitForProcess(mogrifyNegate);
-                this._activeProcesses.delete(mogrifyNegate);
-
-                // Run OCR on the negated image
-                res3 = await this._runTesseractPass(negatedImagePath, primaryPsm, langs);
-
-                // Cleanup the negated image file asynchronously
-                let negatedFile = Gio.File.new_for_path(negatedImagePath);
-                if (negatedFile.query_exists(null)) {
-                    await new Promise((resolve) => {
-                        negatedFile.delete_async(GLib.PRIORITY_DEFAULT, null, (file, res) => {
-                            try { file.delete_finish(res); } catch (e) {}
-                            resolve();
-                        });
-                    });
+        let res3 = null;
+        if (brightness >= 0.45) {
+            let negated = imagePath.replace(/\.png$/, '-negated.png');
+            if (await this._copyFile(imagePath, negated)) {
+                await this._negate(negated);
+                if (!this._isCancelled()) {
+                    res3 = await this._runTesseract(negated, primaryPsm, langs);
                 }
-            } catch (error) {
-                this._logDebug(`Negated pass failed: ${error}`);
-            }
-
-            if (this._isCancelled()) return null;
-
-            let score1 = this._calculateScore(res1);
-            let score2 = this._calculateScore(res2);
-            let score3 = this._calculateScore(res3);
-
-            this._logDebug(`Comparing scores. Score1: ${score1.toFixed(2)}, Score2: ${score2.toFixed(2)}, Score3 (Negated): ${score3.toFixed(2)}`);
-
-            let maxScore = Math.max(score1, score2, score3);
-
-            // Step-wise lengthy, but best result so far, keep the best result
-            if (maxScore === score3 && score3 > -999) {
-                this._logDebug('Negated pass won.');
-                finalRes = res3;
-            } else if (maxScore === score2 && score2 > -999) {
-                this._logDebug('Fallback pass won.');
-                finalRes = res2;
-            } else {
-                this._logDebug('Primary pass won despite poor initial metrics.');
+                this._deleteFile(negated);
             }
         }
+        if (this._isCancelled()) return null;
 
-        if (!finalRes || !finalRes.text) {
-            this._logDebug('No text extracted.');
+        let candidates = [res1, res2, res3].filter(Boolean);
+        if (candidates.length === 0) {
             return { text: '', isQr: false };
         }
 
-        // --- STEP 7: Text Cleanup ---
-        // Strip excessive hallucinated newlines from empty areas
-        return { text: finalRes.text.replace(/\n{3,}/g, '\n\n'), isQr: false };
+        let best = candidates.reduce((a, b) => this._score(a) >= this._score(b) ? a : b);
+        if (!best.text || !best.text.trim()) {
+            return { text: '', isQr: false };
+        }
+
+        return { text: this._cleanupText(best.text), isQr: false };
+    }
+
+    async processImage(imagePath, skipQr = false) {
+        this._logDebug(`Processing image: ${imagePath}`);
+
+        if (!skipQr) {
+            let qrText = await this._readQrCode(imagePath);
+            if (qrText && !this._isCancelled()) {
+                this._logDebug('QR code detected, bypassing OCR.');
+                return { text: qrText, isQr: true };
+            }
+        }
+
+        let langs = await this._availableTesseractLanguages();
+        if (this._isCancelled()) return null;
+
+        let dims = await this._preprocess(imagePath);
+        if (this._isCancelled()) return null;
+
+        return this._ocrMultiPass(imagePath, langs, dims.width, dims.height, dims.brightness);
+    }
+
+    async processSmartImage(imagePath, cursorX, cursorY) {
+        this._logDebug(`Smart extraction at (${cursorX}, ${cursorY})`);
+
+        let qrText = await this._readQrCode(imagePath);
+        if (qrText && !this._isCancelled()) {
+            this._logDebug('QR code detected in smart pass.');
+            return { text: qrText, isQr: true };
+        }
+
+        let langs = await this._availableTesseractLanguages();
+        if (this._isCancelled()) return null;
+
+        let dims = await this._preprocess(imagePath);
+        if (this._isCancelled()) return null;
+
+        let res = await this._runTesseract(imagePath, 6, langs);
+        if (this._isCancelled()) return null;
+
+        if (res && res.rows.length > 0) {
+            let lineText = this._lineTextAt(res.rows, cursorX * dims.scale, cursorY * dims.scale);
+            if (lineText && !isGibberish(lineText)) {
+                return { text: this._cleanupText(lineText), isQr: false };
+            }
+        }
+
+        if (res && this._acceptable(res)) {
+            return { text: this._cleanupText(res.text), isQr: false };
+        }
+
+        return this._ocrMultiPass(imagePath, langs, dims.width, dims.height, dims.brightness);
     }
 }

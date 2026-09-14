@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="org.gnome.shell.extensions.snaptext" path="/org/gnome/shell/extensions/snaptext/">
+  <schema id="org.gnome.shell.extensions.snaptext.arnavk09" path="/org/gnome/shell/extensions/snaptext/arnavk09/">
     <key name="show-notification" type="b">
       <default>true</default>
       <summary>Show notification</summary>

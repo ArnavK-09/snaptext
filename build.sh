@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-UUID="snaptext@cwittenberg"
+UUID="snaptext@ArnavK-09"
 BUILD_DIR="build"
 EXTENSION_DIR="$HOME/.local/share/gnome-shell/extensions/$UUID"
 PROJECT_DIR="$(pwd)"
@@ -19,7 +19,7 @@ mkdir -p "$BUILD_DIR/locale"
 mkdir -p "po"
 
 echo "Validating extension files..."
-for file in metadata.json extension.js selection.js prefs.js ocr.js dependencies.js smartextractor.js smartmenu.js smartpatterns.js schemas/org.gnome.shell.extensions.snaptext.gschema.xml; do
+for file in metadata.json extension.js selection.js prefs.js ocr.js dependencies.js smartextractor.js smartmenu.js smartpatterns.js schemas/org.gnome.shell.extensions.snaptext.arnavk09.gschema.xml; do
     if [ ! -f "$file" ]; then
         echo "Error: $file not found in the current directory. Please make sure all files exist."
         exit 1

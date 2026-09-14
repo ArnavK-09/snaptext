@@ -22,7 +22,7 @@ function checkDependencies() {
         missing.push('tesseract');
     }
 
-    if (!GLib.find_program_in_path('mogrify') || !GLib.find_program_in_path('identify')) {
+    if (!GLib.find_program_in_path('mogrify')) {
         missing.push('imagemagick');
     }
 

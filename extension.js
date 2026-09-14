@@ -4,6 +4,7 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import * as MessageTray from 'resource:///org/gnome/shell/ui/messageTray.js';
+import * as Animation from 'resource:///org/gnome/shell/ui/animation.js';
 import St from 'gi://St';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
@@ -38,10 +39,14 @@ export default class SnapTextExtension extends Extension {
         this._smartMenuContext = new SmartMenu(this);
         
         this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
-        this._indicator.add_child(new St.Icon({
+        this._indicatorIcon = new St.Icon({
             gicon: Gio.FileIcon.new(this.dir.get_child('trayicon.svg')),
             style_class: 'system-status-icon',
-        }));
+        });
+        this._indicatorSpinner = new Animation.Spinner(16);
+        this._indicatorSpinner.visible = false;
+        this._indicator.add_child(this._indicatorIcon);
+        this._indicator.add_child(this._indicatorSpinner);
         
         this._indicator.visible = this._settings.get_boolean('show-tray-icon');
 
@@ -111,6 +116,22 @@ export default class SnapTextExtension extends Extension {
     _notifyError(msg) {
         this._logDebug(`Error: ${msg}`, true);
         Main.notify(_('Snap Text Error'), msg);
+    }
+
+    _setBusy(busy) {
+        if (!this._indicatorIcon || !this._indicatorSpinner) {
+            return;
+        }
+
+        if (busy) {
+            this._indicatorIcon.visible = false;
+            this._indicatorSpinner.visible = true;
+            this._indicatorSpinner.play();
+        } else {
+            this._indicatorSpinner.stop();
+            this._indicatorSpinner.visible = false;
+            this._indicatorIcon.visible = true;
+        }
     }
 
     _onSettingsChanged(_settings, key) {
@@ -512,6 +533,7 @@ export default class SnapTextExtension extends Extension {
         }
 
         try {
+            this._setBusy(true);
             let gotScreenshot = await this._takeScreenshot(area.x, area.y, area.w, area.h, stream);
             stream.close(null);
 
@@ -547,6 +569,7 @@ export default class SnapTextExtension extends Extension {
                 this._notifyError(`Text extraction failed: ${error}`);
             }
         } finally {
+            this._setBusy(false);
             cleanupSelectionUI();
             if (imagePath && GLib.file_test(imagePath, GLib.FileTest.EXISTS)) {
                 if (GLib.unlink(imagePath) !== 0) {
