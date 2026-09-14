@@ -32,6 +32,12 @@ export default class SnapTextPreferences extends ExtensionPreferences {
             subtitle_lines: 0
         });
         
+        const shortcutLabel = new Gtk.ShortcutLabel({
+            disabled_text: _('Disabled'),
+            accelerator: settings.get_strv(shortcutKey)[0] || '',
+            valign: Gtk.Align.CENTER
+        });
+
         if (enableKey) {
             settings.bind(enableKey, row, 'sensitive', Gio.SettingsBindFlags.GET);
             settings.connect(`changed::${enableKey}`, () => {
@@ -44,12 +50,6 @@ export default class SnapTextPreferences extends ExtensionPreferences {
                 }
             });
         }
-        
-        const shortcutLabel = new Gtk.ShortcutLabel({
-            disabled_text: _('Disabled'),
-            accelerator: settings.get_strv(shortcutKey)[0] || '',
-            valign: Gtk.Align.CENTER
-        });
 
         const shortcutButton = new Gtk.Button({
             child: shortcutLabel,
@@ -57,16 +57,32 @@ export default class SnapTextPreferences extends ExtensionPreferences {
         });
         
         let isRecording = false;
+
+        const stopRecording = () => {
+            isRecording = false;
+            shortcutButton.remove_css_class('suggested-action');
+            shortcutLabel.set_accelerator(settings.get_strv(shortcutKey)[0] || '');
+            if (this._recordingStop === stopRecording) {
+                this._recordingStop = null;
+            }
+        };
+
+        const startRecording = () => {
+            if (this._recordingStop && this._recordingStop !== stopRecording) {
+                this._recordingStop();
+            }
+            isRecording = true;
+            shortcutButton.add_css_class('suggested-action');
+            shortcutLabel.set_accelerator('');
+            shortcutLabel.set_disabled_text(_('Press keys...'));
+            this._recordingStop = stopRecording;
+        };
+
         shortcutButton.connect('clicked', () => {
             if (isRecording) {
-                isRecording = false;
-                shortcutButton.remove_css_class('suggested-action');
-                shortcutLabel.set_accelerator(settings.get_strv(shortcutKey)[0] || '');
+                stopRecording();
             } else {
-                isRecording = true;
-                shortcutButton.add_css_class('suggested-action');
-                shortcutLabel.set_accelerator('');
-                shortcutLabel.set_disabled_text(_('Press keys...'));
+                startRecording();
             }
         });
         
@@ -78,9 +94,7 @@ export default class SnapTextPreferences extends ExtensionPreferences {
             if (!isRecording) return false;
             
             if (keyval === Gdk.KEY_Escape) {
-                isRecording = false;
-                shortcutButton.remove_css_class('suggested-action');
-                shortcutLabel.set_accelerator(settings.get_strv(shortcutKey)[0] || '');
+                stopRecording();
                 return true;
             }
             
@@ -90,6 +104,9 @@ export default class SnapTextPreferences extends ExtensionPreferences {
                 shortcutButton.remove_css_class('suggested-action');
                 shortcutLabel.set_accelerator('');
                 shortcutLabel.set_disabled_text(_('Disabled'));
+                if (this._recordingStop === stopRecording) {
+                    this._recordingStop = null;
+                }
                 return true;
             }
             
@@ -114,6 +131,9 @@ export default class SnapTextPreferences extends ExtensionPreferences {
                 isRecording = false;
                 shortcutButton.remove_css_class('suggested-action');
                 shortcutLabel.set_accelerator(accelName);
+                if (this._recordingStop === stopRecording) {
+                    this._recordingStop = null;
+                }
                 return true;
             }
             
@@ -224,50 +244,6 @@ export default class SnapTextPreferences extends ExtensionPreferences {
         groupArea.add(shortcutRow);
 
         pageGeneral.add(groupArea);
-
-        const groupSmart = new Adw.PreferencesGroup({
-            title: _('Smart Extraction'),
-            description: _('Smart extraction instantly reads text, parses links, and detects data directly beneath your cursor without needing to draw a box.')
-        });
-
-        const smartClickRow = new Adw.ActionRow({
-            title: _('Enable Smart Extraction'),
-            subtitle: _('Master toggle for pointer-based text extraction features.'),
-            title_lines: 0, subtitle_lines: 0
-        });
-        const toggleSmartClick = new Gtk.Switch({
-            active: settings.get_boolean('enable-smart-click'),
-            valign: Gtk.Align.CENTER,
-        });
-        settings.bind('enable-smart-click', toggleSmartClick, 'active', Gio.SettingsBindFlags.DEFAULT);
-        smartClickRow.add_suffix(toggleSmartClick);
-        smartClickRow.activatable_widget = toggleSmartClick;
-        groupSmart.add(smartClickRow);
-
-        const clickSnapRow = new Adw.ActionRow({
-            title: _('Single-Click Smart Snap'),
-            subtitle: _('Extract text at the pointer location with a single click instead of dragging a box.'),
-            title_lines: 0, subtitle_lines: 0
-        });
-        const toggleClickSnap = new Gtk.Switch({
-            active: settings.get_boolean('click-to-smart-snap'),
-            valign: Gtk.Align.CENTER,
-        });
-        settings.bind('click-to-smart-snap', toggleClickSnap, 'active', Gio.SettingsBindFlags.DEFAULT);
-        settings.bind('enable-smart-click', clickSnapRow, 'sensitive', Gio.SettingsBindFlags.GET);
-        clickSnapRow.add_suffix(toggleClickSnap);
-        clickSnapRow.activatable_widget = toggleClickSnap;
-        groupSmart.add(clickSnapRow);
-
-        const smartShortcutRow = this._createShortcutRow(
-            settings, window, 
-            _('Smart Extraction Shortcut'), 
-            _('Key combination to trigger extraction exactly at pointer location.'),
-            'enable-smart-click', 'smart-shortcut-trigger', '<Control><Shift>e'
-        );
-        groupSmart.add(smartShortcutRow);
-
-        pageGeneral.add(groupSmart);
         window.add(pageGeneral);
 
         // ==========================================

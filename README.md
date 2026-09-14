@@ -40,21 +40,21 @@ Before using the extension, install the required packages for your distribution.
 
 ```bash
 sudo apt update
-sudo apt install gnome-screenshot tesseract-ocr tesseract-ocr-eng zbar-tools imagemagick
+sudo apt install tesseract-ocr tesseract-ocr-eng zbar-tools imagemagick
 
 ```
 
 ### Fedora
 
 ```bash
-sudo dnf install gnome-screenshot tesseract tesseract-langpack-eng zbar ImageMagick
+sudo dnf install tesseract tesseract-langpack-eng zbar ImageMagick
 
 ```
 
 ### Arch Linux / Manjaro
 
 ```bash
-sudo pacman -S gnome-screenshot tesseract tesseract-data-eng zbar imagemagick
+sudo pacman -S tesseract tesseract-data-eng zbar imagemagick
 
 ```
 
@@ -78,7 +78,7 @@ sudo pacman -S gnome-screenshot tesseract tesseract-data-eng zbar imagemagick
 4. Enable the extension using the GNOME Extensions app or run:
 
 ```bash
-   gnome-extensions enable snaptext@cwittenberg
+   gnome-extensions enable snaptext@ArnavK-09
 ```
 
 ## Usage

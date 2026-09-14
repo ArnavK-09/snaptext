@@ -19,18 +19,6 @@ const LOCALE_TO_TESS = {
 
 let _langsCache = null;
 
-export function isGibberish(text) {
-    if (!text || text.length < 2) return true;
-
-    let alphanumeric = text.match(/[a-zA-Z0-9]/g);
-    if (!alphanumeric) return true;
-
-    let garbage = text.match(/[^a-zA-Z0-9\s.,!?@/:\-'"()[\]{}_+=$%]/g);
-    if (garbage && (garbage.length / text.length) > 0.35) return true;
-
-    return false;
-}
-
 function _upscaleFactor(width, height) {
     if (width <= 0 || height <= 0) return 0;
     let min = Math.min(width, height);
@@ -39,36 +27,51 @@ function _upscaleFactor(width, height) {
     return 0;
 }
 
-function _analyzeImage(path) {
-    try {
-        let pixbuf = GdkPixbuf.Pixbuf.new_from_file(path);
-        let width = pixbuf.get_width();
-        let height = pixbuf.get_height();
-        let channels = pixbuf.get_n_channels();
-        let stride = pixbuf.get_rowstride();
-        let pixels = pixbuf.get_pixels();
-        let pixelCount = width * height;
-        let step = Math.max(1, Math.floor(pixelCount / 1500));
-        let sum = 0;
-        let count = 0;
+function _readBrightness(path, cancellable) {
+    return new Promise(resolve => {
+        try {
+            GdkPixbuf.Pixbuf.new_from_file_at_scale_async(path, 64, 64, true, cancellable, (_src, res) => {
+                try {
+                    let pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale_finish(res);
+                    if (!pixbuf) {
+                        resolve(0.5);
+                        return;
+                    }
 
-        for (let i = 0; i < pixelCount; i += step) {
-            let off = Math.floor(i / width) * stride + (i % width) * channels;
-            sum += (0.299 * pixels[off] + 0.587 * pixels[off + 1] + 0.114 * pixels[off + 2]) / 255;
-            count++;
+                    let width = pixbuf.get_width();
+                    let height = pixbuf.get_height();
+                    let channels = pixbuf.get_n_channels();
+                    let stride = pixbuf.get_rowstride();
+                    let pixels = pixbuf.get_pixels();
+                    let sum = 0;
+                    let count = 0;
+
+                    for (let y = 0; y < height; y++) {
+                        for (let x = 0; x < width; x++) {
+                            let off = y * stride + x * channels;
+                            let r = pixels[off];
+                            let g = channels > 1 ? pixels[off + 1] : r;
+                            let b = channels > 2 ? pixels[off + 2] : r;
+                            sum += 0.299 * r + 0.587 * g + 0.114 * b;
+                            count++;
+                        }
+                    }
+
+                    resolve(count ? sum / count / 255 : 0.5);
+                } catch (e) {
+                    resolve(0.5);
+                }
+            });
+        } catch (e) {
+            resolve(0.5);
         }
-
-        return { width, height, brightness: count ? sum / count : 0.5 };
-    } catch (e) {
-        return null;
-    }
+    });
 }
 
 export class OcrProcessor {
-    constructor(cancellable, activeProcesses, notifyErrorFn, logDebugFn) {
+    constructor(cancellable, activeProcesses, logDebugFn) {
         this._cancellable = cancellable;
         this._activeProcesses = activeProcesses;
-        this._notifyError = notifyErrorFn;
         this._logDebug = logDebugFn || function() {};
     }
 
@@ -196,30 +199,23 @@ export class OcrProcessor {
     }
 
     async _preprocess(imagePath) {
-        let info = _analyzeImage(imagePath);
         let width = 0;
         let height = 0;
         let brightness = 0.5;
 
-        if (info) {
-            width = info.width;
-            height = info.height;
-            brightness = info.brightness;
-        } else {
-            let [format, w, h] = GdkPixbuf.Pixbuf.get_file_info(imagePath);
-            if (format) {
-                width = w;
-                height = h;
-            }
+        let [format, w, h] = GdkPixbuf.Pixbuf.get_file_info(imagePath);
+        if (format) {
+            width = w;
+            height = h;
         }
 
-        let scale = 1;
+        brightness = await _readBrightness(imagePath, this._cancellable);
+
         if (GLib.find_program_in_path('mogrify')) {
             let factor = _upscaleFactor(width, height);
             let args = ['mogrify', '-colorspace', 'Gray', '-contrast-stretch', '2%x2%'];
             if (factor > 0) {
                 args.push('-resize', `${factor * 100}%`);
-                scale = factor;
             }
             args.push('-sharpen', '0x1');
             if (brightness < 0.45) {
@@ -233,7 +229,7 @@ export class OcrProcessor {
             this._activeProcesses.delete(mogrify);
         }
 
-        return { width, height, brightness, scale };
+        return { width, height, brightness };
     }
 
     async _negate(path) {
@@ -327,7 +323,7 @@ export class OcrProcessor {
         }
 
         if (rows.length === 0) {
-            return { text: '', confidence: 0, wordCount: 0, charCount: 0, garbageRatio: 0, rows };
+            return { text: '', confidence: 0, wordCount: 0, charCount: 0, garbageRatio: 0 };
         }
 
         let text = '';
@@ -353,7 +349,7 @@ export class OcrProcessor {
 
         this._logDebug(`PSM ${psm}: conf=${confidence.toFixed(1)} words=${rows.length} chars=${charCount} garbage=${garbageRatio.toFixed(2)}`);
 
-        return { text, confidence, wordCount: rows.length, charCount, garbageRatio, rows };
+        return { text, confidence, wordCount: rows.length, charCount, garbageRatio };
     }
 
     _routePsm(width, height) {
@@ -380,39 +376,6 @@ export class OcrProcessor {
 
     _cleanupText(text) {
         return text.replace(/\n{3,}/g, '\n\n').trim();
-    }
-
-    _lineTextAt(rows, cursorX, cursorY) {
-        let hit = rows.find(r =>
-            cursorX >= r.left && cursorX <= r.left + r.width &&
-            cursorY >= r.top && cursorY <= r.top + r.height
-        );
-
-        if (!hit) {
-            let best = null;
-            let bestDist = 80;
-            for (let r of rows) {
-                let cx = r.left + r.width / 2;
-                let cy = r.top + r.height / 2;
-                let d = Math.hypot(cursorX - cx, cursorY - cy);
-                if (d < bestDist) {
-                    bestDist = d;
-                    best = r;
-                }
-            }
-            hit = best;
-        }
-
-        if (!hit) {
-            return '';
-        }
-
-        return rows
-            .filter(r => r.block === hit.block && r.par === hit.par && r.line === hit.line)
-            .sort((a, b) => a.word - b.word)
-            .map(r => r.text)
-            .join(' ')
-            .trim();
     }
 
     async _ocrMultiPass(imagePath, langs, width, height, brightness) {
@@ -470,38 +433,6 @@ export class OcrProcessor {
 
         let dims = await this._preprocess(imagePath);
         if (this._isCancelled()) return null;
-
-        return this._ocrMultiPass(imagePath, langs, dims.width, dims.height, dims.brightness);
-    }
-
-    async processSmartImage(imagePath, cursorX, cursorY) {
-        this._logDebug(`Smart extraction at (${cursorX}, ${cursorY})`);
-
-        let qrText = await this._readQrCode(imagePath);
-        if (qrText && !this._isCancelled()) {
-            this._logDebug('QR code detected in smart pass.');
-            return { text: qrText, isQr: true };
-        }
-
-        let langs = await this._availableTesseractLanguages();
-        if (this._isCancelled()) return null;
-
-        let dims = await this._preprocess(imagePath);
-        if (this._isCancelled()) return null;
-
-        let res = await this._runTesseract(imagePath, 6, langs);
-        if (this._isCancelled()) return null;
-
-        if (res && res.rows.length > 0) {
-            let lineText = this._lineTextAt(res.rows, cursorX * dims.scale, cursorY * dims.scale);
-            if (lineText && !isGibberish(lineText)) {
-                return { text: this._cleanupText(lineText), isQr: false };
-            }
-        }
-
-        if (res && this._acceptable(res)) {
-            return { text: this._cleanupText(res.text), isQr: false };
-        }
 
         return this._ocrMultiPass(imagePath, langs, dims.width, dims.height, dims.brightness);
     }

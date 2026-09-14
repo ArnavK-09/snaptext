@@ -4,7 +4,6 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import * as MessageTray from 'resource:///org/gnome/shell/ui/messageTray.js';
-import * as Animation from 'resource:///org/gnome/shell/ui/animation.js';
 import St from 'gi://St';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
@@ -16,7 +15,6 @@ import Soup from 'gi://Soup';
 import { OcrProcessor } from './ocr.js';
 import { getMissingAppsErrorDialog } from './dependencies.js';
 import { SelectionUI } from './selection.js';
-import { SmartMenu } from './smartmenu.js';
 
 const HISTORY_LIMIT = 15;
 const HISTORY_LABEL_LIMIT = 40;
@@ -36,17 +34,20 @@ export default class SnapTextExtension extends Extension {
         this._historySection = null;
         this._soupSession = new Soup.Session();
 
-        this._smartMenuContext = new SmartMenu(this);
-        
         this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
         this._indicatorIcon = new St.Icon({
             gicon: Gio.FileIcon.new(this.dir.get_child('trayicon.svg')),
             style_class: 'system-status-icon',
         });
-        this._indicatorSpinner = new Animation.Spinner(16);
-        this._indicatorSpinner.visible = false;
+        this._busyIcon = new St.Icon({
+            icon_name: 'image-loading-symbolic',
+            style_class: 'system-status-icon',
+        });
+        this._busyIcon.set_pivot_point(0.5, 0.5);
+        this._busyIcon.visible = false;
+        this._busyId = 0;
         this._indicator.add_child(this._indicatorIcon);
-        this._indicator.add_child(this._indicatorSpinner);
+        this._indicator.add_child(this._busyIcon);
         
         this._indicator.visible = this._settings.get_boolean('show-tray-icon');
 
@@ -115,27 +116,38 @@ export default class SnapTextExtension extends Extension {
 
     _notifyError(msg) {
         this._logDebug(`Error: ${msg}`, true);
-        Main.notify(_('Snap Text Error'), msg);
+        this._showNotification(_('Snap Text Error'), msg);
     }
 
     _setBusy(busy) {
-        if (!this._indicatorIcon || !this._indicatorSpinner) {
+        if (!this._indicatorIcon || !this._busyIcon) {
             return;
         }
 
         if (busy) {
+            this._indicator.visible = true;
             this._indicatorIcon.visible = false;
-            this._indicatorSpinner.visible = true;
-            this._indicatorSpinner.play();
+            this._busyIcon.visible = true;
+            if (!this._busyId) {
+                this._busyId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 50, () => {
+                    this._busyIcon.rotation_angle_z = (this._busyIcon.rotation_angle_z + 24) % 360;
+                    return GLib.SOURCE_CONTINUE;
+                });
+            }
         } else {
-            this._indicatorSpinner.stop();
-            this._indicatorSpinner.visible = false;
+            if (this._busyId) {
+                GLib.source_remove(this._busyId);
+                this._busyId = 0;
+            }
+            this._busyIcon.rotation_angle_z = 0;
+            this._busyIcon.visible = false;
             this._indicatorIcon.visible = true;
+            this._indicator.visible = this._settings.get_boolean('show-tray-icon');
         }
     }
 
     _onSettingsChanged(_settings, key) {
-        if (key === 'shortcut-trigger' || key === 'smart-shortcut-trigger' || key === 'enable-smart-click' || key === 'enable-shortcut') {
+        if (key === 'shortcut-trigger' || key === 'enable-shortcut') {
             this._bindShortcut();
             return;
         }
@@ -283,7 +295,6 @@ export default class SnapTextExtension extends Extension {
 
     _bindShortcut() {
         Main.wm.removeKeybinding('shortcut-trigger');
-        Main.wm.removeKeybinding('smart-shortcut-trigger');
         
         Main.wm.addKeybinding(
             'shortcut-trigger',
@@ -294,22 +305,6 @@ export default class SnapTextExtension extends Extension {
                 if (!this._settings.get_boolean('enable-shortcut')) return;
                 this._logDebug('Main shortcut triggered.');
                 this._triggerExtraction();
-            }
-        );
-
-        Main.wm.addKeybinding(
-            'smart-shortcut-trigger',
-            this._settings,
-            Meta.KeyBindingFlags.NONE,
-            Shell.ActionMode.NORMAL | Shell.ActionMode.OVERVIEW,
-            () => {
-                if (!this._settings.get_boolean('enable-smart-click')) return;
-                this._logDebug('Smart pointer shortcut triggered.');
-                let [x, y, mods] = global.get_pointer();
-                
-                this._smartMenuContext.trigger(Math.round(x), Math.round(y)).catch(error => {
-                    this._logDebug(`Smart click extraction failed: ${error}`, true);
-                });
             }
         );
     }
@@ -505,11 +500,6 @@ export default class SnapTextExtension extends Extension {
 
         if (area.w === 0 && area.h === 0) {
             cleanupSelectionUI();
-            if (this._settings.get_boolean('click-to-smart-snap')) {
-                this._smartMenuContext.trigger(area.x, area.y).catch(error => {
-                    this._logDebug(`Smart click extraction failed: ${error}`, true);
-                });
-            }
             return;
         }
 
@@ -540,7 +530,7 @@ export default class SnapTextExtension extends Extension {
             cleanupSelectionUI();
 
             if (gotScreenshot && !this._isCancelled(currentCancellable)) {
-                const ocrProcessor = new OcrProcessor(currentCancellable, this._activeProcesses, (msg) => this._notifyError(msg), this._logDebug.bind(this));
+                const ocrProcessor = new OcrProcessor(currentCancellable, this._activeProcesses, this._logDebug.bind(this));
                 let result = await ocrProcessor.processImage(imagePath);
                 
                 if (!this._isCancelled(currentCancellable) && result !== null && result.text) {
@@ -603,9 +593,9 @@ export default class SnapTextExtension extends Extension {
     }
 
     disable() {
-        if (this._smartMenuContext) {
-            this._smartMenuContext.destroy();
-            this._smartMenuContext = null;
+        if (this._busyId) {
+            GLib.source_remove(this._busyId);
+            this._busyId = 0;
         }
 
         if (this._soupSession) {
@@ -635,7 +625,6 @@ export default class SnapTextExtension extends Extension {
         }
         
         Main.wm.removeKeybinding('shortcut-trigger');
-        Main.wm.removeKeybinding('smart-shortcut-trigger');
 
         if (this._settings) {
             this._settings.disconnectObject(this);

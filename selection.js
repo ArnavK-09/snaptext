@@ -44,7 +44,7 @@ export const SelectionUI = GObject.registerClass(
             this._selectionBox = new St.Widget({
                 reactive: false,
                 can_focus: false,
-                style: 'border: 2px solid #E95420; background-color: rgba(233, 84, 32, 0.2);',
+                style: 'border: 2px solid #ffffff; background-color: rgba(255, 255, 255, 0.15);',
             });
             
             this._selectionBox.set_position(0, 0);

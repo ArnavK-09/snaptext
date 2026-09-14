@@ -10,10 +10,6 @@ const COPY_ICON_RESET_MS = 2000;
 function checkDependencies() {
     let missing = [];
 
-    if (!GLib.find_program_in_path('gnome-screenshot')) {
-        missing.push('gnome-screenshot');
-    }
-    
     if (!GLib.find_program_in_path('zbarimg')) {
         missing.push('zbarimg');
     }
@@ -45,7 +41,6 @@ function getCombinedInstallCommand(missingApps) {
     let packages = [];
 
     if (isFedoraLike) {
-        if (missingApps.includes('gnome-screenshot')) packages.push('gnome-screenshot');
         if (missingApps.includes('zbarimg')) packages.push('zbar');
         if (missingApps.includes('tesseract')) packages.push('tesseract tesseract-langpack-eng');
         if (missingApps.includes('imagemagick')) packages.push('ImageMagick');
@@ -56,7 +51,6 @@ function getCombinedInstallCommand(missingApps) {
     }
 
     if (isArchLike) {
-        if (missingApps.includes('gnome-screenshot')) packages.push('gnome-screenshot');
         if (missingApps.includes('zbarimg')) packages.push('zbar');
         if (missingApps.includes('tesseract')) packages.push('tesseract tesseract-data-eng');
         if (missingApps.includes('imagemagick')) packages.push('imagemagick');
@@ -67,7 +61,6 @@ function getCombinedInstallCommand(missingApps) {
     }
 
     if (isDebianLike) {
-        if (missingApps.includes('gnome-screenshot')) packages.push('gnome-screenshot');
         if (missingApps.includes('zbarimg')) packages.push('zbar-tools');
         if (missingApps.includes('tesseract')) packages.push('tesseract-ocr tesseract-ocr-eng');
         if (missingApps.includes('imagemagick')) packages.push('imagemagick');
@@ -118,7 +111,6 @@ const DependencyErrorDialog = GObject.registerClass(
             });
 
             const packageDescriptions = {
-                'gnome-screenshot': _('Captures the selected area of your screen.'),
                 'tesseract': _('The core OCR engine that reads text from images.'),
                 'imagemagick': _('Improves image contrast and quality for better OCR.'),
                 'zbarimg': _('Detects and decodes QR codes from the screen.')
