@@ -244,6 +244,14 @@ export class OcrProcessor {
       }
       desired.push("eng");
 
+      // Use every installed language pack so non-locale scripts (e.g. Hindi
+      // on an English desktop) are also available for OCR.
+      for (let lang of available) {
+        if (lang !== "osd") {
+          desired.push(lang);
+        }
+      }
+
       let result = [];
       let seen = new Set();
       for (let lang of desired) {
