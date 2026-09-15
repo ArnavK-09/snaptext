@@ -70,6 +70,10 @@ if [ -f trayicon.svg ]; then
     cp trayicon.svg "$BUILD_DIR/"
 fi
 
+if [ -f spinner.svg ]; then
+    cp spinner.svg "$BUILD_DIR/"
+fi
+
 if [ -f LICENSE ]; then
     cp LICENSE "$BUILD_DIR/"
 fi
@@ -95,6 +99,10 @@ if command -v gnome-extensions &> /dev/null; then
 
     if [ -f "$BUILD_DIR/trayicon.svg" ]; then
         PACK_ARGS+=("--extra-source=trayicon.svg")
+    fi
+
+    if [ -f "$BUILD_DIR/spinner.svg" ]; then
+        PACK_ARGS+=("--extra-source=spinner.svg")
     fi
 
     if [ -f "$BUILD_DIR/stylesheet.css" ]; then
@@ -169,6 +177,10 @@ fi
 
 if [ -f "$BUILD_DIR/trayicon.svg" ]; then
     cp "$BUILD_DIR/trayicon.svg" "$EXTENSION_DIR/"
+fi
+
+if [ -f "$BUILD_DIR/spinner.svg" ]; then
+    cp "$BUILD_DIR/spinner.svg" "$EXTENSION_DIR/"
 fi
 
 if [ -f "$BUILD_DIR/LICENSE" ]; then

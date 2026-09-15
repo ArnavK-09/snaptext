@@ -1,11 +1,16 @@
 # Snap Text Extractor
 
+> [!NOTE]
+> This is a personal-use fork by [ArnavK-09](https://github.com/ArnavK-09) of the original [snaptext](https://github.com/cwittenberg/snaptext) extension. All credit goes to the original authors.
+
 GNOME Extension enabling the user to select an area of the screen to instantly extract and copy text to the clipboard using native Optical Character Recognition (OCR). Similar to how it works on MacOS.
 
 ## Video impression
+
 <img width="1280" height="1068" alt="output" src="https://github.com/user-attachments/assets/f568e0dd-49d0-4ca8-98c5-201a642b3c09" />
 
 ## Screenshots
+
 Tray extension - that allows you to keep history of snapped texts:
 <img width="685" height="538" alt="Tray with history" src="https://github.com/user-attachments/assets/4a286975-2ada-4b0a-a6ef-b329acea276a" />
 
@@ -20,15 +25,15 @@ Advanced settings, also offering instant Translate capability:
 
 ## Features
 
-* **Instant Text Extraction:** Select any part of your screen, and the text within that area is instantly processed and copied to your clipboard.
-* **Smart OCR Preprocessing:** Utilizes ImageMagick to maximize Text Recognition accuracy by automatically converting to grayscale, maximizing contrast, upscaling small screen snips, and smartly negating colors for Dark Mode UIs.
-* **Multi-Pass OCR Routing:** Dynamically adjusts Page Segmentation Modes (PSM) based on aspect ratio, executing primary and fallback OCR passes to determine the most accurate text based on confidence and garbage ratios.
-* **QR Code Detection:** Instantly detects and decodes QR codes using `zbar`, with an optional setting to automatically open HTTP/HTTPS links.
-* **Auto-Translation (Experimental):** Automatically translates extracted text to your target language using Google Translate.
-* **Extraction History:** Access a history of your 15 most recent text extractions from the GNOME Shell top panel menu.
-* **Customizable Shortcut:** Set your own keyboard shortcut. The default is `Super + Shift + T`.
-* **Visual Notifications:** Get system banner notifications when text is extracted or when you copy a previous extraction from your history.
-* **Seamless GNOME Integration:** Built exclusively for GNOME Shell versions 45 through 50 using modern standard APIs.
+- **Instant Text Extraction:** Select any part of your screen, and the text within that area is instantly processed and copied to your clipboard.
+- **Smart OCR Preprocessing:** Utilizes ImageMagick to maximize Text Recognition accuracy by automatically converting to grayscale, maximizing contrast, upscaling small screen snips, and smartly negating colors for Dark Mode UIs.
+- **Multi-Pass OCR Routing:** Dynamically adjusts Page Segmentation Modes (PSM) based on aspect ratio, executing primary and fallback OCR passes to determine the most accurate text based on confidence and garbage ratios.
+- **QR Code Detection:** Instantly detects and decodes QR codes using `zbar`, with an optional setting to automatically open HTTP/HTTPS links.
+- **Auto-Translation (Experimental):** Automatically translates extracted text to your target language using Google Translate.
+- **Extraction History:** Access a history of your 15 most recent text extractions from the GNOME Shell top panel menu.
+- **Customizable Shortcut:** Set your own keyboard shortcut. The default is `Super + Shift + T`.
+- **Visual Notifications:** Get system banner notifications when text is extracted or when you copy a previous extraction from your history.
+- **Seamless GNOME Integration:** Built exclusively for GNOME Shell versions 45 through 50 using modern standard APIs.
 
 ## System Dependencies
 
@@ -71,9 +76,9 @@ sudo pacman -S tesseract tesseract-data-eng zbar imagemagick
 ```
 
 3. Restart GNOME Shell:
-* **Wayland:** Log out and log back in.
-* **X11:** Press `Alt + F2`, type `r`, and press `Enter`.
 
+- **Wayland:** Log out and log back in.
+- **X11:** Press `Alt + F2`, type `r`, and press `Enter`.
 
 4. Enable the extension using the GNOME Extensions app or run:
 
@@ -90,15 +95,15 @@ sudo pacman -S tesseract tesseract-data-eng zbar imagemagick
 
 ## TODO
 
-* Language selection. Extension simply uses all available languages in Tesseract. User must be able to turn them on/off
-* History length. Would be nice to have a slider to determine how much history to keep track of
-* Math recognition. No good Tesseract library exists yet that could do so, as a consequence plugin cannot properly recognize math.
+- Language selection. Extension simply uses all available languages in Tesseract. User must be able to turn them on/off
+- History length. Would be nice to have a slider to determine how much history to keep track of
+- Math recognition. No good Tesseract library exists yet that could do so, as a consequence plugin cannot properly recognize math.
 
 ## Support & Feedback
 
-* **Report a Bug:** [Issue Tracker](https://github.com/cwittenberg/snaptext/issues/new?template=bug_report.md)
-* **Request a Feature:** [Feature Requests](https://github.com/cwittenberg/snaptext/issues/new?template=feature_request.md)
-* **Support the Developer:** [Buy me a coffee ☕](https://ko-fi.com/cwittenberg)
+- **Report a Bug:** [Issue Tracker](https://github.com/cwittenberg/snaptext/issues/new?template=bug_report.md)
+- **Request a Feature:** [Feature Requests](https://github.com/cwittenberg/snaptext/issues/new?template=feature_request.md)
+- **Support the Developer:** [Buy me a coffee ☕](https://ko-fi.com/cwittenberg)
 
 ## Disclaimer
 
