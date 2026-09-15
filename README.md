@@ -36,12 +36,29 @@ sudo dnf install tesseract tesseract-langpack-eng zbar ImageMagick
 
 ```
 
-### Arch Linux / Manjaro
+### Arch Linux / Manjaro / CatchyOS
 
 ```bash
 sudo pacman -S tesseract tesseract-data-eng zbar imagemagick
 
 ```
+
+### Additional OCR Languages
+
+Install the Tesseract language pack for any script you want to recognize, then restart GNOME Shell:
+
+```bash
+# Hindi
+sudo pacman -S tesseract-data-hin
+
+# Simplified Chinese
+sudo pacman -S tesseract-data-chi_sim
+
+# Japanese
+sudo pacman -S tesseract-data-jpn
+```
+
+The extension automatically uses every installed language pack.
 
 ## Installation
 
