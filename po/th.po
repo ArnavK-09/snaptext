@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-20 16:41+0200\n"
+"POT-Creation-Date: 2026-09-15 10:03+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,238 +16,181 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:113
+#: extension.js:50
+msgid "Waiting…"
+msgstr ""
+
+#: extension.js:144
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "สแน็ปข้อความ"
 
 #: extension.js:157
+#, fuzzy
+msgid "Starting…"
+msgstr "การตั้งค่า"
+
+#: extension.js:203
+msgid "Processing…"
+msgstr ""
+
+#: extension.js:211
+msgid "Cancel in-progress OCR"
+msgstr ""
+
+#: extension.js:259
 msgid "No history yet"
 msgstr "ยังไม่มีประวัติ"
 
-#: extension.js:186 prefs.js:352
-msgid "Auto-Translate Text"
-msgstr "แปลข้อความอัตโนมัติ"
-
-#: extension.js:256
+#: extension.js:362
 #, fuzzy
 msgid "Text copied"
 msgstr "ข้อความที่แยกออกมา"
 
-#: extension.js:407
-msgid "Translation Error"
-msgstr "ข้อผิดพลาดในการแปล"
+#: extension.js:603
+msgid "Could not capture screenshot."
+msgstr ""
 
-#: extension.js:407
-msgid "Could not connect to Google Translate."
-msgstr "ไม่สามารถเชื่อมต่อกับ Google แปลภาษา"
-
-#: extension.js:562
+#: extension.js:623
 msgid "Snap Text"
 msgstr "สแน็ปข้อความ"
 
-#: extension.js:562
+#: extension.js:623
 #, fuzzy
 msgid "No text found."
 msgstr "ไม่พบข้อความในส่วนที่เลือก"
 
-#: extension.js:578
+#: extension.js:638
 #, fuzzy
 msgid "Text extracted"
 msgstr "ข้อความที่แยกออกมา"
 
-#: prefs.js:49 prefs.js:92
+#: prefs.js:47 prefs.js:119
 msgid "Disabled"
 msgstr "พิการ"
 
-#: prefs.js:69
+#: prefs.js:88
 msgid "Press keys..."
 msgstr "กดปุ่ม..."
 
-#: prefs.js:136
+#: prefs.js:174
 msgid "General"
 msgstr "ทั่วไป"
 
-#: prefs.js:142
+#: prefs.js:181
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr "แยกและคัดลอกข้อความไปยังคลิปบอร์ดของคุณได้ทันทีจากทุกที่บนหน้าจอ"
 
-#: prefs.js:153
+#: prefs.js:193
 msgid "System Tray & UI"
 msgstr ""
 
-#: prefs.js:157
+#: prefs.js:197
 msgid "Show Tray Icon"
 msgstr ""
 
-#: prefs.js:158
+#: prefs.js:198
 msgid "Display the extension icon in the system top panel."
 msgstr ""
 
-#: prefs.js:171
+#: prefs.js:217
 msgid "Show Extracted Text Notification"
 msgstr "แสดงการแจ้งเตือนข้อความที่แยกออกมา"
 
-#: prefs.js:172
+#: prefs.js:219
 msgid "Displays a system banner containing your copied text context."
 msgstr "แสดงแบนเนอร์ระบบที่มีบริบทข้อความที่คุณคัดลอก"
 
-#: prefs.js:185
+#: prefs.js:239
 msgid "Enable Extraction History"
 msgstr "เปิดใช้งานประวัติการแยกข้อมูล"
 
-#: prefs.js:186
+#: prefs.js:241
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "เก็บประวัติการแยกข้อมูลล่าสุดได้สูงสุด 15 รายการในเมนูบริบท"
 
-#: prefs.js:201
+#: prefs.js:263
 #, fuzzy
 msgid "Area Extraction"
 msgstr "เปิดใช้งานประวัติการแยกข้อมูล"
 
-#: prefs.js:205
+#: prefs.js:267
 #, fuzzy
 msgid "Enable Area Selection Shortcut"
 msgstr "ทริกเกอร์แป้นพิมพ์ลัด"
 
-#: prefs.js:206
+#: prefs.js:268
 msgid "Trigger crosshair to draw a box around text to extract."
 msgstr ""
 
-#: prefs.js:220
+#: prefs.js:289
 #, fuzzy
 msgid "Area Selection Shortcut"
 msgstr "พฤติกรรมและทางลัด"
 
-#: prefs.js:221
+#: prefs.js:290
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr "คลิกเพื่อตั้งค่าทางลัด กด Esc เพื่อยกเลิก กด Backspace เพื่อปิดใช้งาน"
 
-#: prefs.js:229
-msgid "Smart Extraction"
-msgstr ""
-
-#: prefs.js:230
-msgid ""
-"Smart extraction instantly reads text, parses links, and detects data "
-"directly beneath your cursor without needing to draw a box."
-msgstr ""
-
-#: prefs.js:234
-#, fuzzy
-msgid "Enable Smart Extraction"
-msgstr "เปิดใช้งานประวัติการแยกข้อมูล"
-
-#: prefs.js:235
-msgid "Master toggle for pointer-based text extraction features."
-msgstr ""
-
-#: prefs.js:248
-msgid "Single-Click Smart Snap"
-msgstr ""
-
-#: prefs.js:249
-msgid ""
-"Extract text at the pointer location with a single click instead of dragging "
-"a box."
-msgstr ""
-
-#: prefs.js:264
-#, fuzzy
-msgid "Smart Extraction Shortcut"
-msgstr "เปิดใช้งานประวัติการแยกข้อมูล"
-
-#: prefs.js:265
-msgid "Key combination to trigger extraction exactly at pointer location."
-msgstr ""
-
-#: prefs.js:277
+#: prefs.js:304
 msgid "Advanced"
 msgstr "ขั้นสูง"
 
-#: prefs.js:282
+#: prefs.js:309
 msgid "QR Codes"
 msgstr "รหัส QR"
 
-#: prefs.js:286
+#: prefs.js:313
 msgid "Auto-Open URLs"
 msgstr "URL เปิดอัตโนมัติ"
 
-#: prefs.js:287
+#: prefs.js:314
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "เปิดลิงก์ HTTP/HTTPS ที่ตรวจพบในโค้ด QR โดยอัตโนมัติ"
 
-#: prefs.js:304
-msgid "Translation (Experimental)"
-msgstr "การแปล (ทดลอง)"
-
-#: prefs.js:331
-msgid "Privacy warning"
-msgstr "คำเตือนความเป็นส่วนตัว"
-
 #: prefs.js:337
-msgid ""
-"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
-"guaranteed when enabled."
-msgstr ""
-"การแปลอัตโนมัติจะส่งข้อความที่แยกออกมาไปยัง Google แปลภาษา "
-"ไม่สามารถรับประกันความเป็นส่วนตัวได้เมื่อเปิดใช้งาน"
-
-#: prefs.js:353
-msgid "Automatically translate extracted text to your target language."
-msgstr "แปลข้อความที่แยกออกมาเป็นภาษาเป้าหมายของคุณโดยอัตโนมัติ"
-
-#: prefs.js:368
-msgid "Target Language Code"
-msgstr "รหัสภาษาเป้าหมาย"
-
-#: prefs.js:369
-msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
-msgstr "เช่น en, fr, es, zh เว้นว่างไว้เพื่อใช้ภาษาเริ่มต้นของระบบ"
-
-#: prefs.js:388
 msgid "Logging"
 msgstr "การบันทึก"
 
-#: prefs.js:392
+#: prefs.js:341
 msgid "Enable Debug Logging"
 msgstr "เปิดใช้งานการบันทึกการแก้ไขข้อบกพร่อง"
 
-#: prefs.js:393
+#: prefs.js:343
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "ส่งออก OCR โดยละเอียดและบันทึกกระบวนการไปยังเจอร์นัลระบบ"
 
-#: prefs.js:414
+#: prefs.js:371
 msgid "About"
 msgstr ""
 
-#: prefs.js:449
+#: prefs.js:409
 #, fuzzy, javascript-format
 msgid "Version %s"
 msgstr "เวอร์ชัน"
 
-#: prefs.js:453
+#: prefs.js:413
 msgid "by Christian Wittenberg"
 msgstr ""
 
-#: prefs.js:470
+#: prefs.js:432
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "ซื้อกาแฟให้ฉันหน่อย ☕"
 
-#: prefs.js:471
+#: prefs.js:439
 #, fuzzy
 msgid "Report a Bug 🐞"
 msgstr "รายงานข้อผิดพลาด 🐛"
 
-#: prefs.js:472
+#: prefs.js:445
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "ขอคุณสมบัติ 🚀"
 
-#: prefs.js:476
+#: prefs.js:453
 msgid ""
 "<b>Disclaimer</b>\n"
 "Optical Character Recognition (OCR) and smart data extraction are inherently "
@@ -259,139 +202,44 @@ msgid ""
 "incomplete data extracted by this tool. Use this extension at your own risk."
 msgstr ""
 
-#: dependencies.js:97
+#: dependencies.js:99
 #, fuzzy, javascript-format
 msgid "Missing dependencies: %s"
 msgstr "ขาดการพึ่งพาระบบ: %s"
 
-#: dependencies.js:98
+#: dependencies.js:100
 #, fuzzy, javascript-format
 msgid "Missing dependency: %s"
 msgstr "ขาดการพึ่งพาระบบ: %s"
 
-#: dependencies.js:107
+#: dependencies.js:110
 msgid ""
 "Please install the required packages and try again to enable all features."
 msgstr "โปรดติดตั้งแพ็คเกจที่จำเป็นแล้วลองอีกครั้งเพื่อเปิดใช้งานคุณสมบัติทั้งหมด"
 
-#: dependencies.js:121
-msgid "Captures the selected area of your screen."
-msgstr "จับภาพพื้นที่ที่เลือกของหน้าจอของคุณ"
-
-#: dependencies.js:122
+#: dependencies.js:126
 msgid "The core OCR engine that reads text from images."
 msgstr "เอ็นจิ้น OCR หลักที่อ่านข้อความจากรูปภาพ"
 
-#: dependencies.js:123
+#: dependencies.js:127
 msgid "Improves image contrast and quality for better OCR."
 msgstr "ปรับปรุงคอนทราสต์และคุณภาพของภาพเพื่อ OCR ที่ดีขึ้น"
 
-#: dependencies.js:124
+#: dependencies.js:128
 msgid "Detects and decodes QR codes from the screen."
 msgstr "ตรวจจับและถอดรหัสรหัส QR จากหน้าจอ"
 
-#: dependencies.js:139
+#: dependencies.js:143
 msgid "Required dependency."
 msgstr "การพึ่งพาที่จำเป็น"
 
-#: dependencies.js:153
+#: dependencies.js:158
 msgid ""
 "Open a Terminal and run the following command to install the missing "
 "dependencies from the official repositories:"
 msgstr ""
 "เปิด Terminal แล้วรันคำสั่งต่อไปนี้เพื่อติดตั้งการขึ้นต่อกันที่ขาดหายไปจากที่เก็บข้อมูลอย่างเป็นทางการ:"
 
-#: dependencies.js:203
+#: dependencies.js:222
 msgid "Dismiss"
 msgstr "อนุญาตให้ออกไป"
-
-#: smartextractor.js:24
-msgid "Copy Clean Text"
-msgstr ""
-
-#: smartextractor.js:113
-msgid "Copy Link"
-msgstr ""
-
-#: smartextractor.js:129
-msgid "Copy Email"
-msgstr ""
-
-#: smartextractor.js:147
-msgid "Copy IPv4"
-msgstr ""
-
-#: smartextractor.js:183
-msgid "Copy IPv6"
-msgstr ""
-
-#: smartextractor.js:215
-msgid "Copy MAC Address"
-msgstr ""
-
-#: smartextractor.js:229 smartextractor.js:325
-msgid "Copy Number"
-msgstr ""
-
-#: smartextractor.js:241
-msgid "Copy UUID"
-msgstr ""
-
-#: smartextractor.js:253
-msgid "Copy Hex Color"
-msgstr ""
-
-#: smartextractor.js:266
-msgid "Copy Date"
-msgstr ""
-
-#: smartextractor.js:278
-msgid "Copy Phone"
-msgstr ""
-
-#: smartmenu.js:219
-#, javascript-format
-msgid "Copy text (%s)"
-msgstr ""
-
-#: smartmenu.js:227
-msgid "Extracted Data:"
-msgstr ""
-
-#~ msgid "Settings"
-#~ msgstr "การตั้งค่า"
-
-#~ msgid "Allow triggering extraction via a keyboard shortcut."
-#~ msgstr "อนุญาตให้เรียกใช้การดึงข้อมูลโดยใช้แป้นพิมพ์ลัด"
-
-#~ msgid "Keyboard Shortcut Trigger"
-#~ msgstr "ทริกเกอร์แป้นพิมพ์ลัด"
-
-#~ msgid "Developer Details"
-#~ msgstr "รายละเอียดผู้พัฒนา"
-
-#~ msgid "Author"
-#~ msgstr "ผู้เขียน"
-
-#~ msgid "Snap Text Configuration"
-#~ msgstr "การกำหนดค่าข้อความ Snap"
-
-#~ msgid "Text Copied from History"
-#~ msgstr "ข้อความที่คัดลอกมาจากประวัติศาสตร์"
-
-#~ msgid ""
-#~ "This extension requires native system tools to perform OCR text "
-#~ "extraction. To get the extension working, open your terminal and run the "
-#~ "command below to install the base dependencies.\n"
-#~ "\n"
-#~ "Tip: Tesseract will automatically detect and use ANY language packs you "
-#~ "have installed on your system! Simply install additional languages (e.g., "
-#~ "tesseract-ocr-deu, tesseract-ocr-chi-sim) via your package manager to "
-#~ "enable them."
-#~ msgstr ""
-#~ "ส่วนขยายนี้ต้องใช้เครื่องมือระบบเนทิฟเพื่อทำการแยกข้อความ OCR เพื่อให้ส่วนขยายใช้งานได้ "
-#~ "ให้เปิดเทอร์มินัลแล้วรันคำสั่งด้านล่างเพื่อติดตั้งการขึ้นต่อกันพื้นฐาน\n"
-#~ "\n"
-#~ "เคล็ดลับ: Tesseract จะตรวจจับและใช้ชุดภาษาใดๆ ที่คุณติดตั้งไว้ในระบบของคุณโดยอัตโนมัติ! "
-#~ "เพียงติดตั้งภาษาเพิ่มเติม (เช่น tesseract-ocr-deu, tesseract-ocr-chi-sim) "
-#~ "ผ่านตัวจัดการแพ็คเกจของคุณเพื่อเปิดใช้งาน"

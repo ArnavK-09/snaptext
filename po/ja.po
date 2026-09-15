@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-20 16:41+0200\n"
+"POT-Creation-Date: 2026-09-15 10:03+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,243 +17,184 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: extension.js:113
+#: extension.js:50
+msgid "Waiting…"
+msgstr ""
+
+#: extension.js:144
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "スナップテキスト"
 
 #: extension.js:157
+#, fuzzy
+msgid "Starting…"
+msgstr "設定"
+
+#: extension.js:203
+msgid "Processing…"
+msgstr ""
+
+#: extension.js:211
+msgid "Cancel in-progress OCR"
+msgstr ""
+
+#: extension.js:259
 msgid "No history yet"
 msgstr "まだ履歴がありません"
 
-#: extension.js:186 prefs.js:352
-msgid "Auto-Translate Text"
-msgstr "テキストの自動翻訳"
-
-#: extension.js:256
+#: extension.js:362
 #, fuzzy
 msgid "Text copied"
 msgstr "抽出されたテキスト"
 
-#: extension.js:407
-msgid "Translation Error"
-msgstr "翻訳エラー"
+#: extension.js:603
+msgid "Could not capture screenshot."
+msgstr ""
 
-#: extension.js:407
-msgid "Could not connect to Google Translate."
-msgstr "Google翻訳に接続できませんでした。"
-
-#: extension.js:562
+#: extension.js:623
 msgid "Snap Text"
 msgstr "スナップテキスト"
 
-#: extension.js:562
+#: extension.js:623
 #, fuzzy
 msgid "No text found."
 msgstr "選択範囲内にテキストが見つかりません。"
 
-#: extension.js:578
+#: extension.js:638
 #, fuzzy
 msgid "Text extracted"
 msgstr "抽出されたテキスト"
 
-#: prefs.js:49 prefs.js:92
+#: prefs.js:47 prefs.js:119
 msgid "Disabled"
 msgstr "無効"
 
-#: prefs.js:69
+#: prefs.js:88
 msgid "Press keys..."
 msgstr "キーを押してください..."
 
-#: prefs.js:136
+#: prefs.js:174
 msgid "General"
 msgstr "一般的な"
 
-#: prefs.js:142
+#: prefs.js:181
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr ""
 "画面上のどこからでも即座にテキストを抽出してクリップボードにコピーします。"
 
-#: prefs.js:153
+#: prefs.js:193
 msgid "System Tray & UI"
 msgstr ""
 
-#: prefs.js:157
+#: prefs.js:197
 msgid "Show Tray Icon"
 msgstr ""
 
-#: prefs.js:158
+#: prefs.js:198
 msgid "Display the extension icon in the system top panel."
 msgstr ""
 
-#: prefs.js:171
+#: prefs.js:217
 msgid "Show Extracted Text Notification"
 msgstr "抽出されたテキスト通知を表示"
 
-#: prefs.js:172
+#: prefs.js:219
 msgid "Displays a system banner containing your copied text context."
 msgstr "コピーしたテキスト コンテキストを含むシステム バナーを表示します。"
 
-#: prefs.js:185
+#: prefs.js:239
 msgid "Enable Extraction History"
 msgstr "抽出履歴を有効にする"
 
-#: prefs.js:186
+#: prefs.js:241
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "コンテキスト メニューに、最近の抽出の履歴を最大 15 件保存します。"
 
-#: prefs.js:201
+#: prefs.js:263
 #, fuzzy
 msgid "Area Extraction"
 msgstr "抽出履歴を有効にする"
 
-#: prefs.js:205
+#: prefs.js:267
 #, fuzzy
 msgid "Enable Area Selection Shortcut"
 msgstr "キーボードショートカットトリガー"
 
-#: prefs.js:206
+#: prefs.js:268
 msgid "Trigger crosshair to draw a box around text to extract."
 msgstr ""
 
-#: prefs.js:220
+#: prefs.js:289
 #, fuzzy
 msgid "Area Selection Shortcut"
 msgstr "動作とショートカット"
 
-#: prefs.js:221
+#: prefs.js:290
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "クリックしてショートカットを設定します。キャンセルするには Esc キーを押し、無"
 "効にするには Backspace キーを押します。"
 
-#: prefs.js:229
-msgid "Smart Extraction"
-msgstr ""
-
-#: prefs.js:230
-msgid ""
-"Smart extraction instantly reads text, parses links, and detects data "
-"directly beneath your cursor without needing to draw a box."
-msgstr ""
-
-#: prefs.js:234
-#, fuzzy
-msgid "Enable Smart Extraction"
-msgstr "抽出履歴を有効にする"
-
-#: prefs.js:235
-msgid "Master toggle for pointer-based text extraction features."
-msgstr ""
-
-#: prefs.js:248
-msgid "Single-Click Smart Snap"
-msgstr ""
-
-#: prefs.js:249
-msgid ""
-"Extract text at the pointer location with a single click instead of dragging "
-"a box."
-msgstr ""
-
-#: prefs.js:264
-#, fuzzy
-msgid "Smart Extraction Shortcut"
-msgstr "抽出履歴を有効にする"
-
-#: prefs.js:265
-msgid "Key combination to trigger extraction exactly at pointer location."
-msgstr ""
-
-#: prefs.js:277
+#: prefs.js:304
 msgid "Advanced"
 msgstr "高度な"
 
-#: prefs.js:282
+#: prefs.js:309
 msgid "QR Codes"
 msgstr "QRコード"
 
-#: prefs.js:286
+#: prefs.js:313
 msgid "Auto-Open URLs"
 msgstr "URLを自動で開く"
 
-#: prefs.js:287
+#: prefs.js:314
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "QR コードで検出された HTTP/HTTPS リンクを自動的に開きます。"
 
-#: prefs.js:304
-msgid "Translation (Experimental)"
-msgstr "翻訳 (実験的)"
-
-#: prefs.js:331
-msgid "Privacy warning"
-msgstr "プライバシーに関する警告"
-
 #: prefs.js:337
-msgid ""
-"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
-"guaranteed when enabled."
-msgstr ""
-"自動翻訳は、抽出されたテキストを Google 翻訳に送信します。有効にするとプライ"
-"バシーは保証されません。"
-
-#: prefs.js:353
-msgid "Automatically translate extracted text to your target language."
-msgstr "抽出されたテキストをターゲット言語に自動的に翻訳します。"
-
-#: prefs.js:368
-msgid "Target Language Code"
-msgstr "ターゲット言語コード"
-
-#: prefs.js:369
-msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
-msgstr ""
-"例: en、fr、es、zh。システムのデフォルト言語を使用するには、空のままにしま"
-"す。"
-
-#: prefs.js:388
 msgid "Logging"
 msgstr "ロギング"
 
-#: prefs.js:392
+#: prefs.js:341
 msgid "Enable Debug Logging"
 msgstr "デバッグログを有効にする"
 
-#: prefs.js:393
+#: prefs.js:343
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "詳細な OCR およびプロセス ログをシステム ジャーナルに出力します。"
 
-#: prefs.js:414
+#: prefs.js:371
 msgid "About"
 msgstr ""
 
-#: prefs.js:449
+#: prefs.js:409
 #, fuzzy, javascript-format
 msgid "Version %s"
 msgstr "バージョン"
 
-#: prefs.js:453
+#: prefs.js:413
 msgid "by Christian Wittenberg"
 msgstr ""
 
-#: prefs.js:470
+#: prefs.js:432
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "コーヒー買ってきて☕"
 
-#: prefs.js:471
+#: prefs.js:439
 #, fuzzy
 msgid "Report a Bug 🐞"
 msgstr "バグを報告する 🐛"
 
-#: prefs.js:472
+#: prefs.js:445
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "機能をリクエストする 🚀"
 
-#: prefs.js:476
+#: prefs.js:453
 msgid ""
 "<b>Disclaimer</b>\n"
 "Optical Character Recognition (OCR) and smart data extraction are inherently "
@@ -265,44 +206,40 @@ msgid ""
 "incomplete data extracted by this tool. Use this extension at your own risk."
 msgstr ""
 
-#: dependencies.js:97
+#: dependencies.js:99
 #, fuzzy, javascript-format
 msgid "Missing dependencies: %s"
 msgstr "欠落しているシステム依存関係: %s"
 
-#: dependencies.js:98
+#: dependencies.js:100
 #, fuzzy, javascript-format
 msgid "Missing dependency: %s"
 msgstr "欠落しているシステム依存関係: %s"
 
-#: dependencies.js:107
+#: dependencies.js:110
 msgid ""
 "Please install the required packages and try again to enable all features."
 msgstr ""
 "必要なパッケージをインストールし、すべての機能を有効にするために再試行してく"
 "ださい。"
 
-#: dependencies.js:121
-msgid "Captures the selected area of your screen."
-msgstr "画面の選択した領域をキャプチャします。"
-
-#: dependencies.js:122
+#: dependencies.js:126
 msgid "The core OCR engine that reads text from images."
 msgstr "画像からテキストを読み取るコア OCR エンジン。"
 
-#: dependencies.js:123
+#: dependencies.js:127
 msgid "Improves image contrast and quality for better OCR."
 msgstr "画像のコントラストと品質を向上させ、OCR を向上させます。"
 
-#: dependencies.js:124
+#: dependencies.js:128
 msgid "Detects and decodes QR codes from the screen."
 msgstr "画面から QR コードを検出してデコードします。"
 
-#: dependencies.js:139
+#: dependencies.js:143
 msgid "Required dependency."
 msgstr "必要な依存関係。"
 
-#: dependencies.js:153
+#: dependencies.js:158
 msgid ""
 "Open a Terminal and run the following command to install the missing "
 "dependencies from the official repositories:"
@@ -310,99 +247,6 @@ msgstr ""
 "ターミナルを開き、次のコマンドを実行して、不足している依存関係を公式リポジト"
 "リからインストールします。"
 
-#: dependencies.js:203
+#: dependencies.js:222
 msgid "Dismiss"
 msgstr "却下する"
-
-#: smartextractor.js:24
-msgid "Copy Clean Text"
-msgstr ""
-
-#: smartextractor.js:113
-msgid "Copy Link"
-msgstr ""
-
-#: smartextractor.js:129
-msgid "Copy Email"
-msgstr ""
-
-#: smartextractor.js:147
-msgid "Copy IPv4"
-msgstr ""
-
-#: smartextractor.js:183
-msgid "Copy IPv6"
-msgstr ""
-
-#: smartextractor.js:215
-msgid "Copy MAC Address"
-msgstr ""
-
-#: smartextractor.js:229 smartextractor.js:325
-msgid "Copy Number"
-msgstr ""
-
-#: smartextractor.js:241
-msgid "Copy UUID"
-msgstr ""
-
-#: smartextractor.js:253
-msgid "Copy Hex Color"
-msgstr ""
-
-#: smartextractor.js:266
-msgid "Copy Date"
-msgstr ""
-
-#: smartextractor.js:278
-msgid "Copy Phone"
-msgstr ""
-
-#: smartmenu.js:219
-#, javascript-format
-msgid "Copy text (%s)"
-msgstr ""
-
-#: smartmenu.js:227
-msgid "Extracted Data:"
-msgstr ""
-
-#~ msgid "Settings"
-#~ msgstr "設定"
-
-#~ msgid "Allow triggering extraction via a keyboard shortcut."
-#~ msgstr "キーボード ショートカットによる抽出のトリガーを許可します。"
-
-#~ msgid "Keyboard Shortcut Trigger"
-#~ msgstr "キーボードショートカットトリガー"
-
-#~ msgid "Developer Details"
-#~ msgstr "開発者の詳細"
-
-#~ msgid "Author"
-#~ msgstr "著者"
-
-#~ msgid "Snap Text Configuration"
-#~ msgstr "スナップテキスト構成"
-
-#~ msgid "Text Copied from History"
-#~ msgstr "履歴からコピーされたテキスト"
-
-#~ msgid ""
-#~ "This extension requires native system tools to perform OCR text "
-#~ "extraction. To get the extension working, open your terminal and run the "
-#~ "command below to install the base dependencies.\n"
-#~ "\n"
-#~ "Tip: Tesseract will automatically detect and use ANY language packs you "
-#~ "have installed on your system! Simply install additional languages (e.g., "
-#~ "tesseract-ocr-deu, tesseract-ocr-chi-sim) via your package manager to "
-#~ "enable them."
-#~ msgstr ""
-#~ "この拡張機能では、OCR テキスト抽出を実行するためにネイティブ システム ツー"
-#~ "ルが必要です。拡張機能を機能させるには、ターミナルを開き、以下のコマンドを"
-#~ "実行して基本の依存関係をインストールします。\n"
-#~ "\n"
-#~ "ヒント: Tesseract は、システムにインストールされている言語パックを自動的に"
-#~ "検出して使用します。パッケージ マネージャーを介して追加の言語 (tesseract-"
-#~ "ocr-deu、tesseract-ocr-chi-sim など) をインストールするだけで有効になりま"
-#~ "す。"

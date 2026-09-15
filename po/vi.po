@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-20 16:41+0200\n"
+"POT-Creation-Date: 2026-09-15 10:03+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,59 +17,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: extension.js:113
+#: extension.js:50
+msgid "Waiting…"
+msgstr ""
+
+#: extension.js:144
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Chụp văn bản"
 
 #: extension.js:157
+#, fuzzy
+msgid "Starting…"
+msgstr "Cài đặt"
+
+#: extension.js:203
+msgid "Processing…"
+msgstr ""
+
+#: extension.js:211
+msgid "Cancel in-progress OCR"
+msgstr ""
+
+#: extension.js:259
 msgid "No history yet"
 msgstr "Chưa có lịch sử"
 
-#: extension.js:186 prefs.js:352
-msgid "Auto-Translate Text"
-msgstr "Tự động dịch văn bản"
-
-#: extension.js:256
+#: extension.js:362
 #, fuzzy
 msgid "Text copied"
 msgstr "Đã trích xuất văn bản"
 
-#: extension.js:407
-msgid "Translation Error"
-msgstr "Lỗi dịch thuật"
+#: extension.js:603
+msgid "Could not capture screenshot."
+msgstr ""
 
-#: extension.js:407
-msgid "Could not connect to Google Translate."
-msgstr "Không thể kết nối với Google Dịch."
-
-#: extension.js:562
+#: extension.js:623
 msgid "Snap Text"
 msgstr "Chụp văn bản"
 
-#: extension.js:562
+#: extension.js:623
 #, fuzzy
 msgid "No text found."
 msgstr "Không tìm thấy văn bản trong lựa chọn."
 
-#: extension.js:578
+#: extension.js:638
 #, fuzzy
 msgid "Text extracted"
 msgstr "Đã trích xuất văn bản"
 
-#: prefs.js:49 prefs.js:92
+#: prefs.js:47 prefs.js:119
 msgid "Disabled"
 msgstr "Tàn tật"
 
-#: prefs.js:69
+#: prefs.js:88
 msgid "Press keys..."
 msgstr "Nhấn phím..."
 
-#: prefs.js:136
+#: prefs.js:174
 msgid "General"
 msgstr "Tổng quan"
 
-#: prefs.js:142
+#: prefs.js:181
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -77,181 +86,114 @@ msgstr ""
 "Trích xuất và sao chép ngay lập tức văn bản vào khay nhớ tạm của bạn từ bất "
 "kỳ đâu trên màn hình."
 
-#: prefs.js:153
+#: prefs.js:193
 msgid "System Tray & UI"
 msgstr ""
 
-#: prefs.js:157
+#: prefs.js:197
 msgid "Show Tray Icon"
 msgstr ""
 
-#: prefs.js:158
+#: prefs.js:198
 msgid "Display the extension icon in the system top panel."
 msgstr ""
 
-#: prefs.js:171
+#: prefs.js:217
 msgid "Show Extracted Text Notification"
 msgstr "Hiển thị thông báo văn bản được trích xuất"
 
-#: prefs.js:172
+#: prefs.js:219
 msgid "Displays a system banner containing your copied text context."
 msgstr "Hiển thị biểu ngữ hệ thống chứa ngữ cảnh văn bản đã sao chép của bạn."
 
-#: prefs.js:185
+#: prefs.js:239
 msgid "Enable Extraction History"
 msgstr "Bật lịch sử trích xuất"
 
-#: prefs.js:186
+#: prefs.js:241
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Giữ lịch sử lên tới 15 lần trích xuất gần đây trong menu ngữ cảnh."
 
-#: prefs.js:201
+#: prefs.js:263
 #, fuzzy
 msgid "Area Extraction"
 msgstr "Bật lịch sử trích xuất"
 
-#: prefs.js:205
+#: prefs.js:267
 #, fuzzy
 msgid "Enable Area Selection Shortcut"
 msgstr "Kích hoạt phím tắt bàn phím"
 
-#: prefs.js:206
+#: prefs.js:268
 msgid "Trigger crosshair to draw a box around text to extract."
 msgstr ""
 
-#: prefs.js:220
+#: prefs.js:289
 #, fuzzy
 msgid "Area Selection Shortcut"
 msgstr "Hành vi & Phím tắt"
 
-#: prefs.js:221
+#: prefs.js:290
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr "Nhấn vào đây để thiết lập phím tắt. Nhấn Esc để hủy, Backspace để tắt."
 
-#: prefs.js:229
-msgid "Smart Extraction"
-msgstr ""
-
-#: prefs.js:230
-msgid ""
-"Smart extraction instantly reads text, parses links, and detects data "
-"directly beneath your cursor without needing to draw a box."
-msgstr ""
-
-#: prefs.js:234
-#, fuzzy
-msgid "Enable Smart Extraction"
-msgstr "Bật lịch sử trích xuất"
-
-#: prefs.js:235
-msgid "Master toggle for pointer-based text extraction features."
-msgstr ""
-
-#: prefs.js:248
-msgid "Single-Click Smart Snap"
-msgstr ""
-
-#: prefs.js:249
-msgid ""
-"Extract text at the pointer location with a single click instead of dragging "
-"a box."
-msgstr ""
-
-#: prefs.js:264
-#, fuzzy
-msgid "Smart Extraction Shortcut"
-msgstr "Bật lịch sử trích xuất"
-
-#: prefs.js:265
-msgid "Key combination to trigger extraction exactly at pointer location."
-msgstr ""
-
-#: prefs.js:277
+#: prefs.js:304
 msgid "Advanced"
 msgstr "Trình độ cao"
 
-#: prefs.js:282
+#: prefs.js:309
 msgid "QR Codes"
 msgstr "Mã QR"
 
-#: prefs.js:286
+#: prefs.js:313
 msgid "Auto-Open URLs"
 msgstr "URL tự động mở"
 
-#: prefs.js:287
+#: prefs.js:314
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "Tự động mở các liên kết HTTP/HTTPS được phát hiện trong mã QR."
 
-#: prefs.js:304
-msgid "Translation (Experimental)"
-msgstr "Dịch (Thử nghiệm)"
-
-#: prefs.js:331
-msgid "Privacy warning"
-msgstr "Cảnh báo về quyền riêng tư"
-
 #: prefs.js:337
-msgid ""
-"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
-"guaranteed when enabled."
-msgstr ""
-"Tự động dịch sẽ gửi văn bản được trích xuất tới Google Dịch. Quyền riêng tư "
-"không thể được đảm bảo khi được kích hoạt."
-
-#: prefs.js:353
-msgid "Automatically translate extracted text to your target language."
-msgstr "Tự động dịch văn bản được trích xuất sang ngôn ngữ đích của bạn."
-
-#: prefs.js:368
-msgid "Target Language Code"
-msgstr "Mã ngôn ngữ đích"
-
-#: prefs.js:369
-msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
-msgstr ""
-"ví dụ: en, fr, es, zh. Để trống để sử dụng ngôn ngữ mặc định của hệ thống."
-
-#: prefs.js:388
 msgid "Logging"
 msgstr "Ghi nhật ký"
 
-#: prefs.js:392
+#: prefs.js:341
 msgid "Enable Debug Logging"
 msgstr "Bật ghi nhật ký gỡ lỗi"
 
-#: prefs.js:393
+#: prefs.js:343
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "Xuất OCR chi tiết và nhật ký quy trình vào nhật ký hệ thống."
 
-#: prefs.js:414
+#: prefs.js:371
 msgid "About"
 msgstr ""
 
-#: prefs.js:449
+#: prefs.js:409
 #, fuzzy, javascript-format
 msgid "Version %s"
 msgstr "Phiên bản"
 
-#: prefs.js:453
+#: prefs.js:413
 msgid "by Christian Wittenberg"
 msgstr ""
 
-#: prefs.js:470
+#: prefs.js:432
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Mua cho tôi một ly cà phê ☕"
 
-#: prefs.js:471
+#: prefs.js:439
 #, fuzzy
 msgid "Report a Bug 🐞"
 msgstr "Báo cáo lỗi 🐛"
 
-#: prefs.js:472
+#: prefs.js:445
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Yêu cầu một tính năng 🚀"
 
-#: prefs.js:476
+#: prefs.js:453
 msgid ""
 "<b>Disclaimer</b>\n"
 "Optical Character Recognition (OCR) and smart data extraction are inherently "
@@ -263,44 +205,40 @@ msgid ""
 "incomplete data extracted by this tool. Use this extension at your own risk."
 msgstr ""
 
-#: dependencies.js:97
+#: dependencies.js:99
 #, fuzzy, javascript-format
 msgid "Missing dependencies: %s"
 msgstr "Thiếu phần phụ thuộc hệ thống: %s"
 
-#: dependencies.js:98
+#: dependencies.js:100
 #, fuzzy, javascript-format
 msgid "Missing dependency: %s"
 msgstr "Thiếu phần phụ thuộc hệ thống: %s"
 
-#: dependencies.js:107
+#: dependencies.js:110
 msgid ""
 "Please install the required packages and try again to enable all features."
 msgstr ""
 "Vui lòng cài đặt các gói cần thiết và thử lại để kích hoạt tất cả các tính "
 "năng."
 
-#: dependencies.js:121
-msgid "Captures the selected area of your screen."
-msgstr "Chụp vùng được chọn trên màn hình của bạn."
-
-#: dependencies.js:122
+#: dependencies.js:126
 msgid "The core OCR engine that reads text from images."
 msgstr "Công cụ OCR cốt lõi đọc văn bản từ hình ảnh."
 
-#: dependencies.js:123
+#: dependencies.js:127
 msgid "Improves image contrast and quality for better OCR."
 msgstr "Cải thiện độ tương phản và chất lượng hình ảnh để có OCR tốt hơn."
 
-#: dependencies.js:124
+#: dependencies.js:128
 msgid "Detects and decodes QR codes from the screen."
 msgstr "Phát hiện và giải mã mã QR từ màn hình."
 
-#: dependencies.js:139
+#: dependencies.js:143
 msgid "Required dependency."
 msgstr "Sự phụ thuộc bắt buộc."
 
-#: dependencies.js:153
+#: dependencies.js:158
 msgid ""
 "Open a Terminal and run the following command to install the missing "
 "dependencies from the official repositories:"
@@ -308,99 +246,6 @@ msgstr ""
 "Mở Terminal và chạy lệnh sau để cài đặt các phần phụ thuộc còn thiếu từ kho "
 "chính thức:"
 
-#: dependencies.js:203
+#: dependencies.js:222
 msgid "Dismiss"
 msgstr "Miễn nhiệm"
-
-#: smartextractor.js:24
-msgid "Copy Clean Text"
-msgstr ""
-
-#: smartextractor.js:113
-msgid "Copy Link"
-msgstr ""
-
-#: smartextractor.js:129
-msgid "Copy Email"
-msgstr ""
-
-#: smartextractor.js:147
-msgid "Copy IPv4"
-msgstr ""
-
-#: smartextractor.js:183
-msgid "Copy IPv6"
-msgstr ""
-
-#: smartextractor.js:215
-msgid "Copy MAC Address"
-msgstr ""
-
-#: smartextractor.js:229 smartextractor.js:325
-msgid "Copy Number"
-msgstr ""
-
-#: smartextractor.js:241
-msgid "Copy UUID"
-msgstr ""
-
-#: smartextractor.js:253
-msgid "Copy Hex Color"
-msgstr ""
-
-#: smartextractor.js:266
-msgid "Copy Date"
-msgstr ""
-
-#: smartextractor.js:278
-msgid "Copy Phone"
-msgstr ""
-
-#: smartmenu.js:219
-#, javascript-format
-msgid "Copy text (%s)"
-msgstr ""
-
-#: smartmenu.js:227
-msgid "Extracted Data:"
-msgstr ""
-
-#~ msgid "Settings"
-#~ msgstr "Cài đặt"
-
-#~ msgid "Allow triggering extraction via a keyboard shortcut."
-#~ msgstr "Cho phép kích hoạt trích xuất thông qua phím tắt."
-
-#~ msgid "Keyboard Shortcut Trigger"
-#~ msgstr "Kích hoạt phím tắt bàn phím"
-
-#~ msgid "Developer Details"
-#~ msgstr "Chi tiết nhà phát triển"
-
-#~ msgid "Author"
-#~ msgstr "Tác giả"
-
-#~ msgid "Snap Text Configuration"
-#~ msgstr "Cấu hình văn bản chụp nhanh"
-
-#~ msgid "Text Copied from History"
-#~ msgstr "Văn bản sao chép từ lịch sử"
-
-#~ msgid ""
-#~ "This extension requires native system tools to perform OCR text "
-#~ "extraction. To get the extension working, open your terminal and run the "
-#~ "command below to install the base dependencies.\n"
-#~ "\n"
-#~ "Tip: Tesseract will automatically detect and use ANY language packs you "
-#~ "have installed on your system! Simply install additional languages (e.g., "
-#~ "tesseract-ocr-deu, tesseract-ocr-chi-sim) via your package manager to "
-#~ "enable them."
-#~ msgstr ""
-#~ "Tiện ích mở rộng này yêu cầu các công cụ hệ thống gốc để thực hiện trích "
-#~ "xuất văn bản OCR. Để tiện ích mở rộng hoạt động, hãy mở thiết bị đầu cuối "
-#~ "của bạn và chạy lệnh bên dưới để cài đặt các phần phụ thuộc cơ sở.\n"
-#~ "\n"
-#~ "Mẹo: Tesseract sẽ tự động phát hiện và sử dụng BẤT KỲ gói ngôn ngữ nào "
-#~ "bạn đã cài đặt trên hệ thống của mình! Chỉ cần cài đặt các ngôn ngữ bổ "
-#~ "sung (ví dụ: tesseract-ocr-deu, tesseract-ocr-chi-sim) thông qua trình "
-#~ "quản lý gói của bạn để kích hoạt chúng."

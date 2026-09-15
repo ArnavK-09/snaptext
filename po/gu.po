@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-20 16:41+0200\n"
+"POT-Creation-Date: 2026-09-15 10:03+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,241 +16,183 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:113
+#: extension.js:50
+msgid "Waiting…"
+msgstr ""
+
+#: extension.js:144
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "સ્નેપ ટેક્સ્ટ"
 
 #: extension.js:157
+#, fuzzy
+msgid "Starting…"
+msgstr "સેટિંગ્સ"
+
+#: extension.js:203
+msgid "Processing…"
+msgstr ""
+
+#: extension.js:211
+msgid "Cancel in-progress OCR"
+msgstr ""
+
+#: extension.js:259
 msgid "No history yet"
 msgstr "હજુ સુધી કોઈ ઈતિહાસ નથી"
 
-#: extension.js:186 prefs.js:352
-msgid "Auto-Translate Text"
-msgstr "સ્વતઃ-અનુવાદ ટેક્સ્ટ"
-
-#: extension.js:256
+#: extension.js:362
 #, fuzzy
 msgid "Text copied"
 msgstr "લખાણ કાઢવામાં આવ્યું"
 
-#: extension.js:407
-msgid "Translation Error"
-msgstr "અનુવાદ ભૂલ"
+#: extension.js:603
+msgid "Could not capture screenshot."
+msgstr ""
 
-#: extension.js:407
-msgid "Could not connect to Google Translate."
-msgstr "Google અનુવાદ સાથે કનેક્ટ કરી શકાયું નથી."
-
-#: extension.js:562
+#: extension.js:623
 msgid "Snap Text"
 msgstr "સ્નેપ ટેક્સ્ટ"
 
-#: extension.js:562
+#: extension.js:623
 #, fuzzy
 msgid "No text found."
 msgstr "પસંદગીમાં કોઈ ટેક્સ્ટ મળ્યો નથી."
 
-#: extension.js:578
+#: extension.js:638
 #, fuzzy
 msgid "Text extracted"
 msgstr "લખાણ કાઢવામાં આવ્યું"
 
-#: prefs.js:49 prefs.js:92
+#: prefs.js:47 prefs.js:119
 msgid "Disabled"
 msgstr "અક્ષમ"
 
-#: prefs.js:69
+#: prefs.js:88
 msgid "Press keys..."
 msgstr "કી દબાવો..."
 
-#: prefs.js:136
+#: prefs.js:174
 msgid "General"
 msgstr "જનરલ"
 
-#: prefs.js:142
+#: prefs.js:181
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr "સ્ક્રીન પર ગમે ત્યાંથી તમારા ક્લિપબોર્ડ પર ટેક્સ્ટને તરત જ એક્સટ્રેક્ટ અને કૉપિ કરો."
 
-#: prefs.js:153
+#: prefs.js:193
 msgid "System Tray & UI"
 msgstr ""
 
-#: prefs.js:157
+#: prefs.js:197
 msgid "Show Tray Icon"
 msgstr ""
 
-#: prefs.js:158
+#: prefs.js:198
 msgid "Display the extension icon in the system top panel."
 msgstr ""
 
-#: prefs.js:171
+#: prefs.js:217
 msgid "Show Extracted Text Notification"
 msgstr "એક્સટ્રેક્ટેડ ટેક્સ્ટ સૂચના બતાવો"
 
-#: prefs.js:172
+#: prefs.js:219
 msgid "Displays a system banner containing your copied text context."
 msgstr "તમારા કૉપિ કરેલ ટેક્સ્ટ સંદર્ભ ધરાવતું સિસ્ટમ બેનર દર્શાવે છે."
 
-#: prefs.js:185
+#: prefs.js:239
 msgid "Enable Extraction History"
 msgstr "નિષ્કર્ષણ ઇતિહાસ સક્ષમ કરો"
 
-#: prefs.js:186
+#: prefs.js:241
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "સંદર્ભ મેનૂમાં 15 જેટલા તાજેતરના નિષ્કર્ષણનો ઇતિહાસ રાખો."
 
-#: prefs.js:201
+#: prefs.js:263
 #, fuzzy
 msgid "Area Extraction"
 msgstr "નિષ્કર્ષણ ઇતિહાસ સક્ષમ કરો"
 
-#: prefs.js:205
+#: prefs.js:267
 #, fuzzy
 msgid "Enable Area Selection Shortcut"
 msgstr "કીબોર્ડ શોર્ટકટ ટ્રિગર"
 
-#: prefs.js:206
+#: prefs.js:268
 msgid "Trigger crosshair to draw a box around text to extract."
 msgstr ""
 
-#: prefs.js:220
+#: prefs.js:289
 #, fuzzy
 msgid "Area Selection Shortcut"
 msgstr "વર્તન અને શૉર્ટકટ્સ"
 
-#: prefs.js:221
+#: prefs.js:290
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "શોર્ટકટ સેટ કરવા માટે ક્લિક કરો. રદ કરવા માટે Esc દબાવો, અક્ષમ કરવા માટે Backspace "
 "દબાવો."
 
-#: prefs.js:229
-msgid "Smart Extraction"
-msgstr ""
-
-#: prefs.js:230
-msgid ""
-"Smart extraction instantly reads text, parses links, and detects data "
-"directly beneath your cursor without needing to draw a box."
-msgstr ""
-
-#: prefs.js:234
-#, fuzzy
-msgid "Enable Smart Extraction"
-msgstr "નિષ્કર્ષણ ઇતિહાસ સક્ષમ કરો"
-
-#: prefs.js:235
-msgid "Master toggle for pointer-based text extraction features."
-msgstr ""
-
-#: prefs.js:248
-msgid "Single-Click Smart Snap"
-msgstr ""
-
-#: prefs.js:249
-msgid ""
-"Extract text at the pointer location with a single click instead of dragging "
-"a box."
-msgstr ""
-
-#: prefs.js:264
-#, fuzzy
-msgid "Smart Extraction Shortcut"
-msgstr "નિષ્કર્ષણ ઇતિહાસ સક્ષમ કરો"
-
-#: prefs.js:265
-msgid "Key combination to trigger extraction exactly at pointer location."
-msgstr ""
-
-#: prefs.js:277
+#: prefs.js:304
 msgid "Advanced"
 msgstr "ઉન્નત"
 
-#: prefs.js:282
+#: prefs.js:309
 msgid "QR Codes"
 msgstr "QR કોડ્સ"
 
-#: prefs.js:286
+#: prefs.js:313
 msgid "Auto-Open URLs"
 msgstr "URL ને સ્વતઃ ખોલો"
 
-#: prefs.js:287
+#: prefs.js:314
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "QR કોડમાં શોધાયેલ HTTP/HTTPS લિંક્સ આપમેળે ખોલો."
 
-#: prefs.js:304
-msgid "Translation (Experimental)"
-msgstr "અનુવાદ (પ્રાયોગિક)"
-
-#: prefs.js:331
-msgid "Privacy warning"
-msgstr "ગોપનીયતા ચેતવણી"
-
 #: prefs.js:337
-msgid ""
-"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
-"guaranteed when enabled."
-msgstr ""
-"સ્વતઃ-અનુવાદ Google અનુવાદને એક્સટ્રેક્ટ કરેલ ટેક્સ્ટ મોકલે છે. જ્યારે સક્ષમ હોય ત્યારે "
-"ગોપનીયતાની ખાતરી આપી શકાતી નથી."
-
-#: prefs.js:353
-msgid "Automatically translate extracted text to your target language."
-msgstr "એક્સટ્રેક્ટેડ ટેક્સ્ટને તમારી લક્ષ્ય ભાષામાં આપમેળે અનુવાદિત કરો."
-
-#: prefs.js:368
-msgid "Target Language Code"
-msgstr "લક્ષ્ય ભાષા કોડ"
-
-#: prefs.js:369
-msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
-msgstr ""
-"દા.ત., en, fr, es, zh. તમારી સિસ્ટમ ડિફોલ્ટ ભાષાનો ઉપયોગ કરવા માટે ખાલી છોડો."
-
-#: prefs.js:388
 msgid "Logging"
 msgstr "લોગીંગ"
 
-#: prefs.js:392
+#: prefs.js:341
 msgid "Enable Debug Logging"
 msgstr "ડીબગ લોગીંગ સક્ષમ કરો"
 
-#: prefs.js:393
+#: prefs.js:343
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "સિસ્ટમ જર્નલમાં વિગતવાર OCR અને પ્રક્રિયા લોગ આઉટપુટ કરે છે."
 
-#: prefs.js:414
+#: prefs.js:371
 msgid "About"
 msgstr ""
 
-#: prefs.js:449
+#: prefs.js:409
 #, fuzzy, javascript-format
 msgid "Version %s"
 msgstr "સંસ્કરણ"
 
-#: prefs.js:453
+#: prefs.js:413
 msgid "by Christian Wittenberg"
 msgstr ""
 
-#: prefs.js:470
+#: prefs.js:432
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "મને કોફી ખરીદો ☕"
 
-#: prefs.js:471
+#: prefs.js:439
 #, fuzzy
 msgid "Report a Bug 🐞"
 msgstr "બગની જાણ કરો 🐛"
 
-#: prefs.js:472
+#: prefs.js:445
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "સુવિધાની વિનંતી કરો 🚀"
 
-#: prefs.js:476
+#: prefs.js:453
 msgid ""
 "<b>Disclaimer</b>\n"
 "Optical Character Recognition (OCR) and smart data extraction are inherently "
@@ -262,43 +204,39 @@ msgid ""
 "incomplete data extracted by this tool. Use this extension at your own risk."
 msgstr ""
 
-#: dependencies.js:97
+#: dependencies.js:99
 #, fuzzy, javascript-format
 msgid "Missing dependencies: %s"
 msgstr "સિસ્ટમ અવલંબન ખૂટે છે: %s"
 
-#: dependencies.js:98
+#: dependencies.js:100
 #, fuzzy, javascript-format
 msgid "Missing dependency: %s"
 msgstr "સિસ્ટમ અવલંબન ખૂટે છે: %s"
 
-#: dependencies.js:107
+#: dependencies.js:110
 msgid ""
 "Please install the required packages and try again to enable all features."
 msgstr ""
 "કૃપા કરીને જરૂરી પેકેજો ઇન્સ્ટોલ કરો અને બધી સુવિધાઓને સક્ષમ કરવા માટે ફરી પ્રયાસ કરો."
 
-#: dependencies.js:121
-msgid "Captures the selected area of your screen."
-msgstr "તમારી સ્ક્રીનના પસંદ કરેલ વિસ્તારને કેપ્ચર કરે છે."
-
-#: dependencies.js:122
+#: dependencies.js:126
 msgid "The core OCR engine that reads text from images."
 msgstr "કોર OCR એન્જિન જે ઈમેજોમાંથી ટેક્સ્ટ વાંચે છે."
 
-#: dependencies.js:123
+#: dependencies.js:127
 msgid "Improves image contrast and quality for better OCR."
 msgstr "સારી OCR માટે ઇમેજ કોન્ટ્રાસ્ટ અને ગુણવત્તા સુધારે છે."
 
-#: dependencies.js:124
+#: dependencies.js:128
 msgid "Detects and decodes QR codes from the screen."
 msgstr "સ્ક્રીન પરથી QR કોડ્સ શોધે છે અને ડીકોડ કરે છે."
 
-#: dependencies.js:139
+#: dependencies.js:143
 msgid "Required dependency."
 msgstr "આવશ્યક નિર્ભરતા."
 
-#: dependencies.js:153
+#: dependencies.js:158
 msgid ""
 "Open a Terminal and run the following command to install the missing "
 "dependencies from the official repositories:"
@@ -306,97 +244,6 @@ msgstr ""
 "ટર્મિનલ ખોલો અને સત્તાવાર રીપોઝીટરીઝમાંથી ગુમ થયેલ નિર્ભરતાને સ્થાપિત કરવા માટે નીચેનો "
 "આદેશ ચલાવો:"
 
-#: dependencies.js:203
+#: dependencies.js:222
 msgid "Dismiss"
 msgstr "કાઢી નાખો"
-
-#: smartextractor.js:24
-msgid "Copy Clean Text"
-msgstr ""
-
-#: smartextractor.js:113
-msgid "Copy Link"
-msgstr ""
-
-#: smartextractor.js:129
-msgid "Copy Email"
-msgstr ""
-
-#: smartextractor.js:147
-msgid "Copy IPv4"
-msgstr ""
-
-#: smartextractor.js:183
-msgid "Copy IPv6"
-msgstr ""
-
-#: smartextractor.js:215
-msgid "Copy MAC Address"
-msgstr ""
-
-#: smartextractor.js:229 smartextractor.js:325
-msgid "Copy Number"
-msgstr ""
-
-#: smartextractor.js:241
-msgid "Copy UUID"
-msgstr ""
-
-#: smartextractor.js:253
-msgid "Copy Hex Color"
-msgstr ""
-
-#: smartextractor.js:266
-msgid "Copy Date"
-msgstr ""
-
-#: smartextractor.js:278
-msgid "Copy Phone"
-msgstr ""
-
-#: smartmenu.js:219
-#, javascript-format
-msgid "Copy text (%s)"
-msgstr ""
-
-#: smartmenu.js:227
-msgid "Extracted Data:"
-msgstr ""
-
-#~ msgid "Settings"
-#~ msgstr "સેટિંગ્સ"
-
-#~ msgid "Allow triggering extraction via a keyboard shortcut."
-#~ msgstr "કીબોર્ડ શોર્ટકટ દ્વારા નિષ્કર્ષણને ટ્રિગર કરવાની મંજૂરી આપો."
-
-#~ msgid "Keyboard Shortcut Trigger"
-#~ msgstr "કીબોર્ડ શોર્ટકટ ટ્રિગર"
-
-#~ msgid "Developer Details"
-#~ msgstr "વિકાસકર્તા વિગતો"
-
-#~ msgid "Author"
-#~ msgstr "લેખક"
-
-#~ msgid "Snap Text Configuration"
-#~ msgstr "સ્નેપ ટેક્સ્ટ કન્ફિગરેશન"
-
-#~ msgid "Text Copied from History"
-#~ msgstr "ઇતિહાસમાંથી લખાણ કોપી કરેલ"
-
-#~ msgid ""
-#~ "This extension requires native system tools to perform OCR text "
-#~ "extraction. To get the extension working, open your terminal and run the "
-#~ "command below to install the base dependencies.\n"
-#~ "\n"
-#~ "Tip: Tesseract will automatically detect and use ANY language packs you "
-#~ "have installed on your system! Simply install additional languages (e.g., "
-#~ "tesseract-ocr-deu, tesseract-ocr-chi-sim) via your package manager to "
-#~ "enable them."
-#~ msgstr ""
-#~ "આ એક્સ્ટેંશનને OCR ટેક્સ્ટ નિષ્કર્ષણ કરવા માટે મૂળ સિસ્ટમ ટૂલ્સની જરૂર છે. એક્સ્ટેંશન કામ કરવા "
-#~ "માટે, તમારું ટર્મિનલ ખોલો અને બેઝ ડિપેન્ડન્સીને ઇન્સ્ટોલ કરવા માટે નીચેનો આદેશ ચલાવો.\n"
-#~ "\n"
-#~ "ટિપ: Tesseract તમે તમારી સિસ્ટમ પર ઇન્સ્ટોલ કરેલ કોઈપણ ભાષા પેકને આપમેળે શોધી કાઢશે "
-#~ "અને તેનો ઉપયોગ કરશે! તેમને સક્ષમ કરવા માટે તમારા પેકેજ મેનેજર દ્વારા ફક્ત વધારાની "
-#~ "ભાષાઓ (દા.ત., tesseract-ocr-deu, tesseract-ocr-chi-sim) ઇન્સ્ટોલ કરો."

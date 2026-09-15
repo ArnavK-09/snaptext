@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-20 16:41+0200\n"
+"POT-Creation-Date: 2026-09-15 10:03+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,240 +16,182 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:113
+#: extension.js:50
+msgid "Waiting…"
+msgstr ""
+
+#: extension.js:144
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "স্ন্যাপ টেক্সট"
 
 #: extension.js:157
+#, fuzzy
+msgid "Starting…"
+msgstr "সেটিংস"
+
+#: extension.js:203
+msgid "Processing…"
+msgstr ""
+
+#: extension.js:211
+msgid "Cancel in-progress OCR"
+msgstr ""
+
+#: extension.js:259
 msgid "No history yet"
 msgstr "এখনো কোনো ইতিহাস নেই"
 
-#: extension.js:186 prefs.js:352
-msgid "Auto-Translate Text"
-msgstr "স্বয়ংক্রিয়-অনুবাদ পাঠ"
-
-#: extension.js:256
+#: extension.js:362
 #, fuzzy
 msgid "Text copied"
 msgstr "টেক্সট এক্সট্রাক্ট করা হয়েছে"
 
-#: extension.js:407
-msgid "Translation Error"
-msgstr "অনুবাদ ত্রুটি"
+#: extension.js:603
+msgid "Could not capture screenshot."
+msgstr ""
 
-#: extension.js:407
-msgid "Could not connect to Google Translate."
-msgstr "Google অনুবাদের সাথে সংযোগ করা যায়নি৷"
-
-#: extension.js:562
+#: extension.js:623
 msgid "Snap Text"
 msgstr "স্ন্যাপ টেক্সট"
 
-#: extension.js:562
+#: extension.js:623
 #, fuzzy
 msgid "No text found."
 msgstr "নির্বাচনে কোনো পাঠ্য পাওয়া যায়নি।"
 
-#: extension.js:578
+#: extension.js:638
 #, fuzzy
 msgid "Text extracted"
 msgstr "টেক্সট এক্সট্রাক্ট করা হয়েছে"
 
-#: prefs.js:49 prefs.js:92
+#: prefs.js:47 prefs.js:119
 msgid "Disabled"
 msgstr "অক্ষম"
 
-#: prefs.js:69
+#: prefs.js:88
 msgid "Press keys..."
 msgstr "কী টিপুন..."
 
-#: prefs.js:136
+#: prefs.js:174
 msgid "General"
 msgstr "সাধারণ"
 
-#: prefs.js:142
+#: prefs.js:181
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr ""
 "স্ক্রিনের যেকোন জায়গা থেকে অবিলম্বে আপনার ক্লিপবোর্ডে পাঠ্য বের করুন এবং অনুলিপি করুন।"
 
-#: prefs.js:153
+#: prefs.js:193
 msgid "System Tray & UI"
 msgstr ""
 
-#: prefs.js:157
+#: prefs.js:197
 msgid "Show Tray Icon"
 msgstr ""
 
-#: prefs.js:158
+#: prefs.js:198
 msgid "Display the extension icon in the system top panel."
 msgstr ""
 
-#: prefs.js:171
+#: prefs.js:217
 msgid "Show Extracted Text Notification"
 msgstr "এক্সট্রাক্টেড টেক্সট নোটিফিকেশন দেখান"
 
-#: prefs.js:172
+#: prefs.js:219
 msgid "Displays a system banner containing your copied text context."
 msgstr "আপনার অনুলিপি করা পাঠ্য প্রসঙ্গে একটি সিস্টেম ব্যানার প্রদর্শন করে।"
 
-#: prefs.js:185
+#: prefs.js:239
 msgid "Enable Extraction History"
 msgstr "নিষ্কাশন ইতিহাস সক্ষম করুন"
 
-#: prefs.js:186
+#: prefs.js:241
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "প্রসঙ্গ মেনুতে 15টি সাম্প্রতিক নিষ্কাশনের ইতিহাস রাখুন।"
 
-#: prefs.js:201
+#: prefs.js:263
 #, fuzzy
 msgid "Area Extraction"
 msgstr "নিষ্কাশন ইতিহাস সক্ষম করুন"
 
-#: prefs.js:205
+#: prefs.js:267
 #, fuzzy
 msgid "Enable Area Selection Shortcut"
 msgstr "কীবোর্ড শর্টকাট ট্রিগার"
 
-#: prefs.js:206
+#: prefs.js:268
 msgid "Trigger crosshair to draw a box around text to extract."
 msgstr ""
 
-#: prefs.js:220
+#: prefs.js:289
 #, fuzzy
 msgid "Area Selection Shortcut"
 msgstr "আচরণ এবং শর্টকাট"
 
-#: prefs.js:221
+#: prefs.js:290
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr "শর্টকাট সেট করতে ক্লিক করুন। বাতিল করতে Esc, নিষ্ক্রিয় করতে ব্যাকস্পেস টিপুন।"
 
-#: prefs.js:229
-msgid "Smart Extraction"
-msgstr ""
-
-#: prefs.js:230
-msgid ""
-"Smart extraction instantly reads text, parses links, and detects data "
-"directly beneath your cursor without needing to draw a box."
-msgstr ""
-
-#: prefs.js:234
-#, fuzzy
-msgid "Enable Smart Extraction"
-msgstr "নিষ্কাশন ইতিহাস সক্ষম করুন"
-
-#: prefs.js:235
-msgid "Master toggle for pointer-based text extraction features."
-msgstr ""
-
-#: prefs.js:248
-msgid "Single-Click Smart Snap"
-msgstr ""
-
-#: prefs.js:249
-msgid ""
-"Extract text at the pointer location with a single click instead of dragging "
-"a box."
-msgstr ""
-
-#: prefs.js:264
-#, fuzzy
-msgid "Smart Extraction Shortcut"
-msgstr "নিষ্কাশন ইতিহাস সক্ষম করুন"
-
-#: prefs.js:265
-msgid "Key combination to trigger extraction exactly at pointer location."
-msgstr ""
-
-#: prefs.js:277
+#: prefs.js:304
 msgid "Advanced"
 msgstr "উন্নত"
 
-#: prefs.js:282
+#: prefs.js:309
 msgid "QR Codes"
 msgstr "QR কোড"
 
-#: prefs.js:286
+#: prefs.js:313
 msgid "Auto-Open URLs"
 msgstr "স্বয়ংক্রিয়-খোলা URLs"
 
-#: prefs.js:287
+#: prefs.js:314
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "QR কোডগুলিতে সনাক্ত করা HTTP/HTTPS লিঙ্কগুলি স্বয়ংক্রিয়ভাবে খুলুন।"
 
-#: prefs.js:304
-msgid "Translation (Experimental)"
-msgstr "অনুবাদ (পরীক্ষামূলক)"
-
-#: prefs.js:331
-msgid "Privacy warning"
-msgstr "গোপনীয়তা সতর্কতা"
-
 #: prefs.js:337
-msgid ""
-"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
-"guaranteed when enabled."
-msgstr ""
-"অটো-ট্রান্সলেট এক্সট্রাক্ট করা টেক্সট গুগল ট্রান্সলেটে পাঠায়। সক্রিয় থাকা অবস্থায় "
-"গোপনীয়তা নিশ্চিত করা যাবে না।"
-
-#: prefs.js:353
-msgid "Automatically translate extracted text to your target language."
-msgstr "নিষ্কাশিত পাঠ্যকে স্বয়ংক্রিয়ভাবে আপনার লক্ষ্য ভাষায় অনুবাদ করুন।"
-
-#: prefs.js:368
-msgid "Target Language Code"
-msgstr "টার্গেট ল্যাঙ্গুয়েজ কোড"
-
-#: prefs.js:369
-msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
-msgstr ""
-"যেমন, en, fr, es, zh আপনার সিস্টেম ডিফল্ট ভাষা ব্যবহার করতে খালি ছেড়ে দিন।"
-
-#: prefs.js:388
 msgid "Logging"
 msgstr "লগিং"
 
-#: prefs.js:392
+#: prefs.js:341
 msgid "Enable Debug Logging"
 msgstr "ডিবাগ লগিং সক্ষম করুন৷"
 
-#: prefs.js:393
+#: prefs.js:343
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "সিস্টেম জার্নালে বিস্তারিত OCR এবং প্রসেস লগ আউটপুট করে।"
 
-#: prefs.js:414
+#: prefs.js:371
 msgid "About"
 msgstr ""
 
-#: prefs.js:449
+#: prefs.js:409
 #, fuzzy, javascript-format
 msgid "Version %s"
 msgstr "সংস্করণ"
 
-#: prefs.js:453
+#: prefs.js:413
 msgid "by Christian Wittenberg"
 msgstr ""
 
-#: prefs.js:470
+#: prefs.js:432
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "আমাকে একটা কফি কিনে দাও ☕"
 
-#: prefs.js:471
+#: prefs.js:439
 #, fuzzy
 msgid "Report a Bug 🐞"
 msgstr "একটি বাগ রিপোর্ট করুন 🐛"
 
-#: prefs.js:472
+#: prefs.js:445
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "একটি বৈশিষ্ট্যের জন্য অনুরোধ করুন 🚀৷"
 
-#: prefs.js:476
+#: prefs.js:453
 msgid ""
 "<b>Disclaimer</b>\n"
 "Optical Character Recognition (OCR) and smart data extraction are inherently "
@@ -261,44 +203,40 @@ msgid ""
 "incomplete data extracted by this tool. Use this extension at your own risk."
 msgstr ""
 
-#: dependencies.js:97
+#: dependencies.js:99
 #, fuzzy, javascript-format
 msgid "Missing dependencies: %s"
 msgstr "অনুপস্থিত সিস্টেম নির্ভরতা: %s"
 
-#: dependencies.js:98
+#: dependencies.js:100
 #, fuzzy, javascript-format
 msgid "Missing dependency: %s"
 msgstr "অনুপস্থিত সিস্টেম নির্ভরতা: %s"
 
-#: dependencies.js:107
+#: dependencies.js:110
 msgid ""
 "Please install the required packages and try again to enable all features."
 msgstr ""
 "অনুগ্রহ করে প্রয়োজনীয় প্যাকেজগুলি ইনস্টল করুন এবং সমস্ত বৈশিষ্ট্য সক্ষম করার জন্য আবার "
 "চেষ্টা করুন৷"
 
-#: dependencies.js:121
-msgid "Captures the selected area of your screen."
-msgstr "আপনার স্ক্রিনের নির্বাচিত এলাকা ক্যাপচার করে।"
-
-#: dependencies.js:122
+#: dependencies.js:126
 msgid "The core OCR engine that reads text from images."
 msgstr "মূল OCR ইঞ্জিন যা ছবি থেকে পাঠ্য পাঠ করে।"
 
-#: dependencies.js:123
+#: dependencies.js:127
 msgid "Improves image contrast and quality for better OCR."
 msgstr "ভালো OCR-এর জন্য ছবির বৈসাদৃশ্য এবং গুণমান উন্নত করে।"
 
-#: dependencies.js:124
+#: dependencies.js:128
 msgid "Detects and decodes QR codes from the screen."
 msgstr "স্ক্রীন থেকে QR কোড সনাক্ত করে এবং ডিকোড করে।"
 
-#: dependencies.js:139
+#: dependencies.js:143
 msgid "Required dependency."
 msgstr "প্রয়োজনীয় নির্ভরতা।"
 
-#: dependencies.js:153
+#: dependencies.js:158
 msgid ""
 "Open a Terminal and run the following command to install the missing "
 "dependencies from the official repositories:"
@@ -306,99 +244,6 @@ msgstr ""
 "একটি টার্মিনাল খুলুন এবং অফিসিয়াল রিপোজিটরি থেকে অনুপস্থিত নির্ভরতাগুলি ইনস্টল করতে "
 "নিম্নলিখিত কমান্ডটি চালান:"
 
-#: dependencies.js:203
+#: dependencies.js:222
 msgid "Dismiss"
 msgstr "খারিজ"
-
-#: smartextractor.js:24
-msgid "Copy Clean Text"
-msgstr ""
-
-#: smartextractor.js:113
-msgid "Copy Link"
-msgstr ""
-
-#: smartextractor.js:129
-msgid "Copy Email"
-msgstr ""
-
-#: smartextractor.js:147
-msgid "Copy IPv4"
-msgstr ""
-
-#: smartextractor.js:183
-msgid "Copy IPv6"
-msgstr ""
-
-#: smartextractor.js:215
-msgid "Copy MAC Address"
-msgstr ""
-
-#: smartextractor.js:229 smartextractor.js:325
-msgid "Copy Number"
-msgstr ""
-
-#: smartextractor.js:241
-msgid "Copy UUID"
-msgstr ""
-
-#: smartextractor.js:253
-msgid "Copy Hex Color"
-msgstr ""
-
-#: smartextractor.js:266
-msgid "Copy Date"
-msgstr ""
-
-#: smartextractor.js:278
-msgid "Copy Phone"
-msgstr ""
-
-#: smartmenu.js:219
-#, javascript-format
-msgid "Copy text (%s)"
-msgstr ""
-
-#: smartmenu.js:227
-msgid "Extracted Data:"
-msgstr ""
-
-#~ msgid "Settings"
-#~ msgstr "সেটিংস"
-
-#~ msgid "Allow triggering extraction via a keyboard shortcut."
-#~ msgstr "একটি কীবোর্ড শর্টকাটের মাধ্যমে নিষ্কাশন ট্রিগার করার অনুমতি দিন।"
-
-#~ msgid "Keyboard Shortcut Trigger"
-#~ msgstr "কীবোর্ড শর্টকাট ট্রিগার"
-
-#~ msgid "Developer Details"
-#~ msgstr "বিকাশকারীর বিবরণ"
-
-#~ msgid "Author"
-#~ msgstr "লেখক"
-
-#~ msgid "Snap Text Configuration"
-#~ msgstr "স্ন্যাপ টেক্সট কনফিগারেশন"
-
-#~ msgid "Text Copied from History"
-#~ msgstr "ইতিহাস থেকে টেক্সট কপি করা হয়েছে"
-
-#~ msgid ""
-#~ "This extension requires native system tools to perform OCR text "
-#~ "extraction. To get the extension working, open your terminal and run the "
-#~ "command below to install the base dependencies.\n"
-#~ "\n"
-#~ "Tip: Tesseract will automatically detect and use ANY language packs you "
-#~ "have installed on your system! Simply install additional languages (e.g., "
-#~ "tesseract-ocr-deu, tesseract-ocr-chi-sim) via your package manager to "
-#~ "enable them."
-#~ msgstr ""
-#~ "OCR পাঠ্য নিষ্কাশন করতে এই এক্সটেনশনটির জন্য নেটিভ সিস্টেম টুলের প্রয়োজন। "
-#~ "এক্সটেনশন কাজ করার জন্য, আপনার টার্মিনাল খুলুন এবং বেস নির্ভরতাগুলি ইনস্টল করতে "
-#~ "নীচের কমান্ডটি চালান৷\n"
-#~ "\n"
-#~ "টিপ: Tesseract স্বয়ংক্রিয়ভাবে সনাক্ত করবে এবং আপনার সিস্টেমে ইনস্টল করা যেকোনো "
-#~ "ভাষা প্যাক ব্যবহার করবে! তাদের সক্ষম করতে আপনার প্যাকেজ ম্যানেজারের মাধ্যমে "
-#~ "কেবল অতিরিক্ত ভাষা (যেমন, tesseract-ocr-deu, tesseract-ocr-chi-sim) ইনস্টল "
-#~ "করুন।"

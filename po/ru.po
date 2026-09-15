@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-20 16:41+0200\n"
+"POT-Creation-Date: 2026-09-15 10:03+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,246 +18,187 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: extension.js:113
+#: extension.js:50
+msgid "Waiting…"
+msgstr ""
+
+#: extension.js:144
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Привязать текст"
 
 #: extension.js:157
+#, fuzzy
+msgid "Starting…"
+msgstr "Настройки"
+
+#: extension.js:203
+msgid "Processing…"
+msgstr ""
+
+#: extension.js:211
+msgid "Cancel in-progress OCR"
+msgstr ""
+
+#: extension.js:259
 msgid "No history yet"
 msgstr "Пока нет истории"
 
-#: extension.js:186 prefs.js:352
-msgid "Auto-Translate Text"
-msgstr "Автоматический перевод текста"
-
-#: extension.js:256
+#: extension.js:362
 #, fuzzy
 msgid "Text copied"
 msgstr "Текст извлечен"
 
-#: extension.js:407
-msgid "Translation Error"
-msgstr "Ошибка перевода"
+#: extension.js:603
+msgid "Could not capture screenshot."
+msgstr ""
 
-#: extension.js:407
-msgid "Could not connect to Google Translate."
-msgstr "Не удалось подключиться к Google Translate."
-
-#: extension.js:562
+#: extension.js:623
 msgid "Snap Text"
 msgstr "Привязать текст"
 
-#: extension.js:562
+#: extension.js:623
 #, fuzzy
 msgid "No text found."
 msgstr "Текст не найден в выделенном фрагменте."
 
-#: extension.js:578
+#: extension.js:638
 #, fuzzy
 msgid "Text extracted"
 msgstr "Текст извлечен"
 
-#: prefs.js:49 prefs.js:92
+#: prefs.js:47 prefs.js:119
 msgid "Disabled"
 msgstr "Неполноценный"
 
-#: prefs.js:69
+#: prefs.js:88
 msgid "Press keys..."
 msgstr "Нажимайте клавиши..."
 
-#: prefs.js:136
+#: prefs.js:174
 msgid "General"
 msgstr "Общий"
 
-#: prefs.js:142
+#: prefs.js:181
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
 msgstr ""
 "Мгновенно извлекайте и копируйте текст в буфер обмена из любого места экрана."
 
-#: prefs.js:153
+#: prefs.js:193
 msgid "System Tray & UI"
 msgstr ""
 
-#: prefs.js:157
+#: prefs.js:197
 msgid "Show Tray Icon"
 msgstr ""
 
-#: prefs.js:158
+#: prefs.js:198
 msgid "Display the extension icon in the system top panel."
 msgstr ""
 
-#: prefs.js:171
+#: prefs.js:217
 msgid "Show Extracted Text Notification"
 msgstr "Показать извлеченное текстовое уведомление"
 
-#: prefs.js:172
+#: prefs.js:219
 msgid "Displays a system banner containing your copied text context."
 msgstr ""
 "Отображает системный баннер, содержащий скопированный текстовый контекст."
 
-#: prefs.js:185
+#: prefs.js:239
 msgid "Enable Extraction History"
 msgstr "Включить историю извлечения"
 
-#: prefs.js:186
+#: prefs.js:241
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Сохраняйте историю до 15 последних извлечений в контекстном меню."
 
-#: prefs.js:201
+#: prefs.js:263
 #, fuzzy
 msgid "Area Extraction"
 msgstr "Включить историю извлечения"
 
-#: prefs.js:205
+#: prefs.js:267
 #, fuzzy
 msgid "Enable Area Selection Shortcut"
 msgstr "Триггер сочетания клавиш"
 
-#: prefs.js:206
+#: prefs.js:268
 msgid "Trigger crosshair to draw a box around text to extract."
 msgstr ""
 
-#: prefs.js:220
+#: prefs.js:289
 #, fuzzy
 msgid "Area Selection Shortcut"
 msgstr "Поведение и ярлыки"
 
-#: prefs.js:221
+#: prefs.js:290
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Нажмите, чтобы установить ярлык. Нажмите Esc для отмены, Backspace для "
 "отключения."
 
-#: prefs.js:229
-msgid "Smart Extraction"
-msgstr ""
-
-#: prefs.js:230
-msgid ""
-"Smart extraction instantly reads text, parses links, and detects data "
-"directly beneath your cursor without needing to draw a box."
-msgstr ""
-
-#: prefs.js:234
-#, fuzzy
-msgid "Enable Smart Extraction"
-msgstr "Включить историю извлечения"
-
-#: prefs.js:235
-msgid "Master toggle for pointer-based text extraction features."
-msgstr ""
-
-#: prefs.js:248
-msgid "Single-Click Smart Snap"
-msgstr ""
-
-#: prefs.js:249
-msgid ""
-"Extract text at the pointer location with a single click instead of dragging "
-"a box."
-msgstr ""
-
-#: prefs.js:264
-#, fuzzy
-msgid "Smart Extraction Shortcut"
-msgstr "Включить историю извлечения"
-
-#: prefs.js:265
-msgid "Key combination to trigger extraction exactly at pointer location."
-msgstr ""
-
-#: prefs.js:277
+#: prefs.js:304
 msgid "Advanced"
 msgstr "Передовой"
 
-#: prefs.js:282
+#: prefs.js:309
 msgid "QR Codes"
 msgstr "QR-коды"
 
-#: prefs.js:286
+#: prefs.js:313
 msgid "Auto-Open URLs"
 msgstr "Автооткрытие URL-адресов"
 
-#: prefs.js:287
+#: prefs.js:314
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "Автоматически открывать ссылки HTTP/HTTPS, обнаруженные в QR-кодах."
 
-#: prefs.js:304
-msgid "Translation (Experimental)"
-msgstr "Перевод (Экспериментальный)"
-
-#: prefs.js:331
-msgid "Privacy warning"
-msgstr "Предупреждение о конфиденциальности"
-
 #: prefs.js:337
-msgid ""
-"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
-"guaranteed when enabled."
-msgstr ""
-"Автоматический перевод отправляет извлеченный текст в Google Translate. "
-"Конфиденциальность не может быть гарантирована, если она включена."
-
-#: prefs.js:353
-msgid "Automatically translate extracted text to your target language."
-msgstr "Автоматически переводите извлеченный текст на целевой язык."
-
-#: prefs.js:368
-msgid "Target Language Code"
-msgstr "Код целевого языка"
-
-#: prefs.js:369
-msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
-msgstr ""
-"например, en, fr, es, zh. Оставьте пустым, чтобы использовать язык вашей "
-"системы по умолчанию."
-
-#: prefs.js:388
 msgid "Logging"
 msgstr "Ведение журнала"
 
-#: prefs.js:392
+#: prefs.js:341
 msgid "Enable Debug Logging"
 msgstr "Включить ведение журнала отладки"
 
-#: prefs.js:393
+#: prefs.js:343
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr ""
 "Выводит подробные журналы оптического распознавания символов и процессов в "
 "системный журнал."
 
-#: prefs.js:414
+#: prefs.js:371
 msgid "About"
 msgstr ""
 
-#: prefs.js:449
+#: prefs.js:409
 #, fuzzy, javascript-format
 msgid "Version %s"
 msgstr "Версия"
 
-#: prefs.js:453
+#: prefs.js:413
 msgid "by Christian Wittenberg"
 msgstr ""
 
-#: prefs.js:470
+#: prefs.js:432
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Купи мне кофе ☕"
 
-#: prefs.js:471
+#: prefs.js:439
 #, fuzzy
 msgid "Report a Bug 🐞"
 msgstr "Сообщить об ошибке 🐛"
 
-#: prefs.js:472
+#: prefs.js:445
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Запросить функцию 🚀"
 
-#: prefs.js:476
+#: prefs.js:453
 msgid ""
 "<b>Disclaimer</b>\n"
 "Optical Character Recognition (OCR) and smart data extraction are inherently "
@@ -269,48 +210,44 @@ msgid ""
 "incomplete data extracted by this tool. Use this extension at your own risk."
 msgstr ""
 
-#: dependencies.js:97
+#: dependencies.js:99
 #, fuzzy, javascript-format
 msgid "Missing dependencies: %s"
 msgstr "Отсутствует системная зависимость: %s"
 
-#: dependencies.js:98
+#: dependencies.js:100
 #, fuzzy, javascript-format
 msgid "Missing dependency: %s"
 msgstr "Отсутствует системная зависимость: %s"
 
-#: dependencies.js:107
+#: dependencies.js:110
 msgid ""
 "Please install the required packages and try again to enable all features."
 msgstr ""
 "Пожалуйста, установите необходимые пакеты и повторите попытку, чтобы "
 "включить все функции."
 
-#: dependencies.js:121
-msgid "Captures the selected area of your screen."
-msgstr "Захватывает выбранную область экрана."
-
-#: dependencies.js:122
+#: dependencies.js:126
 msgid "The core OCR engine that reads text from images."
 msgstr ""
 "Основной механизм оптического распознавания символов, который считывает "
 "текст с изображений."
 
-#: dependencies.js:123
+#: dependencies.js:127
 msgid "Improves image contrast and quality for better OCR."
 msgstr ""
 "Улучшает контрастность и качество изображения для лучшего распознавания "
 "текста."
 
-#: dependencies.js:124
+#: dependencies.js:128
 msgid "Detects and decodes QR codes from the screen."
 msgstr "Обнаруживает и декодирует QR-коды с экрана."
 
-#: dependencies.js:139
+#: dependencies.js:143
 msgid "Required dependency."
 msgstr "Необходимая зависимость."
 
-#: dependencies.js:153
+#: dependencies.js:158
 msgid ""
 "Open a Terminal and run the following command to install the missing "
 "dependencies from the official repositories:"
@@ -318,100 +255,6 @@ msgstr ""
 "Откройте терминал и выполните следующую команду, чтобы установить "
 "недостающие зависимости из официальных репозиториев:"
 
-#: dependencies.js:203
+#: dependencies.js:222
 msgid "Dismiss"
 msgstr "Увольнять"
-
-#: smartextractor.js:24
-msgid "Copy Clean Text"
-msgstr ""
-
-#: smartextractor.js:113
-msgid "Copy Link"
-msgstr ""
-
-#: smartextractor.js:129
-msgid "Copy Email"
-msgstr ""
-
-#: smartextractor.js:147
-msgid "Copy IPv4"
-msgstr ""
-
-#: smartextractor.js:183
-msgid "Copy IPv6"
-msgstr ""
-
-#: smartextractor.js:215
-msgid "Copy MAC Address"
-msgstr ""
-
-#: smartextractor.js:229 smartextractor.js:325
-msgid "Copy Number"
-msgstr ""
-
-#: smartextractor.js:241
-msgid "Copy UUID"
-msgstr ""
-
-#: smartextractor.js:253
-msgid "Copy Hex Color"
-msgstr ""
-
-#: smartextractor.js:266
-msgid "Copy Date"
-msgstr ""
-
-#: smartextractor.js:278
-msgid "Copy Phone"
-msgstr ""
-
-#: smartmenu.js:219
-#, javascript-format
-msgid "Copy text (%s)"
-msgstr ""
-
-#: smartmenu.js:227
-msgid "Extracted Data:"
-msgstr ""
-
-#~ msgid "Settings"
-#~ msgstr "Настройки"
-
-#~ msgid "Allow triggering extraction via a keyboard shortcut."
-#~ msgstr "Разрешить запуск извлечения с помощью сочетания клавиш."
-
-#~ msgid "Keyboard Shortcut Trigger"
-#~ msgstr "Триггер сочетания клавиш"
-
-#~ msgid "Developer Details"
-#~ msgstr "Подробности о разработчике"
-
-#~ msgid "Author"
-#~ msgstr "Автор"
-
-#~ msgid "Snap Text Configuration"
-#~ msgstr "Конфигурация привязки текста"
-
-#~ msgid "Text Copied from History"
-#~ msgstr "Текст скопирован из истории"
-
-#~ msgid ""
-#~ "This extension requires native system tools to perform OCR text "
-#~ "extraction. To get the extension working, open your terminal and run the "
-#~ "command below to install the base dependencies.\n"
-#~ "\n"
-#~ "Tip: Tesseract will automatically detect and use ANY language packs you "
-#~ "have installed on your system! Simply install additional languages (e.g., "
-#~ "tesseract-ocr-deu, tesseract-ocr-chi-sim) via your package manager to "
-#~ "enable them."
-#~ msgstr ""
-#~ "Для этого расширения требуются встроенные системные инструменты для "
-#~ "извлечения текста OCR. Чтобы расширение заработало, откройте терминал и "
-#~ "выполните приведенную ниже команду, чтобы установить базовые "
-#~ "зависимости.\n"
-#~ "\n"
-#~ "Совет: Tesseract автоматически обнаружит и будет использовать ЛЮБЫЕ "
-#~ "языковые пакеты, которые вы установили в своей системе! Просто установите "
-#~ "дополнительные языки (например, tesseract-ocr-deu, tesseract-ocr-chi-sim) "
-#~ "через менеджер пакетов, чтобы включить их."

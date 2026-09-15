@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-20 16:41+0200\n"
+"POT-Creation-Date: 2026-09-15 10:03+0530\n"
 "PO-Revision-Date: 2026-06-12 01:36+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,59 +17,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: extension.js:113
+#: extension.js:50
+msgid "Waiting…"
+msgstr ""
+
+#: extension.js:144
 #, fuzzy
 msgid "Snap Text Error"
 msgstr "Snap text"
 
 #: extension.js:157
+#, fuzzy
+msgid "Starting…"
+msgstr "Inställningar"
+
+#: extension.js:203
+msgid "Processing…"
+msgstr ""
+
+#: extension.js:211
+msgid "Cancel in-progress OCR"
+msgstr ""
+
+#: extension.js:259
 msgid "No history yet"
 msgstr "Ingen historia än"
 
-#: extension.js:186 prefs.js:352
-msgid "Auto-Translate Text"
-msgstr "Översätt text automatiskt"
-
-#: extension.js:256
+#: extension.js:362
 #, fuzzy
 msgid "Text copied"
 msgstr "Text extraherad"
 
-#: extension.js:407
-msgid "Translation Error"
-msgstr "Översättningsfel"
+#: extension.js:603
+msgid "Could not capture screenshot."
+msgstr ""
 
-#: extension.js:407
-msgid "Could not connect to Google Translate."
-msgstr "Det gick inte att ansluta till Google Översätt."
-
-#: extension.js:562
+#: extension.js:623
 msgid "Snap Text"
 msgstr "Snap text"
 
-#: extension.js:562
+#: extension.js:623
 #, fuzzy
 msgid "No text found."
 msgstr "Ingen text hittades i urvalet."
 
-#: extension.js:578
+#: extension.js:638
 #, fuzzy
 msgid "Text extracted"
 msgstr "Text extraherad"
 
-#: prefs.js:49 prefs.js:92
+#: prefs.js:47 prefs.js:119
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: prefs.js:69
+#: prefs.js:88
 msgid "Press keys..."
 msgstr "Tryck på tangenterna..."
 
-#: prefs.js:136
+#: prefs.js:174
 msgid "General"
 msgstr "Allmän"
 
-#: prefs.js:142
+#: prefs.js:181
 msgid ""
 "Instantly extract and copy text to your clipboard from anywhere on the "
 "screen."
@@ -77,183 +86,116 @@ msgstr ""
 "Extrahera och kopiera omedelbart text till ditt urklipp från var som helst "
 "på skärmen."
 
-#: prefs.js:153
+#: prefs.js:193
 msgid "System Tray & UI"
 msgstr ""
 
-#: prefs.js:157
+#: prefs.js:197
 msgid "Show Tray Icon"
 msgstr ""
 
-#: prefs.js:158
+#: prefs.js:198
 msgid "Display the extension icon in the system top panel."
 msgstr ""
 
-#: prefs.js:171
+#: prefs.js:217
 msgid "Show Extracted Text Notification"
 msgstr "Visa utdragen textmeddelande"
 
-#: prefs.js:172
+#: prefs.js:219
 msgid "Displays a system banner containing your copied text context."
 msgstr "Visar en systembanner som innehåller din kopierade textkontext."
 
-#: prefs.js:185
+#: prefs.js:239
 msgid "Enable Extraction History"
 msgstr "Aktivera extraktionshistorik"
 
-#: prefs.js:186
+#: prefs.js:241
 msgid "Keep a history of up to 15 recent extractions in the context menu."
 msgstr "Håll en historik över upp till 15 senaste extraheringar i snabbmenyn."
 
-#: prefs.js:201
+#: prefs.js:263
 #, fuzzy
 msgid "Area Extraction"
 msgstr "Aktivera extraktionshistorik"
 
-#: prefs.js:205
+#: prefs.js:267
 #, fuzzy
 msgid "Enable Area Selection Shortcut"
 msgstr "Utlösare för kortkommandon"
 
-#: prefs.js:206
+#: prefs.js:268
 msgid "Trigger crosshair to draw a box around text to extract."
 msgstr ""
 
-#: prefs.js:220
+#: prefs.js:289
 #, fuzzy
 msgid "Area Selection Shortcut"
 msgstr "Beteende & genvägar"
 
-#: prefs.js:221
+#: prefs.js:290
 msgid "Click to set shortcut. Press Esc to cancel, Backspace to disable."
 msgstr ""
 "Klicka för att ställa in genväg. Tryck på Esc för att avbryta, Backsteg för "
 "att inaktivera."
 
-#: prefs.js:229
-msgid "Smart Extraction"
-msgstr ""
-
-#: prefs.js:230
-msgid ""
-"Smart extraction instantly reads text, parses links, and detects data "
-"directly beneath your cursor without needing to draw a box."
-msgstr ""
-
-#: prefs.js:234
-#, fuzzy
-msgid "Enable Smart Extraction"
-msgstr "Aktivera extraktionshistorik"
-
-#: prefs.js:235
-msgid "Master toggle for pointer-based text extraction features."
-msgstr ""
-
-#: prefs.js:248
-msgid "Single-Click Smart Snap"
-msgstr ""
-
-#: prefs.js:249
-msgid ""
-"Extract text at the pointer location with a single click instead of dragging "
-"a box."
-msgstr ""
-
-#: prefs.js:264
-#, fuzzy
-msgid "Smart Extraction Shortcut"
-msgstr "Aktivera extraktionshistorik"
-
-#: prefs.js:265
-msgid "Key combination to trigger extraction exactly at pointer location."
-msgstr ""
-
-#: prefs.js:277
+#: prefs.js:304
 msgid "Advanced"
 msgstr "Avancerad"
 
-#: prefs.js:282
+#: prefs.js:309
 msgid "QR Codes"
 msgstr "QR-koder"
 
-#: prefs.js:286
+#: prefs.js:313
 msgid "Auto-Open URLs"
 msgstr "Öppna webbadresser automatiskt"
 
-#: prefs.js:287
+#: prefs.js:314
 msgid "Automatically open HTTP/HTTPS links detected in QR codes."
 msgstr "Öppna automatiskt HTTP/HTTPS-länkar som upptäcks i QR-koder."
 
-#: prefs.js:304
-msgid "Translation (Experimental)"
-msgstr "Översättning (experimentell)"
-
-#: prefs.js:331
-msgid "Privacy warning"
-msgstr "Sekretessvarning"
-
 #: prefs.js:337
-msgid ""
-"Auto-Translate sends extracted text to Google Translate. Privacy cannot be "
-"guaranteed when enabled."
-msgstr ""
-"Auto-Translate skickar extraherad text till Google Translate. Sekretess kan "
-"inte garanteras när den är aktiverad."
-
-#: prefs.js:353
-msgid "Automatically translate extracted text to your target language."
-msgstr "Översätt automatiskt extraherad text till ditt målspråk."
-
-#: prefs.js:368
-msgid "Target Language Code"
-msgstr "Målspråkkod"
-
-#: prefs.js:369
-msgid "e.g., en, fr, es, zh. Leave empty to use your system default language."
-msgstr ""
-"t.ex. en, fr, es, zh. Lämna tomt för att använda ditt systemstandardspråk."
-
-#: prefs.js:388
 msgid "Logging"
 msgstr "Skogsavverkning"
 
-#: prefs.js:392
+#: prefs.js:341
 msgid "Enable Debug Logging"
 msgstr "Aktivera felsökningsloggning"
 
-#: prefs.js:393
+#: prefs.js:343
 msgid "Outputs detailed OCR and process logs to the system journal."
 msgstr "Matar ut detaljerade OCR- och processloggar till systemjournalen."
 
-#: prefs.js:414
+#: prefs.js:371
 msgid "About"
 msgstr ""
 
-#: prefs.js:449
+#: prefs.js:409
 #, fuzzy, javascript-format
 msgid "Version %s"
 msgstr "Version"
 
-#: prefs.js:453
+#: prefs.js:413
 msgid "by Christian Wittenberg"
 msgstr ""
 
-#: prefs.js:470
+#: prefs.js:432
 #, fuzzy
 msgid "Buy me a coffee ☕"
 msgstr "Köp en kaffe till mig ☕"
 
-#: prefs.js:471
+#: prefs.js:439
 #, fuzzy
 msgid "Report a Bug 🐞"
 msgstr "Rapportera en bugg 🐛"
 
-#: prefs.js:472
+#: prefs.js:445
 #, fuzzy
 msgid "Request a Feature 💡"
 msgstr "Begär en funktion 🚀"
 
-#: prefs.js:476
+#: prefs.js:453
 msgid ""
 "<b>Disclaimer</b>\n"
 "Optical Character Recognition (OCR) and smart data extraction are inherently "
@@ -265,44 +207,40 @@ msgid ""
 "incomplete data extracted by this tool. Use this extension at your own risk."
 msgstr ""
 
-#: dependencies.js:97
+#: dependencies.js:99
 #, fuzzy, javascript-format
 msgid "Missing dependencies: %s"
 msgstr "Saknat systemberoende: %s"
 
-#: dependencies.js:98
+#: dependencies.js:100
 #, fuzzy, javascript-format
 msgid "Missing dependency: %s"
 msgstr "Saknat systemberoende: %s"
 
-#: dependencies.js:107
+#: dependencies.js:110
 msgid ""
 "Please install the required packages and try again to enable all features."
 msgstr ""
 "Installera de nödvändiga paketen och försök igen för att aktivera alla "
 "funktioner."
 
-#: dependencies.js:121
-msgid "Captures the selected area of your screen."
-msgstr "Fångar det valda området på skärmen."
-
-#: dependencies.js:122
+#: dependencies.js:126
 msgid "The core OCR engine that reads text from images."
 msgstr "OCR-motorn som läser text från bilder."
 
-#: dependencies.js:123
+#: dependencies.js:127
 msgid "Improves image contrast and quality for better OCR."
 msgstr "Förbättrar bildkontrasten och kvaliteten för bättre OCR."
 
-#: dependencies.js:124
+#: dependencies.js:128
 msgid "Detects and decodes QR codes from the screen."
 msgstr "Upptäcker och avkodar QR-koder från skärmen."
 
-#: dependencies.js:139
+#: dependencies.js:143
 msgid "Required dependency."
 msgstr "Krävs beroende."
 
-#: dependencies.js:153
+#: dependencies.js:158
 msgid ""
 "Open a Terminal and run the following command to install the missing "
 "dependencies from the official repositories:"
@@ -310,99 +248,6 @@ msgstr ""
 "Öppna en terminal och kör följande kommando för att installera de saknade "
 "beroenden från de officiella arkiven:"
 
-#: dependencies.js:203
+#: dependencies.js:222
 msgid "Dismiss"
 msgstr "Avfärda"
-
-#: smartextractor.js:24
-msgid "Copy Clean Text"
-msgstr ""
-
-#: smartextractor.js:113
-msgid "Copy Link"
-msgstr ""
-
-#: smartextractor.js:129
-msgid "Copy Email"
-msgstr ""
-
-#: smartextractor.js:147
-msgid "Copy IPv4"
-msgstr ""
-
-#: smartextractor.js:183
-msgid "Copy IPv6"
-msgstr ""
-
-#: smartextractor.js:215
-msgid "Copy MAC Address"
-msgstr ""
-
-#: smartextractor.js:229 smartextractor.js:325
-msgid "Copy Number"
-msgstr ""
-
-#: smartextractor.js:241
-msgid "Copy UUID"
-msgstr ""
-
-#: smartextractor.js:253
-msgid "Copy Hex Color"
-msgstr ""
-
-#: smartextractor.js:266
-msgid "Copy Date"
-msgstr ""
-
-#: smartextractor.js:278
-msgid "Copy Phone"
-msgstr ""
-
-#: smartmenu.js:219
-#, javascript-format
-msgid "Copy text (%s)"
-msgstr ""
-
-#: smartmenu.js:227
-msgid "Extracted Data:"
-msgstr ""
-
-#~ msgid "Settings"
-#~ msgstr "Inställningar"
-
-#~ msgid "Allow triggering extraction via a keyboard shortcut."
-#~ msgstr "Tillåt utlösning av extraktion via ett kortkommando."
-
-#~ msgid "Keyboard Shortcut Trigger"
-#~ msgstr "Utlösare för kortkommandon"
-
-#~ msgid "Developer Details"
-#~ msgstr "Utvecklarinformation"
-
-#~ msgid "Author"
-#~ msgstr "Författare"
-
-#~ msgid "Snap Text Configuration"
-#~ msgstr "Snap Text Configuration"
-
-#~ msgid "Text Copied from History"
-#~ msgstr "Text kopierad från historik"
-
-#~ msgid ""
-#~ "This extension requires native system tools to perform OCR text "
-#~ "extraction. To get the extension working, open your terminal and run the "
-#~ "command below to install the base dependencies.\n"
-#~ "\n"
-#~ "Tip: Tesseract will automatically detect and use ANY language packs you "
-#~ "have installed on your system! Simply install additional languages (e.g., "
-#~ "tesseract-ocr-deu, tesseract-ocr-chi-sim) via your package manager to "
-#~ "enable them."
-#~ msgstr ""
-#~ "Detta tillägg kräver inbyggda systemverktyg för att utföra OCR-"
-#~ "textextraktion. För att få tillägget att fungera, öppna din terminal och "
-#~ "kör kommandot nedan för att installera basberoendena.\n"
-#~ "\n"
-#~ "Tips: Tesseract kommer automatiskt att upptäcka och använda ALLA "
-#~ "språkpaket du har installerat på ditt system! Installera helt enkelt "
-#~ "ytterligare språk (t.ex. tesseract-ocr-deu, tesseract-ocr-chi-sim) via "
-#~ "din pakethanterare för att aktivera dem."
