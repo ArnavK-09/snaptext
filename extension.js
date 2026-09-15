@@ -33,7 +33,6 @@ export default class SnapTextExtension extends Extension {
     this._extractTimeoutId = null;
     this._selectionTimeoutId = null;
     this._selectionUI = null;
-    this._translateToggle = null;
     this._historySection = null;
     this._soupSession = new Soup.Session();
 
@@ -245,15 +244,6 @@ export default class SnapTextExtension extends Extension {
       return;
     }
 
-    if (key === "translate-text") {
-      let isTranslating = this._settings.get_boolean("translate-text");
-      if (
-        this._translateToggle &&
-        this._translateToggle.state !== isTranslating
-      ) {
-        this._translateToggle.setToggleState(isTranslating);
-      }
-    }
   }
 
   _populateHistory() {
@@ -294,23 +284,6 @@ export default class SnapTextExtension extends Extension {
     } else {
       this._historySection = null;
     }
-
-    let isTranslating = this._settings.get_boolean("translate-text");
-    this._translateToggle = new PopupMenu.PopupSwitchMenuItem(
-      _("Auto-Translate Text"),
-      isTranslating,
-    );
-
-    this._translateToggle.connectObject(
-      "toggled",
-      (item, state) => {
-        this._settings.set_boolean("translate-text", state);
-      },
-      this,
-    );
-
-    this._indicator.menu.addMenuItem(this._translateToggle);
-    this._indicator.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
     let actionsRow = new PopupMenu.PopupBaseMenuItem({
       reactive: false,
@@ -484,71 +457,6 @@ export default class SnapTextExtension extends Extension {
     this._activeProcesses.clear();
   }
 
-  async _translateText(text, cancellable = this._cancellable) {
-    if (
-      !this._settings.get_boolean("translate-text") ||
-      !text ||
-      !this._soupSession
-    ) {
-      return text;
-    }
-
-    let targetLang = this._settings.get_string("translate-target").trim();
-
-    if (!targetLang) {
-      let sysLangs = GLib.get_language_names();
-      let locale = sysLangs[0] || "en";
-      targetLang = locale.split(".")[0].split("_")[0];
-    }
-
-    this._logDebug(`Translating text to: ${targetLang}`);
-
-    let url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
-
-    try {
-      let message = Soup.Message.new("GET", url);
-
-      let bytes = await new Promise((resolve, reject) => {
-        this._soupSession.send_and_read_async(
-          message,
-          GLib.PRIORITY_DEFAULT,
-          cancellable,
-          (sess, res) => {
-            try {
-              resolve(sess.send_and_read_finish(res));
-            } catch (e) {
-              reject(e);
-            }
-          },
-        );
-      });
-
-      if (message.get_status() === Soup.Status.OK) {
-        let decoder = new TextDecoder("utf-8");
-        let responseText = decoder.decode(bytes.get_data());
-        let json = JSON.parse(responseText);
-
-        let translated = "";
-        for (let block of json[0]) {
-          if (block[0]) {
-            translated += block[0];
-          }
-        }
-        return translated;
-      }
-    } catch (error) {
-      if (!this._isCancelled(cancellable)) {
-        this._logDebug(`Translation failed: ${error}`, true);
-        this._showNotification(
-          _("Translation Error"),
-          _("Could not connect to Google Translate."),
-        );
-      }
-    }
-
-    return text;
-  }
-
   async _getSelectionArea() {
     return new Promise((resolve) => {
       this._selectionUI = new SelectionUI((x, y, w, h) => {
@@ -685,11 +593,6 @@ export default class SnapTextExtension extends Extension {
                 this._logDebug(`Could not launch URI: ${e}`, true);
               }
             }
-          } else if (
-            text.trim().length > 0 &&
-            this._settings.get_boolean("translate-text")
-          ) {
-            text = await this._translateText(text, currentCancellable);
           }
 
           if (!this._isCancelled(currentCancellable)) {
@@ -780,11 +683,6 @@ export default class SnapTextExtension extends Extension {
       this._errorDialog.disconnectObject(this);
       this._errorDialog.destroy();
       this._errorDialog = null;
-    }
-
-    if (this._translateToggle) {
-      this._translateToggle.destroy();
-      this._translateToggle = null;
     }
 
     if (this._historySection) {

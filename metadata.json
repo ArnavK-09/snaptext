@@ -1,6 +1,6 @@
 {
   "name": "Snap Text",
-  "description": "Personal-use fork of Snap Text. Grab text from anywhere on your screen, just like the popular macOS feature. Select any area and it instantly extracts detected text with OCR and copies it to your clipboard. Works with images, screenshots, dialogs, documents, apps, and other places where normal text selection is not available. Can also instantly auto-translate.",
+  "description": "Personal-use fork of Snap Text. Grab text from anywhere on your screen, just like the popular macOS feature. Select any area and it instantly extracts detected text with OCR and copies it to your clipboard. Works with images, screenshots, dialogs, documents, apps, and other places where normal text selection is not available.",
   "uuid": "snaptext@ArnavK-09",
   "shell-version": ["45", "46", "47", "48", "49", "50"],
   "url": "https://github.com/cwittenberg/snaptext",

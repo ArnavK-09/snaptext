@@ -10,7 +10,6 @@ GNOME Extension enabling the user to select an area of the screen to instantly e
 - **Instant Text Extraction:** Select any part of your screen, and the text within that area is instantly processed and copied to your clipboard.
 - **Multi-Pass OCR Routing:** Dynamically adjusts Page Segmentation Modes (PSM) based on aspect ratio, executing primary and fallback OCR passes to determine the most accurate text based on confidence and garbage ratios.
 - **QR Code Detection:** Instantly detects and decodes QR codes using `zbar`, with an optional setting to automatically open HTTP/HTTPS links.
-- **Auto-Translation (Experimental):** Automatically translates extracted text to your target language using Google Translate.
 - **Extraction History:** Access a history of your 15 most recent text extractions from the GNOME Shell top panel menu.
 - **Customizable Shortcut:** Set your own keyboard shortcut. The default is `Super + Shift + T`.
 - **Visual Notifications:** Get system banner notifications when text is extracted or when you copy a previous extraction from your history.
